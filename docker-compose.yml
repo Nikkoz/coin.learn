@@ -12,7 +12,7 @@ networks:
 #Volumes
 volumes:
   redis-data:
-  postgresdb-data:
+  postgresdb-data-coin:
 
 services:
   #PHP Service
@@ -32,8 +32,8 @@ services:
       REDIS_PORT: &redis-port 6379
       DB_HOST: postgresdb
       DB_PORT: &postgresdb-port 5432
-      DB_DATABASE: &postgresdb-db-name app
-      DB_USERNAME: &postgresdb-username app
+      DB_DATABASE: &postgresdb-db-name ${COMPOSE_PROJECT_NAME}_db
+      DB_USERNAME: &postgresdb-username user
       DB_PASSWORD: &postgresdb-password secret
       SCHEDULE_PERIOD: 60
       #APP_ENV: local
@@ -99,7 +99,7 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}_postgresdb_1
     #restart: always
     volumes:
-      - postgresdb-data:/var/lib/postgresql/data:rw
+      - postgresdb-data-coin:/var/lib/postgresql/data:rw
     environment:
       POSTGRES_USER: *postgresdb-username
       POSTGRES_DB: *postgresdb-db-name

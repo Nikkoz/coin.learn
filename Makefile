@@ -64,7 +64,7 @@ clean:
 
 up: memory
 	@echo -e "Make: Up containers.\n"
-	@docker-compose -f docker-compose.yml -p $project_name up -d --force-recreate
+	@docker-compose -f docker-compose.yml -p $project_name up -d --build --force-recreate
 	@echo -e "Make: Visit https://${VIRTUAL_HOST} .\n"
 
 down:
@@ -80,9 +80,12 @@ migrate:
 tinker:
 	@docker-compose -f docker-compose.yml -p $project_name run app php artisan tinker
 
-db-seed:
+db-seed: dump-autoload
 	@echo -e "Make: Database seeding.\n"
 	@docker-compose -f docker-compose.yml -p $project_name run app php artisan db:seed --force
+
+dump-autoload:
+	@docker-compose -f docker-compose.yml -p $project_name run app composer dump-autoload
 
 db-fresh:
 	@echo -e "Make: Fresh database.\n"
