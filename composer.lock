@@ -4,8 +4,47 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "da9ce4bf55218de27fc1dbb3301e04fd",
+  "content-hash": "789a5950dbe2c33eab783d56214cb4ba",
   "packages": [
+    {
+      "name": "almasaeed2010/adminlte",
+      "version": "v3.0.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/ColorlibHQ/AdminLTE.git",
+        "reference": "5988c4f9dbed5f12c314620f1273359cffd7b887"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/ColorlibHQ/AdminLTE/zipball/5988c4f9dbed5f12c314620f1273359cffd7b887",
+        "reference": "5988c4f9dbed5f12c314620f1273359cffd7b887",
+        "shasum": ""
+      },
+      "type": "library",
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Colorlib"
+        }
+      ],
+      "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 4",
+      "homepage": "http://adminlte.io/",
+      "keywords": [
+        "JS",
+        "admin",
+        "back-end",
+        "css",
+        "less",
+        "responsive",
+        "template",
+        "theme",
+        "web"
+      ],
+      "time": "2019-11-20T08:41:28+00:00"
+    },
     {
       "name": "dnoegel/php-xdg-base-dir",
       "version": "v0.1.1",
@@ -38,6 +77,256 @@
       ],
       "description": "implementation of xdg base directory specification for php",
       "time": "2019-12-04T15:06:13+00:00"
+    },
+    {
+      "name": "doctrine/cache",
+      "version": "1.10.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/doctrine/cache.git",
+        "reference": "382e7f4db9a12dc6c19431743a2b096041bcdd62"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/doctrine/cache/zipball/382e7f4db9a12dc6c19431743a2b096041bcdd62",
+        "reference": "382e7f4db9a12dc6c19431743a2b096041bcdd62",
+        "shasum": ""
+      },
+      "require": {
+        "php": "~7.1"
+      },
+      "conflict": {
+        "doctrine/common": ">2.2,<2.4"
+      },
+      "require-dev": {
+        "alcaeus/mongo-php-adapter": "^1.1",
+        "doctrine/coding-standard": "^6.0",
+        "mongodb/mongodb": "^1.1",
+        "phpunit/phpunit": "^7.0",
+        "predis/predis": "~1.0"
+      },
+      "suggest": {
+        "alcaeus/mongo-php-adapter": "Required to use legacy MongoDB driver"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "1.9.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Guilherme Blanco",
+          "email": "guilhermeblanco@gmail.com"
+        },
+        {
+          "name": "Roman Borschel",
+          "email": "roman@code-factory.org"
+        },
+        {
+          "name": "Benjamin Eberlei",
+          "email": "kontakt@beberlei.de"
+        },
+        {
+          "name": "Jonathan Wage",
+          "email": "jonwage@gmail.com"
+        },
+        {
+          "name": "Johannes Schmitt",
+          "email": "schmittjoh@gmail.com"
+        }
+      ],
+      "description": "PHP Doctrine Cache library is a popular cache implementation that supports many different drivers such as redis, memcache, apc, mongodb and others.",
+      "homepage": "https://www.doctrine-project.org/projects/cache.html",
+      "keywords": [
+        "abstraction",
+        "apcu",
+        "cache",
+        "caching",
+        "couchdb",
+        "memcached",
+        "php",
+        "redis",
+        "xcache"
+      ],
+      "time": "2019-11-29T15:36:20+00:00"
+    },
+    {
+      "name": "doctrine/dbal",
+      "version": "v2.10.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/doctrine/dbal.git",
+        "reference": "0c9a646775ef549eb0a213a4f9bd4381d9b4d934"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/doctrine/dbal/zipball/0c9a646775ef549eb0a213a4f9bd4381d9b4d934",
+        "reference": "0c9a646775ef549eb0a213a4f9bd4381d9b4d934",
+        "shasum": ""
+      },
+      "require": {
+        "doctrine/cache": "^1.0",
+        "doctrine/event-manager": "^1.0",
+        "ext-pdo": "*",
+        "php": "^7.2"
+      },
+      "require-dev": {
+        "doctrine/coding-standard": "^6.0",
+        "jetbrains/phpstorm-stubs": "^2019.1",
+        "phpstan/phpstan": "^0.11.3",
+        "phpunit/phpunit": "^8.4.1",
+        "symfony/console": "^2.0.5|^3.0|^4.0|^5.0"
+      },
+      "suggest": {
+        "symfony/console": "For helpful console commands such as SQL execution and import of files."
+      },
+      "bin": [
+        "bin/doctrine-dbal"
+      ],
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "2.10.x-dev",
+          "dev-develop": "3.0.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Doctrine\\DBAL\\": "lib/Doctrine/DBAL"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Guilherme Blanco",
+          "email": "guilhermeblanco@gmail.com"
+        },
+        {
+          "name": "Roman Borschel",
+          "email": "roman@code-factory.org"
+        },
+        {
+          "name": "Benjamin Eberlei",
+          "email": "kontakt@beberlei.de"
+        },
+        {
+          "name": "Jonathan Wage",
+          "email": "jonwage@gmail.com"
+        }
+      ],
+      "description": "Powerful PHP database abstraction layer (DBAL) with many features for database schema introspection and management.",
+      "homepage": "https://www.doctrine-project.org/projects/dbal.html",
+      "keywords": [
+        "abstraction",
+        "database",
+        "db2",
+        "dbal",
+        "mariadb",
+        "mssql",
+        "mysql",
+        "oci8",
+        "oracle",
+        "pdo",
+        "pgsql",
+        "postgresql",
+        "queryobject",
+        "sasql",
+        "sql",
+        "sqlanywhere",
+        "sqlite",
+        "sqlserver",
+        "sqlsrv"
+      ],
+      "time": "2019-11-03T16:50:43+00:00"
+    },
+    {
+      "name": "doctrine/event-manager",
+      "version": "1.1.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/doctrine/event-manager.git",
+        "reference": "629572819973f13486371cb611386eb17851e85c"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/doctrine/event-manager/zipball/629572819973f13486371cb611386eb17851e85c",
+        "reference": "629572819973f13486371cb611386eb17851e85c",
+        "shasum": ""
+      },
+      "require": {
+        "php": "^7.1"
+      },
+      "conflict": {
+        "doctrine/common": "<2.9@dev"
+      },
+      "require-dev": {
+        "doctrine/coding-standard": "^6.0",
+        "phpunit/phpunit": "^7.0"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "1.0.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Doctrine\\Common\\": "lib/Doctrine/Common"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Guilherme Blanco",
+          "email": "guilhermeblanco@gmail.com"
+        },
+        {
+          "name": "Roman Borschel",
+          "email": "roman@code-factory.org"
+        },
+        {
+          "name": "Benjamin Eberlei",
+          "email": "kontakt@beberlei.de"
+        },
+        {
+          "name": "Jonathan Wage",
+          "email": "jonwage@gmail.com"
+        },
+        {
+          "name": "Johannes Schmitt",
+          "email": "schmittjoh@gmail.com"
+        },
+        {
+          "name": "Marco Pivetta",
+          "email": "ocramius@gmail.com"
+        }
+      ],
+      "description": "The Doctrine Event Manager is a simple PHP event system that was built to be used with the various Doctrine projects.",
+      "homepage": "https://www.doctrine-project.org/projects/event-manager.html",
+      "keywords": [
+        "event",
+        "event dispatcher",
+        "event manager",
+        "event system",
+        "events"
+      ],
+      "time": "2019-11-10T09:48:07+00:00"
     },
     {
       "name": "doctrine/inflector",
@@ -467,6 +756,60 @@
       ],
       "description": "Highlight PHP code in terminal",
       "time": "2018-09-29T18:48:56+00:00"
+    },
+    {
+      "name": "jeroennoten/laravel-adminlte",
+      "version": "v3.0.7",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/jeroennoten/Laravel-AdminLTE.git",
+        "reference": "d64f9027000dbf47b1abd8bab36aa89221001304"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/jeroennoten/Laravel-AdminLTE/zipball/d64f9027000dbf47b1abd8bab36aa89221001304",
+        "reference": "d64f9027000dbf47b1abd8bab36aa89221001304",
+        "shasum": ""
+      },
+      "require": {
+        "almasaeed2010/adminlte": "^3.0",
+        "laravel/framework": "^6.0",
+        "php": ">=7.2.0"
+      },
+      "require-dev": {
+        "phpunit/phpunit": "^8.3"
+      },
+      "type": "library",
+      "extra": {
+        "laravel": {
+          "providers": [
+            "JeroenNoten\\LaravelAdminLte\\AdminLteServiceProvider"
+          ]
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "JeroenNoten\\LaravelAdminLte\\": "src/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Jeroen Noten",
+          "email": "jeroennoten@me.com"
+        }
+      ],
+      "description": "Easy AdminLTE integration with Laravel",
+      "keywords": [
+        "AdminLTE",
+        "admin",
+        "administrator",
+        "laravel"
+      ],
+      "time": "2019-11-27T08:19:50+00:00"
     },
     {
       "name": "laravel/framework",
@@ -3021,6 +3364,77 @@
         "environment"
       ],
       "time": "2019-09-10T21:37:39+00:00"
+    },
+    {
+      "name": "yajra/laravel-datatables-oracle",
+      "version": "v9.8.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/yajra/laravel-datatables.git",
+        "reference": "9797a5f1b962b9ebf6bb087c88314dd724b3d5c0"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/9797a5f1b962b9ebf6bb087c88314dd724b3d5c0",
+        "reference": "9797a5f1b962b9ebf6bb087c88314dd724b3d5c0",
+        "shasum": ""
+      },
+      "require": {
+        "illuminate/database": "5.8.*|^6.0",
+        "illuminate/filesystem": "5.8.*|^6.0",
+        "illuminate/http": "5.8.*|^6.0",
+        "illuminate/support": "5.8.*|^6.0",
+        "illuminate/view": "5.8.*|^6.0",
+        "php": "^7.1.3"
+      },
+      "require-dev": {
+        "orchestra/testbench": "^3.8"
+      },
+      "suggest": {
+        "yajra/laravel-datatables-buttons": "Plugin for server-side exporting of dataTables.",
+        "yajra/laravel-datatables-editor": "Plugin to use DataTables Editor (requires a license).",
+        "yajra/laravel-datatables-fractal": "Plugin for server-side response using Fractal.",
+        "yajra/laravel-datatables-html": "Plugin for server-side HTML builder of dataTables."
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "9.0-dev"
+        },
+        "laravel": {
+          "providers": [
+            "Yajra\\DataTables\\DataTablesServiceProvider"
+          ],
+          "aliases": {
+            "DataTables": "Yajra\\DataTables\\Facades\\DataTables"
+          }
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Yajra\\DataTables\\": "src/"
+        },
+        "files": [
+          "src/helper.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Arjay Angeles",
+          "email": "aqangeles@gmail.com"
+        }
+      ],
+      "description": "jQuery DataTables API for Laravel 4|5",
+      "keywords": [
+        "datatables",
+        "jquery",
+        "laravel"
+      ],
+      "time": "2019-12-17T03:30:56+00:00"
     }
   ],
   "packages-dev": [
@@ -3211,6 +3625,67 @@
         }
       ],
       "time": "2018-12-13T10:34:14+00:00"
+    },
+    {
+      "name": "beyondcode/laravel-dump-server",
+      "version": "1.3.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/beyondcode/laravel-dump-server.git",
+        "reference": "fcc88fa66895f8c1ff83f6145a5eff5fa2a0739a"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/beyondcode/laravel-dump-server/zipball/fcc88fa66895f8c1ff83f6145a5eff5fa2a0739a",
+        "reference": "fcc88fa66895f8c1ff83f6145a5eff5fa2a0739a",
+        "shasum": ""
+      },
+      "require": {
+        "illuminate/console": "5.6.*|5.7.*|5.8.*|^6.0",
+        "illuminate/http": "5.6.*|5.7.*|5.8.*|^6.0",
+        "illuminate/support": "5.6.*|5.7.*|5.8.*|^6.0",
+        "php": "^7.1",
+        "symfony/var-dumper": "^4.1.1"
+      },
+      "require-dev": {
+        "larapack/dd": "^1.0",
+        "phpunit/phpunit": "^7.0"
+      },
+      "type": "library",
+      "extra": {
+        "laravel": {
+          "providers": [
+            "BeyondCode\\DumpServer\\DumpServerServiceProvider"
+          ]
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "BeyondCode\\DumpServer\\": "src"
+        },
+        "files": [
+          "helpers.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Marcel Pociot",
+          "email": "marcel@beyondco.de",
+          "homepage": "https://beyondco.de",
+          "role": "Developer"
+        }
+      ],
+      "description": "Symfony Var-Dump Server for Laravel",
+      "homepage": "https://github.com/beyondcode/laravel-dump-server",
+      "keywords": [
+        "beyondcode",
+        "laravel-dump-server"
+      ],
+      "time": "2019-08-11T13:17:40+00:00"
     },
     {
       "name": "composer/ca-bundle",
@@ -3513,256 +3988,6 @@
         "performance"
       ],
       "time": "2019-11-06T16:40:04+00:00"
-    },
-    {
-      "name": "doctrine/cache",
-      "version": "1.10.0",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/doctrine/cache.git",
-        "reference": "382e7f4db9a12dc6c19431743a2b096041bcdd62"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/doctrine/cache/zipball/382e7f4db9a12dc6c19431743a2b096041bcdd62",
-        "reference": "382e7f4db9a12dc6c19431743a2b096041bcdd62",
-        "shasum": ""
-      },
-      "require": {
-        "php": "~7.1"
-      },
-      "conflict": {
-        "doctrine/common": ">2.2,<2.4"
-      },
-      "require-dev": {
-        "alcaeus/mongo-php-adapter": "^1.1",
-        "doctrine/coding-standard": "^6.0",
-        "mongodb/mongodb": "^1.1",
-        "phpunit/phpunit": "^7.0",
-        "predis/predis": "~1.0"
-      },
-      "suggest": {
-        "alcaeus/mongo-php-adapter": "Required to use legacy MongoDB driver"
-      },
-      "type": "library",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "1.9.x-dev"
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Guilherme Blanco",
-          "email": "guilhermeblanco@gmail.com"
-        },
-        {
-          "name": "Roman Borschel",
-          "email": "roman@code-factory.org"
-        },
-        {
-          "name": "Benjamin Eberlei",
-          "email": "kontakt@beberlei.de"
-        },
-        {
-          "name": "Jonathan Wage",
-          "email": "jonwage@gmail.com"
-        },
-        {
-          "name": "Johannes Schmitt",
-          "email": "schmittjoh@gmail.com"
-        }
-      ],
-      "description": "PHP Doctrine Cache library is a popular cache implementation that supports many different drivers such as redis, memcache, apc, mongodb and others.",
-      "homepage": "https://www.doctrine-project.org/projects/cache.html",
-      "keywords": [
-        "abstraction",
-        "apcu",
-        "cache",
-        "caching",
-        "couchdb",
-        "memcached",
-        "php",
-        "redis",
-        "xcache"
-      ],
-      "time": "2019-11-29T15:36:20+00:00"
-    },
-    {
-      "name": "doctrine/dbal",
-      "version": "v2.10.0",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/doctrine/dbal.git",
-        "reference": "0c9a646775ef549eb0a213a4f9bd4381d9b4d934"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/doctrine/dbal/zipball/0c9a646775ef549eb0a213a4f9bd4381d9b4d934",
-        "reference": "0c9a646775ef549eb0a213a4f9bd4381d9b4d934",
-        "shasum": ""
-      },
-      "require": {
-        "doctrine/cache": "^1.0",
-        "doctrine/event-manager": "^1.0",
-        "ext-pdo": "*",
-        "php": "^7.2"
-      },
-      "require-dev": {
-        "doctrine/coding-standard": "^6.0",
-        "jetbrains/phpstorm-stubs": "^2019.1",
-        "phpstan/phpstan": "^0.11.3",
-        "phpunit/phpunit": "^8.4.1",
-        "symfony/console": "^2.0.5|^3.0|^4.0|^5.0"
-      },
-      "suggest": {
-        "symfony/console": "For helpful console commands such as SQL execution and import of files."
-      },
-      "bin": [
-        "bin/doctrine-dbal"
-      ],
-      "type": "library",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "2.10.x-dev",
-          "dev-develop": "3.0.x-dev"
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "Doctrine\\DBAL\\": "lib/Doctrine/DBAL"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Guilherme Blanco",
-          "email": "guilhermeblanco@gmail.com"
-        },
-        {
-          "name": "Roman Borschel",
-          "email": "roman@code-factory.org"
-        },
-        {
-          "name": "Benjamin Eberlei",
-          "email": "kontakt@beberlei.de"
-        },
-        {
-          "name": "Jonathan Wage",
-          "email": "jonwage@gmail.com"
-        }
-      ],
-      "description": "Powerful PHP database abstraction layer (DBAL) with many features for database schema introspection and management.",
-      "homepage": "https://www.doctrine-project.org/projects/dbal.html",
-      "keywords": [
-        "abstraction",
-        "database",
-        "db2",
-        "dbal",
-        "mariadb",
-        "mssql",
-        "mysql",
-        "oci8",
-        "oracle",
-        "pdo",
-        "pgsql",
-        "postgresql",
-        "queryobject",
-        "sasql",
-        "sql",
-        "sqlanywhere",
-        "sqlite",
-        "sqlserver",
-        "sqlsrv"
-      ],
-      "time": "2019-11-03T16:50:43+00:00"
-    },
-    {
-      "name": "doctrine/event-manager",
-      "version": "1.1.0",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/doctrine/event-manager.git",
-        "reference": "629572819973f13486371cb611386eb17851e85c"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/doctrine/event-manager/zipball/629572819973f13486371cb611386eb17851e85c",
-        "reference": "629572819973f13486371cb611386eb17851e85c",
-        "shasum": ""
-      },
-      "require": {
-        "php": "^7.1"
-      },
-      "conflict": {
-        "doctrine/common": "<2.9@dev"
-      },
-      "require-dev": {
-        "doctrine/coding-standard": "^6.0",
-        "phpunit/phpunit": "^7.0"
-      },
-      "type": "library",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "1.0.x-dev"
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "Doctrine\\Common\\": "lib/Doctrine/Common"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Guilherme Blanco",
-          "email": "guilhermeblanco@gmail.com"
-        },
-        {
-          "name": "Roman Borschel",
-          "email": "roman@code-factory.org"
-        },
-        {
-          "name": "Benjamin Eberlei",
-          "email": "kontakt@beberlei.de"
-        },
-        {
-          "name": "Jonathan Wage",
-          "email": "jonwage@gmail.com"
-        },
-        {
-          "name": "Johannes Schmitt",
-          "email": "schmittjoh@gmail.com"
-        },
-        {
-          "name": "Marco Pivetta",
-          "email": "ocramius@gmail.com"
-        }
-      ],
-      "description": "The Doctrine Event Manager is a simple PHP event system that was built to be used with the various Doctrine projects.",
-      "homepage": "https://www.doctrine-project.org/projects/event-manager.html",
-      "keywords": [
-        "event",
-        "event dispatcher",
-        "event manager",
-        "event system",
-        "events"
-      ],
-      "time": "2019-11-10T09:48:07+00:00"
     },
     {
       "name": "doctrine/instantiator",

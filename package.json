@@ -22,5 +22,10 @@
     "sass-loader": "7.*",
     "vue": "^2.5.17",
     "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "icheck-bootstrap": "^3.0.1",
+    "overlayscrollbars": "^1.10.0"
   }
 }

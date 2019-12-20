@@ -64,7 +64,7 @@ clean:
 
 up: memory
 	@echo -e "Make: Up containers.\n"
-	@docker-compose -f docker-compose.yml -p $project_name up -d --build --force-recreate
+	@docker-compose -f docker-compose.yml -p $project_name up -d --force-recreate
 	@echo -e "Make: Visit https://${VIRTUAL_HOST} .\n"
 
 down:
