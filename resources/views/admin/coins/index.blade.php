@@ -2,74 +2,53 @@
 
 @section('title', trans('coin.list_title'))
 
-@section('content')
-    <div class="card {{ request('filter') === null ? 'collapsed-card' : '' }}">
-        <div class="card-header">
-            <h3 class="card-title">
-                {{ trans('global.blade.filter') }}
-            </h3>
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                    <i class="fas {{ request('filter') === null ? 'fa-plus' : 'fa-minus' }}"></i>
-                </button>
-
-                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
-                        title="Remove">
-                    <i class="fas fa-times"></i>
-                </button>
+@section('fields')
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="inputStatus">Search</label>
+                <input type="text" class="form-control" name="q" value="{{ request('q') }}" placeholder="Search for...">
             </div>
         </div>
-        <div class="card-body">
-            <form action="{{ route('admin.coins') }}" method="GET" class="filter">
-                <input type="hidden" name="filter" value="1"/>
 
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="inputStatus">Search</label>
-                            <input type="text" class="form-control" name="q" value="{{ request('q') }}"
-                                   placeholder="Search for...">
-                        </div>
-                    </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="inputStatus">Status</label>
+                <select class="form-control custom-select" name="status">
+                    <option selected="" disabled="">{{ trans('global.blade.list.select_one') }}</option>
+                    @foreach(CoinStatusDictionary::getValues() as $key => $value)
+                        <option value="{{ $key }}" {{ request('status') !== null && (int)request('status') === $key ? 'selected' : ''}}>{{ $value }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="inputStatus">Status</label>
-                            <select class="form-control custom-select" name="status">
-                                <option selected="" disabled="">{{ trans('global.blade.list.select_one') }}</option>
-                                @foreach(CoinStatusDictionary::getValues() as $key => $value)
-                                    <option value="{{ $key }}" {{ request('status') == $key ? 'selected' : ''}}>{{ $value }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="inputStatus">Type</label>
+                <select class="form-control custom-select" name="type">
+                    <option selected="" disabled="">{{ trans('global.blade.list.select_one') }}</option>
+                    @foreach(CoinTypeDictionary::getValues() as $key => $value)
+                        <option value="{{ $key }}" {{ request('type') !== null && (int)request('type') === $key ? 'selected' : ''}}>{{ $value }} {{ $key }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="inputStatus">Type</label>
-                            <select class="form-control custom-select" name="type">
-                                <option selected="" disabled="">{{ trans('global.blade.list.select_one') }}</option>
-                                @foreach(CoinTypeDictionary::getValues() as $key => $value)
-                                    <option value="{{ $key }}" {{ request('type') == $key ? 'selected' : ''}}>{{ $value }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+        <div class="col-md-12 text-right">
+            <a href="{{ route('admin.coins') }}" class="btn btn-default">
+                {{ trans('global.blade.reset_filter') }}
+            </a>
 
-                    <div class="col-md-12 text-right">
-                        <a href="{{ route('admin.coins') }}" class="btn btn-default">
-                            {{ trans('global.blade.reset_filter') }}
-                        </a>
-
-                        <button class="btn btn-success" type="submit">
-                            <span class="fa fa-search"></span> {{ trans('global.blade.search') }}
-                        </button>
-                    </div>
-                </div>
-            </form>
+            <button class="btn btn-success" type="submit">
+                <span class="fa fa-search"></span> {{ trans('global.blade.search') }}
+            </button>
         </div>
     </div>
+@endsection
+
+@section('content')
+    @include('admin.layout.partials.filter', ['route' => route('admin.coins')])
 
     <div class="card">
         <div class="card-header">
@@ -136,7 +115,7 @@
             </table>
 
             <div class="pl-3">
-                {{ $coins->links() }}
+                {{ $coins->appends(request()->input())->links() }}
             </div>
         </div>
     </div>
