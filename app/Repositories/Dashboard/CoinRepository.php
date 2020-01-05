@@ -7,7 +7,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
-class CoinRepository
+class CoinRepository extends BaseRepository
 {
     /**
      * Количество элементов в пагинируемом списке по умолчанию.
@@ -25,8 +25,9 @@ class CoinRepository
      */
     public function getAll(array $params = []): Collection
     {
-        //TODO необходимо реализовать фильтрацию по $params
-        return $this->queryBuilder()->orderByDesc('id')->get();
+        $query = $this->prepareQueryParams($params);
+
+        return $query->orderByDesc('id')->get();
     }
 
     /**
@@ -38,7 +39,7 @@ class CoinRepository
      */
     public function getOne(int $id): Coin
     {
-        return $this->queryBuilder()/*->with(['genres', 'excludedLocations', 'formats'])*/ ->where('id', $id)->firstOrFail();
+        return $this->queryBuilder()->where('id', $id)->firstOrFail();
     }
 
     /**
@@ -51,17 +52,7 @@ class CoinRepository
      */
     public function getPagination(array $params = [], string $column = 'id'): LengthAwarePaginator
     {
-        $query = $this->queryBuilder();
-
-        if ($params) {
-            foreach ($params as $key => $value) {
-                if (is_array($value)) {
-                    $query->where($key, $value['operator'], $value['value']);
-                } else {
-                    $query->where($key, $value);
-                }
-            }
-        }
+        $query = $this->prepareQueryParams($params);
 
         return $query->orderByDesc($column)->paginate($this->defaultPaginationCount);
     }
