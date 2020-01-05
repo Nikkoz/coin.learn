@@ -18,5 +18,9 @@ return [
     'information' => 'Information',
 
     'main' => 'Main',
-    'coin_title' => 'Coins'
+    'coin_title' => 'Coins',
+    'settings' => 'Settings',
+    'algorithms' => 'Algorithms',
+    'algorithm_encryption' => 'Encryption',
+    'algorithm_consensus' => 'Consensus',
 ];

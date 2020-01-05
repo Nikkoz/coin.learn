@@ -27,3 +27,5 @@ Homestead.json
 /yarn.lock
 /.phpstorm.meta.php
 /_ide_helper.php
+
+composer.lock

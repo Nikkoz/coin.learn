@@ -3,8 +3,8 @@
 use App\Dictionaries\Coins\CoinStatusDictionary;
 use App\Dictionaries\Coins\CoinTypeDictionary;
 use App\Entities\Coin\Coin;
-use App\Entities\Coin\Consensus;
-use App\Entities\Coin\Encryption;
+use App\Entities\Settings\Consensus;
+use App\Entities\Settings\Encryption;
 use App\Entities\Image;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;

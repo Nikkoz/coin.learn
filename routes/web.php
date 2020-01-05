@@ -22,7 +22,14 @@ Route::group([
 
     Route::group(['middleware' => ['admin']], static function () {
         Route::get('/', 'HomeController@index')->name('home');
-    });
 
-    Route::get('coins', 'CoinController@index')->name('coins');
+        Route::get('coins', 'CoinController@index')->name('coins');
+
+        Route::group(['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
+            Route::group(['prefix' => 'algorithms', 'as' => 'algorithms.', 'namespace' => 'Algorithms'], static function () {
+                Route::resource('encryption', 'EncryptionController');
+                Route::resource('consensus', 'ConsensusController');
+            });
+        });
+    });
 });

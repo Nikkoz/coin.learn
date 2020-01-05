@@ -184,15 +184,22 @@ return [
             'route' => 'admin.coins',
             'icon' => 'far fa-fw fa-bitcoin'
         ], [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
-        ], [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
+            'text' => 'settings',
+            'submenu' => [
+                [
+                    'text' => 'algorithms',
+                    'icon' => 'fa fa-gg',
+                    'submenu' => [
+                        [
+                            'text' => 'algorithm_encryption',
+                            'route' => 'admin.settings.algorithms.encryption.index',
+                        ], [
+                            'text' => 'algorithm_consensus',
+                            'route' => 'admin.settings.algorithms.consensus.index',
+                        ]
+                    ]
+                ]
+            ]
         ],
         ['header' => 'account_settings'],
         [
@@ -307,7 +314,7 @@ return [
         ],
         [
             'name' => 'Select2',
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -359,5 +366,20 @@ return [
                 ],
             ],
         ],
+        [
+            'name' => 'Toastr',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'
+                ], [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js',
+                ]
+            ]
+        ]
     ],
 ];

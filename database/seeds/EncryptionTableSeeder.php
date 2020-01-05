@@ -1,6 +1,6 @@
 <?php
 
-use App\Entities\Coin\Encryption;
+use App\Entities\Settings\Encryption;
 use Illuminate\Database\Seeder;
 
 class EncryptionTableSeeder extends Seeder

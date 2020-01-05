@@ -1,32 +1,24 @@
 <?php
 
-namespace App\Services\Dashboard;
+namespace App\Services\Dashboard\Algorithms;
 
-use App\Dictionaries\Coins\CoinStatusDictionary;
-use App\Entities\Coin\Coin;
+use App\Entities\Settings\Encryption;
 use App\Exceptions\FailedSaveModelException;
-use App\Manager\Dashboard\FileManager;
-use App\Repositories\Dashboard\CoinRepository;
+use App\Repositories\Dashboard\Algorithms\EncryptionRepository;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Throwable;
 
-class CoinService
+class EncryptionService
 {
     /**
-     * @var CoinRepository
+     * @var EncryptionRepository
      */
     protected $repository;
 
-    /**
-     * @var FileManager
-     */
-    protected $manager;
-
-    public function __construct(CoinRepository $repository, FileManager $manager)
+    public function __construct(EncryptionRepository $repository)
     {
         $this->repository = $repository;
-        $this->manager = $manager;
     }
 
     /**
@@ -57,63 +49,65 @@ class CoinService
     }
 
     /**
-     * Создание монеты.
+     * Создание алгоритма шифрования.
      *
      * @param array $data - post данные
      *
      * @throws Throwable
-     * @return Coin
+     * @return Encryption
      */
-    public function create(array $data): Coin
+    public function create(array $data): Encryption
     {
-        $coin = new Coin;
-        $data['status'] = CoinStatusDictionary::ACTIVE;
+        $encryption = new Encryption;
 
-        if (!$this->save($coin, $data)) {
-            throw new FailedSaveModelException(Coin::class);
+        if (!$this->save($encryption, $data)) {
+            throw new FailedSaveModelException(Encryption::class);
         }
 
-        return $coin;
+        return $encryption;
     }
 
     /**
-     * Обновление монеты.
+     * Обновление алгоритма шифрования.
      *
      * @param int   $id
      * @param array $data
      *
+     * @throws FailedSaveModelException
      * @throws Throwable
-     * @return Coin
+     * @return Encryption
      */
-    public function update(int $id, array $data): Coin
+    public function update(int $id, array $data): Encryption
     {
-        /** @var Coin $coin */
-        $coin = $this->repository->getOne($id);
+        /** @var Encryption $coin */
+        $encryption = $this->repository->getOne($id);
 
-        if (!$this->save($coin, $data)) {
-            throw new FailedSaveModelException(Coin::class);
+        if (!$this->save($encryption, $data)) {
+            throw new FailedSaveModelException(Encryption::class);
         }
 
-        return $coin;
+        return $encryption;
     }
 
     /**
      * Сохранение.
      *
-     * @param Coin  $coin
-     * @param array $data
+     * @param Encryption $encryption
+     * @param array      $data
      *
      * @throws Exception
      * @throws Throwable
      * @return bool
      */
-    protected function save(Coin $coin, array $data): bool
+    protected function save(Encryption $encryption, array $data): bool
     {
-        return true;
+        $encryption->fill($data);
+
+        return $encryption->saveOrFail();
     }
 
     /**
-     * Удаление монет.
+     * Удаление алгоритмов шифрования.
      *
      * @param array $ids
      *
@@ -125,7 +119,7 @@ class CoinService
         $delete = $this->repository->queryBuilder()->whereIn('id', $ids)->delete();
 
         if ($delete === null) {
-            throw new ModelNotFoundException(Coin::class . ' with id=' . implode(', ', $ids) . ' not found.');
+            throw new ModelNotFoundException(Encryption::class . ' with id=' . implode(', ', $ids) . ' not found.');
         }
 
         return $delete;

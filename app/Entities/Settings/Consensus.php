@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entities\Coin;
+namespace App\Entities\Settings;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $id
  * @property string  $name
  */
-class Encryption extends Model
+class Consensus extends Model
 {
-    protected $table = 'algorithm_encryption';
+    protected $table = 'algorithm_consensus';
 
     protected $fillable = ['name'];
 

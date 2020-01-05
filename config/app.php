@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Providers\DashboardFormServiceProvider::class,
     ],
 
     /*
@@ -227,7 +228,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         //Dictionaries
-        'CoinTypeDictionary' => \App\Dictionaries\Coins\CoinTypeDictionary::class,
-        'CoinStatusDictionary' => \App\Dictionaries\Coins\CoinStatusDictionary::class,
+        'CoinTypeDictionary' => App\Dictionaries\Coins\CoinTypeDictionary::class,
+        'CoinStatusDictionary' => App\Dictionaries\Coins\CoinStatusDictionary::class,
+        'DashboardFlashTypeDictionary' => App\Dictionaries\DashboardFlashTypeDictionary::class
     ],
 ];

@@ -1,6 +1,6 @@
 <?php
 
-use App\Entities\Coin\Consensus;
+use App\Entities\Settings\Consensus;
 use Illuminate\Database\Seeder;
 
 class ConsensusTableSeeder extends Seeder

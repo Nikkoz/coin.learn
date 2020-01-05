@@ -1,6 +1,6 @@
 <?php
 
-use App\Entities\Coin\Encryption;
+use App\Entities\Settings\Encryption;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 

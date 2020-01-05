@@ -1,6 +1,6 @@
 <?php
 
-use App\Entities\Coin\Consensus;
+use App\Entities\Settings\Consensus;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 

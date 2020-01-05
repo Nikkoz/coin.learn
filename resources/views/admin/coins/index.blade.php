@@ -114,7 +114,7 @@
                 </tbody>
             </table>
 
-            <div class="pl-3">
+            <div class="pl-3 pt-3">
                 {{ $coins->appends(request()->input())->links() }}
             </div>
         </div>

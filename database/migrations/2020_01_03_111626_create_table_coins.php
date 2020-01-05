@@ -32,8 +32,8 @@ class CreateTableCoins extends Migration
             $table->boolean('smart_contracts')->nullable(true)->comment('Наличие смарт-контрактов для монеты');
             $table->string('platform')->nullable(true)->comment('Используемая платформа для токена');
             $table->string('date_start', 50)->nullable(true)->comment('Дата старта');
-            $table->integer('encryption')->nullable(false)->comment('Используемый алгоритм шифрования');
-            $table->integer('consensus')->nullable(false)->comment('Используемый алгоритм консенсуса');
+            $table->integer('encryption')->nullable(true)->comment('Используемый алгоритм шифрования');
+            $table->integer('consensus')->nullable(true)->comment('Используемый алгоритм консенсуса');
             $table->boolean('mining')->default(0)->comment('Майниться ли монета');
             $table->bigInteger('max_supply')->nullable(true)->comment('Всего монет');
             $table->text('key_features')->nullable(true)->comment('Ключевые особенности');

@@ -1,32 +1,24 @@
 <?php
 
-namespace App\Services\Dashboard;
+namespace App\Services\Dashboard\Algorithms;
 
-use App\Dictionaries\Coins\CoinStatusDictionary;
-use App\Entities\Coin\Coin;
+use App\Entities\Settings\Consensus;
 use App\Exceptions\FailedSaveModelException;
-use App\Manager\Dashboard\FileManager;
-use App\Repositories\Dashboard\CoinRepository;
+use App\Repositories\Dashboard\Algorithms\ConsensusRepository;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Throwable;
 
-class CoinService
+class ConsensusService
 {
     /**
-     * @var CoinRepository
+     * @var ConsensusRepository
      */
     protected $repository;
 
-    /**
-     * @var FileManager
-     */
-    protected $manager;
-
-    public function __construct(CoinRepository $repository, FileManager $manager)
+    public function __construct(ConsensusRepository $repository)
     {
         $this->repository = $repository;
-        $this->manager = $manager;
     }
 
     /**
@@ -57,63 +49,65 @@ class CoinService
     }
 
     /**
-     * Создание монеты.
+     * Создание алгоритма консенсуса.
      *
      * @param array $data - post данные
      *
      * @throws Throwable
-     * @return Coin
+     * @return Consensus
      */
-    public function create(array $data): Coin
+    public function create(array $data): Consensus
     {
-        $coin = new Coin;
-        $data['status'] = CoinStatusDictionary::ACTIVE;
+        $consensus = new Consensus;
 
-        if (!$this->save($coin, $data)) {
-            throw new FailedSaveModelException(Coin::class);
+        if (!$this->save($consensus, $data)) {
+            throw new FailedSaveModelException(Consensus::class);
         }
 
-        return $coin;
+        return $consensus;
     }
 
     /**
-     * Обновление монеты.
+     * Обновление алгоритма консенсуса.
      *
      * @param int   $id
      * @param array $data
      *
+     * @throws FailedSaveModelException
      * @throws Throwable
-     * @return Coin
+     * @return Consensus
      */
-    public function update(int $id, array $data): Coin
+    public function update(int $id, array $data): Consensus
     {
-        /** @var Coin $coin */
-        $coin = $this->repository->getOne($id);
+        /** @var Consensus $coin */
+        $consensus = $this->repository->getOne($id);
 
-        if (!$this->save($coin, $data)) {
-            throw new FailedSaveModelException(Coin::class);
+        if (!$this->save($consensus, $data)) {
+            throw new FailedSaveModelException(Consensus::class);
         }
 
-        return $coin;
+        return $consensus;
     }
 
     /**
      * Сохранение.
      *
-     * @param Coin  $coin
-     * @param array $data
+     * @param Consensus $consensus
+     * @param array     $data
      *
      * @throws Exception
      * @throws Throwable
      * @return bool
      */
-    protected function save(Coin $coin, array $data): bool
+    protected function save(Consensus $consensus, array $data): bool
     {
-        return true;
+        $consensus->fill($data);
+
+        return $consensus->saveOrFail();
     }
 
     /**
-     * Удаление монет.
+     * Удаление алгоритмов консенсуса.
      *
      * @param array $ids
      *
@@ -125,7 +119,7 @@ class CoinService
         $delete = $this->repository->queryBuilder()->whereIn('id', $ids)->delete();
 
         if ($delete === null) {
-            throw new ModelNotFoundException(Coin::class . ' with id=' . implode(', ', $ids) . ' not found.');
+            throw new ModelNotFoundException(Consensus::class . ' with id=' . implode(', ', $ids) . ' not found.');
         }
 
         return $delete;
