@@ -226,6 +226,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        //Dictionaries
+        'CoinTypeDictionary' => \App\Dictionaries\Coins\CoinTypeDictionary::class,
+        'CoinStatusDictionary' => \App\Dictionaries\Coins\CoinStatusDictionary::class,
     ],
-
 ];

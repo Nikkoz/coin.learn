@@ -4,7 +4,7 @@ namespace App\Dictionaries\Coins;
 
 use App\Dictionaries\BaseDictionary;
 
-class StatusDictionary extends BaseDictionary
+class CoinStatusDictionary extends BaseDictionary
 {
     public const ACTIVE = 1;
     public const DRAFT = 0;

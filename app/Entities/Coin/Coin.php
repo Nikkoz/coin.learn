@@ -2,9 +2,7 @@
 
 namespace App\Entities\Coin;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property integer $id
@@ -33,5 +31,5 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class Coin extends Model
 {
-
+    public $guarded = ['id', 'alias'];
 }

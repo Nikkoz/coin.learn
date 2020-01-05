@@ -178,12 +178,16 @@ return [
             'search' => true,
             'topnav' => true,
         ],
+        ['header' => 'main'],
         [
+            'text' => 'coin_title',
+            'route' => 'admin.coins',
+            'icon' => 'far fa-fw fa-bitcoin'
+        ], [
             'text' => 'blog',
             'url' => 'admin/blog',
             'can' => 'manage-blog',
-        ],
-        [
+        ], [
             'text' => 'pages',
             'url' => 'admin/pages',
             'icon' => 'far fa-fw fa-file',
@@ -195,13 +199,11 @@ return [
             'text' => 'profile',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
-        ],
-        [
+        ], [
             'text' => 'change_password',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
+        ], [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
@@ -243,12 +245,10 @@ return [
         [
             'text' => 'important',
             'icon_color' => 'red',
-        ],
-        [
+        ], [
             'text' => 'warning',
             'icon_color' => 'yellow',
-        ],
-        [
+        ], [
             'text' => 'information',
             'icon_color' => 'aqua',
         ],

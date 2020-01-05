@@ -23,4 +23,6 @@ Route::group([
     Route::group(['middleware' => ['admin']], static function () {
         Route::get('/', 'HomeController@index')->name('home');
     });
+
+    Route::get('coins', 'CoinController@index')->name('coins');
 });

@@ -2,4 +2,4 @@
 
 @section('content')
     <p>Welcome to admin panel.</p>
-@stop
+@endsection

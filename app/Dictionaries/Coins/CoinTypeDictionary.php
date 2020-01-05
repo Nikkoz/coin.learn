@@ -4,7 +4,7 @@ namespace App\Dictionaries\Coins;
 
 use App\Dictionaries\BaseDictionary;
 
-class TypeDictionary extends BaseDictionary
+class CoinTypeDictionary extends BaseDictionary
 {
     public const TYPE_COIN = 1;
     public const TYPE_TOKEN = 2;
