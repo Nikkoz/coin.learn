@@ -30,11 +30,11 @@ class CoinController extends Controller
     {
         $params = [];
 
-        if (($value = $request->get('status')) !== null) {
+        if (($value = $request->get('status')) !== null && $value !== '-1') {
             $params['status'] = $value;
         }
 
-        if (!empty($value = $request->get('type'))) {
+        if (($value = $request->get('type')) !== null && $value !== '-1') {
             $params['type'] = $value;
         }
 

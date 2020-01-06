@@ -7,36 +7,26 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="inputStatus">Search</label>
-                <input type="text" class="form-control" name="q" value="{{ request('q') }}" placeholder="Search for...">
+                {{ Form::text('q', request('q'), ['placeholder' => 'Search for...', 'class' => 'form-control']) }}
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="form-group">
                 <label for="inputStatus">Status</label>
-                <select class="form-control custom-select" name="status">
-                    <option selected="" disabled="">{{ trans('global.blade.list.select_one') }}</option>
-                    @foreach(CoinStatusDictionary::getValues() as $key => $value)
-                        <option value="{{ $key }}" {{ request('status') !== null && (int)request('status') === $key ? 'selected' : ''}}>{{ $value }}</option>
-                    @endforeach
-                </select>
+                {{ Form::select('status', ['-1' => trans('global.blade.list.select_one')] + CoinStatusDictionary::getValues(), request('status'), ['class' => 'form-control custom-select']) }}
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="form-group">
                 <label for="inputStatus">Type</label>
-                <select class="form-control custom-select" name="type">
-                    <option selected="" disabled="">{{ trans('global.blade.list.select_one') }}</option>
-                    @foreach(CoinTypeDictionary::getValues() as $key => $value)
-                        <option value="{{ $key }}" {{ request('type') !== null && (int)request('type') === $key ? 'selected' : ''}}>{{ $value }} {{ $key }}</option>
-                    @endforeach
-                </select>
+                {{ Form::select('type', ['-1' => trans('global.blade.list.select_one')] + CoinTypeDictionary::getValues(), request('type'), ['class' => 'form-control custom-select']) }}
             </div>
         </div>
 
         <div class="col-md-12 text-right">
-            <a href="{{ route('admin.coins') }}" class="btn btn-default">
+            <a href="{{ route('admin.coins.index') }}" class="btn btn-default">
                 {{ trans('global.blade.reset_filter') }}
             </a>
 
@@ -48,7 +38,7 @@
 @endsection
 
 @section('content')
-    @include('admin.layout.partials.filter', ['route' => route('admin.coins')])
+    @include('admin.layout.partials.filter', ['route' => route('admin.coins.index')])
 
     <div class="card">
         <div class="card-header">
@@ -57,7 +47,7 @@
             </h3>
 
             <div class="card-tools">
-                <a class="btn btn-xs btn-success" href="{{ route('admin.coins') }}">
+                <a class="btn btn-xs btn-success" href="{{ route('admin.coins.create') }}">
                     {{ trans('coin.actions.add') }}
                 </a>
             </div>
@@ -91,10 +81,6 @@
                         <td>{{ $coin->created_at }}</td>
                         <td>{{ $coin->updated_at }}</td>
                         <td class="text-right">
-                            <a class="btn btn-sm btn-primary"
-                               href="{{--{{ route('admin.films.show', $film->id) }}--}}">
-                                <i class="fa fa-eye"></i>
-                            </a>
                             <a class="btn btn-sm btn-info"
                                href="{{--{{ route('admin.films.edit', $film->id) }}--}}">
                                 <i class="fa fa-edit"></i>
