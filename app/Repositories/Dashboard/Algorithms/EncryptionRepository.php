@@ -32,6 +32,21 @@ class EncryptionRepository extends BaseRepository
     }
 
     /**
+     * Получить массив жанров для формирования селектора.
+     *
+     * @return array
+     */
+    public function getAllForSelector(): array
+    {
+        /** @var Collection $collection */
+        $collection = $this->queryBuilder()->orderByDesc('id')->get();
+
+        return $collection->mapWithKeys(static function ($item) {
+            return [$item['id'] => $item['name']];
+        })->all();
+    }
+
+    /**
      * Получить алгоритм шифрования по id.
      *
      * @param int $id

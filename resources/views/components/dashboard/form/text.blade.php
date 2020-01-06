@@ -1,4 +1,4 @@
-<div class="form-group input-lg {{ $errors->has($name) ? 'has-error' : '' }}">
+<div class="form-group input-lg @error($name) has-error @enderror">
     <label for="{{ $name }}">{{ trans($label) }} {{ $isRequired ? '*' : '' }}</label>
 
     {!! Form::text($name, $value, array_merge(

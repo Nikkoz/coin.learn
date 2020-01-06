@@ -82,10 +82,10 @@
                         <td>{{ $coin->updated_at }}</td>
                         <td class="text-right">
                             <a class="btn btn-sm btn-info"
-                               href="{{--{{ route('admin.films.edit', $film->id) }}--}}">
+                               href="{{ route('admin.coins.edit', $coin->id) }}">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <form action="{{--{{ route('admin.films.destroy', $film->id) }}--}}" method="POST"
+                            <form action="{{ route('admin.coins.destroy', $coin->id) }}" method="POST"
                                   onsubmit="return confirm({{ trans('global.blade.sure_delete') }});"
                                   style="display: inline-block;">
                                 <input type="hidden" name="_method" value="DELETE">

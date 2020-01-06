@@ -7,3 +7,9 @@ mix
     .js('resources/assets/js/app.js', 'js')
     .sass('resources/assets/sass/app.scss', 'css')
     .version();
+
+mix.webpackConfig({
+    plugins: [
+        new webpack.IgnorePlugin(/^codemirror$/)
+    ]
+});

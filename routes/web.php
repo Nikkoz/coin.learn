@@ -23,7 +23,9 @@ Route::group([
     Route::group(['middleware' => ['admin']], static function () {
         Route::get('/', 'HomeController@index')->name('home');
 
-        Route::get('coins', 'CoinController@index')->name('coins');
+        Route::post('/ajax/upload/image', 'UploadController@image')->name('ajax.upload.image');
+
+        Route::resource('coins', 'CoinController');
 
         Route::group(['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
             Route::group(['prefix' => 'algorithms', 'as' => 'algorithms.', 'namespace' => 'Algorithms'], static function () {

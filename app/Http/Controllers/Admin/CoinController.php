@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Dashboard\Algorithms\ConsensusRepository;
+use App\Repositories\Dashboard\Algorithms\EncryptionRepository;
 use App\Repositories\Dashboard\CoinRepository;
 use App\Services\Dashboard\CoinService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class CoinController extends Controller
 {
@@ -15,14 +18,25 @@ class CoinController extends Controller
      */
     private $repository;
 
+    private $algorithmEncryptionRepository;
+
+    private $algorithmConsensusRepository;
+
     /**
      * @var CoinService
      */
     private $service;
 
-    public function __construct(CoinRepository $repository, CoinService $service)
+    public function __construct(
+        CoinRepository $repository,
+        CoinService $service,
+        EncryptionRepository $algorithmEncryptionRepository,
+        ConsensusRepository $algorithmConsensusRepository
+    )
     {
         $this->repository = $repository;
+        $this->algorithmEncryptionRepository = $algorithmEncryptionRepository;
+        $this->algorithmConsensusRepository = $algorithmConsensusRepository;
         $this->service = $service;
     }
 
@@ -50,14 +64,14 @@ class CoinController extends Controller
         return view('admin.coins.index', compact('coins'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('admin.coins.create', [
+            'algorithms' => [
+                'encryption' => $this->algorithmEncryptionRepository->getAllForSelector(),
+                'consensus' => $this->algorithmConsensusRepository->getAllForSelector(),
+            ]
+        ]);
     }
 
     /**

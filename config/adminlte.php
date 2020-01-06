@@ -181,7 +181,7 @@ return [
         ['header' => 'main'],
         [
             'text' => 'coin_title',
-            'route' => 'admin.coins',
+            'route' => 'admin.coins.index',
             'icon' => 'far fa-fw fa-bitcoin'
         ], [
             'text' => 'settings',
@@ -378,6 +378,21 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js',
+                ]
+            ]
+        ],
+        [
+            'name' => 'SummerNote',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css'
+                ], [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js'
                 ]
             ]
         ]
