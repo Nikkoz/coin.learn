@@ -97,7 +97,9 @@
                 }
             }
         });
+
+        bsCustomFileInput.init();
     </script>
 
-    @yield('added-js')
+    @stack('added-js')
 @stop

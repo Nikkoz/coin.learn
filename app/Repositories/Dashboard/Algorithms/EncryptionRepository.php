@@ -39,7 +39,7 @@ class EncryptionRepository extends BaseRepository
     public function getAllForSelector(): array
     {
         /** @var Collection $collection */
-        $collection = $this->queryBuilder()->orderByDesc('id')->get();
+        $collection = $this->queryBuilder()->orderBy('name')->get();
 
         return $collection->mapWithKeys(static function ($item) {
             return [$item['id'] => $item['name']];

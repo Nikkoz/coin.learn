@@ -16,5 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Image extends Model
 {
+    public $guarded = ['id'];
+
     public $timestamps = false;
 }

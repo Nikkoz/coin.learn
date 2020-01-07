@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Dictionaries\DashboardFlashTypeDictionary;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\CoinRequest;
 use App\Repositories\Dashboard\Algorithms\ConsensusRepository;
 use App\Repositories\Dashboard\Algorithms\EncryptionRepository;
 use App\Repositories\Dashboard\CoinRepository;
@@ -10,6 +12,7 @@ use App\Services\Dashboard\CoinService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
+use App\Entities\Coin\Coin;
 
 class CoinController extends Controller
 {
@@ -74,64 +77,28 @@ class CoinController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return Response
-     */
-    public function store(Request $request)
+    public function store(CoinRequest $request)
     {
-        //
+        $this->service->create($request->validated());
+
+        return redirect()->route('admin.coins.index')->with(
+            DashboardFlashTypeDictionary::SUCCESS,
+            trans('coin.saved')
+        );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Coin $coin
-     *
-     * @return Response
-     */
-    public function show(Coin $coin)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Coin $coin
-     *
-     * @return Response
-     */
     public function edit(Coin $coin)
     {
-        //
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Coin                $coin
-     *
-     * @return Response
-     */
     public function update(Request $request, Coin $coin)
     {
-        //
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Coin $coin
-     *
-     * @return Response
-     */
     public function destroy(Coin $coin)
     {
-        //
+
     }
 }

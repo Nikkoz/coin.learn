@@ -36,5 +36,17 @@ class DashboardFormServiceProvider extends ServiceProvider
         Form::component('bsFile', 'components.dashboard.form.image', [
             'label', 'name', 'isRequired' => true, 'value' => null, 'help' => null, 'attributes' => []
         ]);
+
+        Form::component('bsTextMultiple', 'components.dashboard.form.multiple.text', [
+            'label', 'name', 'isRequired' => false, 'value' => [], 'help' => null, 'attributes' => []
+        ]);
+
+        Form::component('bsDate', 'components.dashboard.form.date', [
+            'label', 'name', 'isRequired' => false, 'value' => null, 'help' => null, 'attributes' => []
+        ]);
+
+        Form::component('bsSubmit', 'components.dashboard.form.submit', [
+            'name', 'attributes' => []
+        ]);
     }
 }

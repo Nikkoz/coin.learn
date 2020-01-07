@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Manager\Dashboard;
+namespace App\Managers\Dashboard;
 
 use App\Exceptions\File\FailedFileSaveException;
 use Carbon\Carbon;

@@ -26,12 +26,12 @@ class CreateTableCoins extends Migration
             $table->bigIncrements('id');
             $table->string('name', 100)->nullable(false)->index()->unique()->comment('Название');
             $table->string('code', 10)->nullable(false)->index()->unique()->comment('Код монеты, например BTC');
-            $table->string('slug', 100)->nullable(false);
+            $table->string('alias', 100)->nullable(false);
             $table->integer('image')->nullable(true)->comment('Иконка');
             $table->tinyInteger('type')->default(0)->comment('Тип: Монета или Токен');
             $table->boolean('smart_contracts')->nullable(true)->comment('Наличие смарт-контрактов для монеты');
-            $table->string('platform')->nullable(true)->comment('Используемая платформа для токена');
-            $table->string('date_start', 50)->nullable(true)->comment('Дата старта');
+            $table->string('platform', 255)->nullable(true)->comment('Используемая платформа для токена');
+            $table->date('date_start')->nullable(true)->comment('Дата старта');
             $table->integer('encryption')->nullable(true)->comment('Используемый алгоритм шифрования');
             $table->integer('consensus')->nullable(true)->comment('Используемый алгоритм консенсуса');
             $table->boolean('mining')->default(0)->comment('Майниться ли монета');
@@ -39,10 +39,11 @@ class CreateTableCoins extends Migration
             $table->text('key_features')->nullable(true)->comment('Ключевые особенности');
             $table->text('use')->nullable(true)->comment('Использование');
             $table->tinyInteger('status')->nullable(false)->default(0)->comment('Статус');
-            $table->json('site')->nullable(true)->comment('json массив сайтов монеты');
-            $table->json('link')->nullable(true)->comment('json массив дополнительных ссылок');
-            $table->json('chat')->nullable(true)->comment('json массив ссылок на чаты');
-            $table->timestamps();
+            $table->string('site', 50)->nullable(true)->comment('Официальный сайт монеты');
+            $table->string('chat', 50)->nullable(true)->comment('Ссылка на чат');
+            $table->json('link')->nullable(true)->comment('Дополнительные ссылки');
+
+            $table->timestampsTz();
 
             $table->foreign('encryption')->references('id')->on('algorithm_encryption')->onDelete('SET NULL')->onUpdate('CASCADE');
             $table->foreign('consensus')->references('id')->on('algorithm_consensus')->onDelete('SET NULL')->onUpdate('CASCADE');

@@ -11,7 +11,13 @@ return [
     'actions' => [
         'add' => 'Add coin',
         'update' => 'Update coin',
-        'delete' => 'Delete coin'
+        'delete' => 'Delete coin',
+    ],
+    'saved' => 'Coin saved.',
+    'deleted' => 'Coin deleted.',
+    'updated' => 'Coin ":name" updatedю',
+    'validation' => [
+        'smart_contracts' => 'For a token, you cannot indicate the presence of smart contracts',
     ],
     'blade' => [
         'image_title' => 'Icon',
@@ -39,9 +45,12 @@ return [
                 'max_supply' => 'Total coins',
                 'key_features' => 'Key features',
                 'use' => 'Using',
-                'icon' => 'Choose icon',
+                'icon' => 'Choose icon ...',
+                'site' => 'Official site',
+                'chat' => 'Chat',
+                'link' => 'Additional links'
             ]
         ],
-
+        'save' => 'Save coin',
     ]
 ];

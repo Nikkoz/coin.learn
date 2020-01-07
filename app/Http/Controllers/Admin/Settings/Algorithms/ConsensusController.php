@@ -59,7 +59,7 @@ class ConsensusController extends Controller
         ]);
     }
 
-    public function update(int $id, ConsensusRequest $request): RedirectResponse
+    public function update(ConsensusRequest $request, int $id): RedirectResponse
     {
         $this->service->update($id, $request->validated());
 

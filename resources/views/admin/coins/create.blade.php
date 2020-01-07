@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            {{ Form::bsSelectWithoutSearch('coin.blade.create.form.type', 'type', CoinTypeDictionary::getValues()) }}
+                            {{ Form::bsSelectWithoutSearch('coin.blade.create.form.type', 'type', CoinTypeDictionary::getValues(), true, CoinTypeDictionary::TYPE_COIN) }}
                         </div>
                     </div>
 
@@ -51,15 +51,15 @@
                         </div>
 
                         <div class="col-md-6">
-                            {{ Form::bsText('coin.blade.create.form.date_start', 'date_start', false) }}
+                            {{ Form::bsDate('coin.blade.create.form.date_start', 'date_start', false) }}
                         </div>
 
                         <div class="col-md-6">
-                            {{ Form::bsSelect('coin.blade.create.form.algorithm.encryption', 'type', $algorithms['encryption'], false) }}
+                            {{ Form::bsSelect('coin.blade.create.form.algorithm.encryption', 'encryption', $algorithms['encryption'], false) }}
                         </div>
 
                         <div class="col-md-6">
-                            {{ Form::bsSelect('coin.blade.create.form.algorithm.consensus', 'type', $algorithms['consensus'], false) }}
+                            {{ Form::bsSelect('coin.blade.create.form.algorithm.consensus', 'consensus', $algorithms['consensus'], false) }}
                         </div>
 
                         <div class="col-md-6">
@@ -75,9 +75,6 @@
                     <div class="row">
                         <div class="col-md-12">
                             {{ Form::bsTextarea('coin.blade.create.form.key_features', 'key_features', false) }}
-                        </div>
-
-                        <div class="col-md-12">
                             {{ Form::bsTextarea('coin.blade.create.form.use', 'use', false) }}
                         </div>
                     </div>
@@ -126,9 +123,21 @@
                         </div>
 
                         <div class="card-body">
-
+                            {{ Form::bsText('coin.blade.create.form.site', 'site', false) }}
+                            {{ Form::bsText('coin.blade.create.form.chat', 'chat', false) }}
+                            {{ Form::bsTextMultiple('coin.blade.create.form.link', 'link') }}
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-footer text-right">
+                    {{ Form::submit(trans('coin.blade.save'), ['class' => 'btn btn-success']) }}
                 </div>
             </div>
         </div>
@@ -137,7 +146,7 @@
     {!! Form::close() !!}
 @endsection
 
-@section('added-js')
+@push('added-js')
     <script>
         $(function () {
             let type = $('select[name=type]');
@@ -161,4 +170,4 @@
             }
         }
     </script>
-@endsection
+@endpush

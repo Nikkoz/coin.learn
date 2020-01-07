@@ -2,7 +2,10 @@
 
 namespace App\Entities\Coin;
 
+use App\Entities\Settings\Consensus;
+use App\Entities\Settings\Encryption;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer $id
@@ -31,5 +34,22 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Coin extends Model
 {
+    /**
+     * Путь для сохранения изображений фильмов.
+     */
+    public const PATH = 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'coins';
+
     public $guarded = ['id', 'alias'];
+
+    protected $dateFormat = 'Y-m-d H:i:sO';
+
+    public function encryption(): BelongsTo
+    {
+        return $this->belongsTo(Encryption::class);
+    }
+
+    public function consensus(): BelongsTo
+    {
+        return $this->belongsTo(Consensus::class);
+    }
 }
