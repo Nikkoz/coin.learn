@@ -19,10 +19,11 @@
         </div>
     </div>
     <div class="card-body">
-        <form action="{{ $route }}" method="GET" class="filter">
-            <input type="hidden" name="filter" value="1"/>
+        {!! Form::open(['url' => $route, 'method' => 'GET', 'enctype' => 'multipart/form-data', 'class' => 'filter']) !!}
 
-            @yield('fields')
-        </form>
+        {{ Form::hidden('filter', 1) }}
+        @yield('fields')
+
+        {!! Form::close() !!}
     </div>
 </div>

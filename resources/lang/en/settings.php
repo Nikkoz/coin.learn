@@ -6,13 +6,17 @@ return [
         'algorithms' => [
             'title' => 'algorithms',
             'create' => 'Algorithm creation',
-            'updated' => 'Updating algorithm ":name"',
-            'saved' => 'Algorithm is saved.',
-            'deleted' => 'Algorithm is deleted.',
+            'update' => 'Updating algorithm ":name"',
+            'saved' => 'Algorithm saved.',
+            'deleted' => 'Algorithm deleted.',
             'actions' => [
                 'add' => 'Add algorithm',
                 'update' => 'Update algorithm',
                 'delete' => 'Delete algorithm'
+            ],
+            'breadcrumbs' => [
+                'update' => 'Updating algorithm',
+                'create' => 'Algorithm creation'
             ],
             'encryption' => [
                 'title' => 'Encryption algorithm',

@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Dictionaries\DashboardFlashTypeDictionary;
+use App\Exceptions\FailedDeleteModelException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\CoinRequest;
+use App\Repositories\Dashboard\Algorithms\ConsensusRepository;
+use App\Repositories\Dashboard\Algorithms\EncryptionRepository;
 use App\Repositories\Dashboard\CoinRepository;
 use App\Services\Dashboard\CoinService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class CoinController extends Controller
 {
@@ -15,33 +21,44 @@ class CoinController extends Controller
      */
     private $repository;
 
+    private $algorithmEncryptionRepository;
+
+    private $algorithmConsensusRepository;
+
     /**
      * @var CoinService
      */
     private $service;
 
-    public function __construct(CoinRepository $repository, CoinService $service)
+    public function __construct(
+        CoinRepository $repository,
+        CoinService $service,
+        EncryptionRepository $algorithmEncryptionRepository,
+        ConsensusRepository $algorithmConsensusRepository
+    )
     {
         $this->repository = $repository;
+        $this->algorithmEncryptionRepository = $algorithmEncryptionRepository;
+        $this->algorithmConsensusRepository = $algorithmConsensusRepository;
         $this->service = $service;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $params = [];
 
-        if (($value = $request->get('status')) !== null) {
+        if (($value = $request->get('status')) !== null && $value !== '-1') {
             $params['status'] = $value;
         }
 
-        if (!empty($value = $request->get('type'))) {
+        if (($value = $request->get('type')) !== null && $value !== '-1') {
             $params['type'] = $value;
         }
 
         if (!empty($value = $request->get('q'))) {
             $params['name'] = [
                 'operator' => 'LIKE',
-                'value' => "%$value%"
+                'value'    => "%$value%"
             ];
         }
 
@@ -50,74 +67,47 @@ class CoinController extends Controller
         return view('admin.coins.index', compact('coins'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('admin.coins.create', [
+            'algorithms' => [
+                'encryption' => $this->algorithmEncryptionRepository->getAllForSelector(),
+                'consensus'  => $this->algorithmConsensusRepository->getAllForSelector(),
+            ]
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return Response
-     */
-    public function store(Request $request)
+    public function store(CoinRequest $request): RedirectResponse
     {
-        //
+        $this->service->create($request->validated());
+
+        return redirect()->route('admin.coins.index')->with(DashboardFlashTypeDictionary::SUCCESS, trans('coin.saved'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Coin $coin
-     *
-     * @return Response
-     */
-    public function show(Coin $coin)
+    public function edit(int $id): View
     {
-        //
+        return view('admin.coins.edit', [
+            'coin'       => $this->repository->getOne($id),
+            'algorithms' => [
+                'encryption' => $this->algorithmEncryptionRepository->getAllForSelector(),
+                'consensus'  => $this->algorithmConsensusRepository->getAllForSelector(),
+            ]
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Coin $coin
-     *
-     * @return Response
-     */
-    public function edit(Coin $coin)
+    public function update(CoinRequest $request, int $id): RedirectResponse
     {
-        //
+        $this->service->update($id, $request->validated());
+
+        return redirect()->route('admin.coins.index')->with(DashboardFlashTypeDictionary::SUCCESS, trans('coin.updated', ['name' => $request->name]));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Coin                $coin
-     *
-     * @return Response
-     */
-    public function update(Request $request, Coin $coin)
+    public function destroy(int $id)
     {
-        //
-    }
+        if ($this->service->delete($id) === false) {
+            throw new FailedDeleteModelException();
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Coin $coin
-     *
-     * @return Response
-     */
-    public function destroy(Coin $coin)
-    {
-        //
+        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('coin.deleted'));
     }
 }

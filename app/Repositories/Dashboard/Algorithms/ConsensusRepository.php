@@ -32,6 +32,21 @@ class ConsensusRepository extends BaseRepository
     }
 
     /**
+     * Получить массив жанров для формирования селектора.
+     *
+     * @return array
+     */
+    public function getAllForSelector(): array
+    {
+        /** @var Collection $collection */
+        $collection = $this->queryBuilder()->orderBy('name')->get();
+
+        return $collection->mapWithKeys(static function ($item) {
+            return [$item['id'] => $item['name']];
+        })->all();
+    }
+
+    /**
      * Получить алгоритм консенсуса по id.
      *
      * @param int $id

@@ -2,8 +2,10 @@
 
 namespace App\Entities;
 
+use App\Entities\Coin\Coin;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property integer $id
@@ -16,5 +18,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Image extends Model
 {
+    public $guarded = ['id'];
+
     public $timestamps = false;
+
+    public function coin(): HasOne
+    {
+        return $this->hasOne(Coin::class);
+    }
 }

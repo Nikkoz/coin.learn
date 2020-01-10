@@ -3,10 +3,18 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>
-        @yield('title')
-    </h1>
-@stop
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1>
+                @yield('title')
+            </h1>
+        </div>
+        <div class="col-sm-6">
+            @section('breadcrumbs', Breadcrumbs::render())
+            @yield('breadcrumbs')
+        </div>
+    </div>
+@endsection
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('build/css/admin_custom.css') }}">
@@ -40,5 +48,58 @@
         @elseif (session(DashboardFlashTypeDictionary::SUCCESS) )
             toastr["success"]("{{ session(DashboardFlashTypeDictionary::SUCCESS) }}");
         @endif
+
+        $('.select2').select2();
+
+        $('.select2-without-search').select2({
+            minimumResultsForSearch: Infinity
+        });
+
+        $('.summernote').summernote({
+            height: 200,
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['Insert', ['picture', 'link', 'table', 'hr']],
+
+            ],
+            popover: {
+                image: [],
+                link: [],
+                air: []
+            },
+            callbacks: {
+                onImageUpload: function (files) {
+                    let editor = $(this);
+                    let url = editor.data('image-url');
+                    let data = new FormData();
+
+                    data.append('file', files[0]);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: data,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            editor.summernote('insertImage', response);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.error(textStatus);
+                        }
+                    });
+                }
+            }
+        });
+
+        bsCustomFileInput.init();
     </script>
+
+    @stack('added-js')
 @stop

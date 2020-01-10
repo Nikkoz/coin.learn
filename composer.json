@@ -9,6 +9,7 @@
   "license": "MIT",
   "require": {
     "php": "^7.3",
+    "davejamesmiller/laravel-breadcrumbs": "^5.3",
     "doctrine/dbal": "^2.10",
     "fideloper/proxy": "^4.0",
     "jeroennoten/laravel-adminlte": "^3.0",
@@ -16,7 +17,8 @@
     "laravel/tinker": "^1.0",
     "laravel/ui": "^1.1",
     "laravelcollective/html": "^6.0",
-    "yajra/laravel-datatables-oracle": "~9.0"
+    "yajra/laravel-datatables-oracle": "~9.0",
+    "ext-json": "*"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.2",

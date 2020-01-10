@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'title_home' => 'Home',
     'status' => [
         'active' => 'Active',
         'draft' => 'Draft'
@@ -16,7 +17,7 @@ return [
         'search' => 'Find',
         'reset_filter' => 'Reset Filter',
         'list' => [
-            'select_one' => 'Select one'
+            'select_one' => 'Select one ...'
         ]
     ]
 ];

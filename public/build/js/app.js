@@ -6364,13 +6364,13 @@ __webpack_require__.r(__webpack_exports__);
    */
 
 
-  $.fn[NAME$a] = Toast._jQueryInterface;
-  $.fn[NAME$a].Constructor = Toast;
+    $.fn[NAME$a] = Toast._jQueryInterface;
+    $.fn[NAME$a].Constructor = Toast;
 
-  $.fn[NAME$a].noConflict = function () {
-    $.fn[NAME$a] = JQUERY_NO_CONFLICT$a;
-    return Toast._jQueryInterface;
-  };
+    $.fn[NAME$a].noConflict = function () {
+        $.fn[NAME$a] = JQUERY_NO_CONFLICT$a;
+        return Toast._jQueryInterface;
+    };
 
     exports.Alert = Alert;
     exports.Button = Button;
@@ -34122,10 +34122,10 @@ return jQuery;
 
   // Some AMD build optimizers, like r.js, check for condition patterns like:
   if (true) {
-    // Expose Lodash on the global object to prevent errors when Lodash is
-    // loaded by a script tag in the presence of an AMD loader.
-    // See http://requirejs.org/docs/errors.html#mismatch for more details.
-    // Use `_.noConflict` to remove Lodash from the global object.
+      // Expose Lodash on the global object to prevent errors when Lodash is
+      // loaded by a script tag in the presence of an AMD loader.
+      // See http://requirejs.org/docs/errors.html#mismatch for more details.
+      // Use `_.noConflict` to remove Lodash from the global object.
       root._ = _;
 
       // Define as an anonymous module so, through path mapping, it can be
@@ -40823,16 +40823,16 @@ return jQuery;
                  * of this software and associated documentation files (the "Software"), to deal
                  * in the Software without restriction, including without limitation the rights
                  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                 * copies of the Software, and to permit persons to whom the Software is
+                 * furnished to do so, subject to the following conditions:
+                 *
+                 * The above copyright notice and this permission notice shall be included in all
+                 * copies or substantial portions of the Software.
+                 *
+                 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                 * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
@@ -56199,7 +56199,6 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-
 )
 
 /* hot reload */
@@ -56213,8 +56212,8 @@ component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
 /*!**************************************************************************************!*\
   !*** ./resources/assets/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+        /*! exports provided: default */
+        /***/ (function (module, __webpack_exports__, __webpack_require__) {
 
             "use strict";
             __webpack_require__.r(__webpack_exports__);
@@ -56226,14 +56225,14 @@ component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
             /***/
         }),
 
-/***/ "./resources/assets/js/components/ExampleComponent.vue?vue&type=template&id=7168fb6a&":
-/*!********************************************************************************************!*\
+        /***/ "./resources/assets/js/components/ExampleComponent.vue?vue&type=template&id=7168fb6a&":
+        /*!********************************************************************************************!*\
   !*** ./resources/assets/js/components/ExampleComponent.vue?vue&type=template&id=7168fb6a& ***!
   \********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+        /*! exports provided: render, staticRenderFns */
+        /***/ (function (module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
+            "use strict";
             __webpack_require__.r(__webpack_exports__);
             /* harmony import */
             var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_7168fb6a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=7168fb6a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ExampleComponent.vue?vue&type=template&id=7168fb6a&");

@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 
-@section('title', trans('settings.blade.algorithms.updated', ['name' => $algorithm->name]))
+@section('title', trans('settings.blade.algorithms.update', ['name' => $algorithm->name]))
 
 @section('content')
     <div class="row">

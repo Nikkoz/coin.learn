@@ -181,14 +181,15 @@ return [
         ['header' => 'main'],
         [
             'text' => 'coin_title',
-            'route' => 'admin.coins',
-            'icon' => 'far fa-fw fa-bitcoin'
+            'route' => 'admin.coins.index',
+            'icon' => 'nav-icon fa-fw fab fa-bitcoin'
         ], [
             'text' => 'settings',
+            'icon' => 'nav-icon fa-fw fa fa-cogs',
             'submenu' => [
                 [
                     'text' => 'algorithms',
-                    'icon' => 'fa fa-gg',
+                    'icon' => 'fa-fw fab fa-gg',
                     'submenu' => [
                         [
                             'text' => 'algorithm_encryption',
@@ -378,6 +379,59 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js',
+                ]
+            ]
+        ],
+        [
+            'name' => 'SummerNote',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css'
+                ], [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js'
+                ]
+            ]
+        ],
+        [
+            'name' => 'bsCustomFileInput',
+            'active' => 'true',
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js'
+                ]
+            ]
+        ],
+        [
+            'name' => 'moment',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.jsdelivr.net/momentjs/latest/moment.min.js'
+                ]
+            ]
+        ],
+        [
+            'name' => 'datePickerRange',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css'
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js'
                 ]
             ]
         ]

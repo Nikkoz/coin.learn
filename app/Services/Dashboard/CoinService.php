@@ -2,13 +2,12 @@
 
 namespace App\Services\Dashboard;
 
-use App\Dictionaries\Coins\CoinStatusDictionary;
 use App\Entities\Coin\Coin;
 use App\Exceptions\FailedSaveModelException;
-use App\Manager\Dashboard\FileManager;
 use App\Repositories\Dashboard\CoinRepository;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 use Throwable;
 
 class CoinService
@@ -19,14 +18,14 @@ class CoinService
     protected $repository;
 
     /**
-     * @var FileManager
+     * @var ImageService
      */
-    protected $manager;
+    private $imageService;
 
-    public function __construct(CoinRepository $repository, FileManager $manager)
+    public function __construct(CoinRepository $repository, ImageService $imageService)
     {
         $this->repository = $repository;
-        $this->manager = $manager;
+        $this->imageService = $imageService;
     }
 
     /**
@@ -67,7 +66,6 @@ class CoinService
     public function create(array $data): Coin
     {
         $coin = new Coin;
-        $data['status'] = CoinStatusDictionary::ACTIVE;
 
         if (!$this->save($coin, $data)) {
             throw new FailedSaveModelException(Coin::class);
@@ -109,7 +107,21 @@ class CoinService
      */
     protected function save(Coin $coin, array $data): bool
     {
-        return true;
+        return DB::transaction(function () use ($coin, $data) {
+            $coin->fill($data);
+
+            if (!empty($data['image_id'])) {
+                $image = $this->imageService->create([
+                    'file' => $data['image_id'],
+                    'path' => Coin::PATH
+                ]);
+
+                $coin->image_id = $image->id;
+            }
+
+
+            return $coin->saveOrFail();
+        });
     }
 
     /**

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin\Settings\Algorithms;
 
 use App\Dictionaries\DashboardFlashTypeDictionary;
+use App\Entities\Settings\Encryption;
 use App\Exceptions\FailedDeleteModelException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Settings\Algorithms\EncryptionRequest;
 use App\Repositories\Dashboard\Algorithms\EncryptionRepository;
 use App\Services\Dashboard\Algorithms\EncryptionService;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -58,7 +60,7 @@ class EncryptionController extends Controller
         ]);
     }
 
-    public function update(int $id, EncryptionRequest $request): RedirectResponse
+    public function update(EncryptionRequest $request, int $id): RedirectResponse
     {
         $this->service->update($id, $request->validated());
 

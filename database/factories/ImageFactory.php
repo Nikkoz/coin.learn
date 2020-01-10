@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Image::class, static function (Faker $faker) {
     return [
-        'name' => 'example.jpg',
-        'path' => 'public/images',
+        'name'        => 'example.jpg',
+        'path'        => 'public/images/example.jpg',
         'description' => 'Тестовый файл',
-        'sort' => 1
+        'sort'        => 1
     ];
 });
