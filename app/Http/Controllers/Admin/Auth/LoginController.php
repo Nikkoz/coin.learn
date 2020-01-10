@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 
 class LoginController extends BaseLoginController
 {
-    protected $redirectTo = '/admin';
-
     public function loggedOut(Request $request)
     {
         return redirect()->route('admin.login');

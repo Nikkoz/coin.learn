@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
- * @property integer $consensus - идентификатор алгоритма
+ * @property integer $id - идентификатор алгоритма
  */
 class ConsensusRequest extends FormRequest
 {
@@ -21,7 +21,7 @@ class ConsensusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', Rule::unique('algorithm_consensus')->ignore($this->consensus)],
+            'name' => ['required', 'string', 'max:255', Rule::unique('algorithm_consensus')->ignore($this->id)],
         ];
     }
 }

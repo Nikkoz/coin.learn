@@ -1,7 +1,5 @@
 <?php
 
-use App\Entities\Settings\Consensus;
-use App\Entities\Settings\Encryption;
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator as Crumbs;
 
 //// Dashboard

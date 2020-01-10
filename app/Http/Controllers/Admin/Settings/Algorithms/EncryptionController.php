@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Settings\Algorithms\EncryptionRequest;
 use App\Repositories\Dashboard\Algorithms\EncryptionRepository;
 use App\Services\Dashboard\Algorithms\EncryptionService;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
