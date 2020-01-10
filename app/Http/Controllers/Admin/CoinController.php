@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Dictionaries\DashboardFlashTypeDictionary;
+use App\Exceptions\FailedDeleteModelException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\CoinRequest;
 use App\Repositories\Dashboard\Algorithms\ConsensusRepository;
 use App\Repositories\Dashboard\Algorithms\EncryptionRepository;
 use App\Repositories\Dashboard\CoinRepository;
 use App\Services\Dashboard\CoinService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
-use App\Entities\Coin\Coin;
 
 class CoinController extends Controller
 {
@@ -43,7 +43,7 @@ class CoinController extends Controller
         $this->service = $service;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $params = [];
 
@@ -58,7 +58,7 @@ class CoinController extends Controller
         if (!empty($value = $request->get('q'))) {
             $params['name'] = [
                 'operator' => 'LIKE',
-                'value' => "%$value%"
+                'value'    => "%$value%"
             ];
         }
 
@@ -72,33 +72,42 @@ class CoinController extends Controller
         return view('admin.coins.create', [
             'algorithms' => [
                 'encryption' => $this->algorithmEncryptionRepository->getAllForSelector(),
-                'consensus' => $this->algorithmConsensusRepository->getAllForSelector(),
+                'consensus'  => $this->algorithmConsensusRepository->getAllForSelector(),
             ]
         ]);
     }
 
-    public function store(CoinRequest $request)
+    public function store(CoinRequest $request): RedirectResponse
     {
         $this->service->create($request->validated());
 
-        return redirect()->route('admin.coins.index')->with(
-            DashboardFlashTypeDictionary::SUCCESS,
-            trans('coin.saved')
-        );
+        return redirect()->route('admin.coins.index')->with(DashboardFlashTypeDictionary::SUCCESS, trans('coin.saved'));
     }
 
-    public function edit(Coin $coin)
+    public function edit(int $id): View
     {
-
+        return view('admin.coins.edit', [
+            'coin'       => $this->repository->getOne($id),
+            'algorithms' => [
+                'encryption' => $this->algorithmEncryptionRepository->getAllForSelector(),
+                'consensus'  => $this->algorithmConsensusRepository->getAllForSelector(),
+            ]
+        ]);
     }
 
-    public function update(Request $request, Coin $coin)
+    public function update(CoinRequest $request, int $id): RedirectResponse
     {
+        $this->service->update($id, $request->validated());
 
+        return redirect()->route('admin.coins.index')->with(DashboardFlashTypeDictionary::SUCCESS, trans('coin.updated', ['name' => $request->name]));
     }
 
-    public function destroy(Coin $coin)
+    public function destroy(int $id)
     {
+        if ($this->service->delete($id) === false) {
+            throw new FailedDeleteModelException();
+        }
 
+        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('coin.deleted'));
     }
 }

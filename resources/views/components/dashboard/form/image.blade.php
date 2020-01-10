@@ -1,4 +1,10 @@
 <div class="form-group @error($name) has-error @enderror">
+    @if ($value)
+        <div class="preview_image">
+            <img src="{{ Storage::url($value) }}" width="100%"/>
+        </div>
+    @endif
+
     <div class="custom-file">
         {{ Form::file($name, ['class' => 'custom-file-input', 'id' => $name]) }}
 

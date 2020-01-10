@@ -19,6 +19,11 @@ Breadcrumbs::register('admin.coins.create', static function (Crumbs $crumbs) {
     $crumbs->push(trans('coin.blade.create.title'), route('admin.coins.create'));
 });
 
+Breadcrumbs::register('admin.coins.edit', static function (Crumbs $crumbs, int $id) {
+    $crumbs->parent('admin.coins.index');
+    $crumbs->push(trans('coin.blade.edit.title'), route('admin.coins.edit', $id));
+});
+
 // Algorithms
 
 Breadcrumbs::register('admin.settings.algorithms.encryption.index', static function (Crumbs $crumbs) {

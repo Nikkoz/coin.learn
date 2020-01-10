@@ -27,13 +27,13 @@ class CreateTableCoins extends Migration
             $table->string('name', 100)->nullable(false)->index()->unique()->comment('Название');
             $table->string('code', 10)->nullable(false)->index()->unique()->comment('Код монеты, например BTC');
             $table->string('alias', 100)->nullable(false);
-            $table->integer('image')->nullable(true)->comment('Иконка');
+            $table->unsignedBigInteger('image_id')->nullable(true)->comment('Иконка');
             $table->tinyInteger('type')->default(0)->comment('Тип: Монета или Токен');
             $table->boolean('smart_contracts')->nullable(true)->comment('Наличие смарт-контрактов для монеты');
             $table->string('platform', 255)->nullable(true)->comment('Используемая платформа для токена');
             $table->date('date_start')->nullable(true)->comment('Дата старта');
-            $table->integer('encryption')->nullable(true)->comment('Используемый алгоритм шифрования');
-            $table->integer('consensus')->nullable(true)->comment('Используемый алгоритм консенсуса');
+            $table->unsignedBigInteger('encryption_id')->nullable(true)->comment('Используемый алгоритм шифрования');
+            $table->unsignedBigInteger('consensus_id')->nullable(true)->comment('Используемый алгоритм консенсуса');
             $table->boolean('mining')->default(0)->comment('Майниться ли монета');
             $table->bigInteger('max_supply')->nullable(true)->comment('Всего монет');
             $table->text('key_features')->nullable(true)->comment('Ключевые особенности');
@@ -41,13 +41,13 @@ class CreateTableCoins extends Migration
             $table->tinyInteger('status')->nullable(false)->default(0)->comment('Статус');
             $table->string('site', 50)->nullable(true)->comment('Официальный сайт монеты');
             $table->string('chat', 50)->nullable(true)->comment('Ссылка на чат');
-            $table->json('link')->nullable(true)->comment('Дополнительные ссылки');
+            $table->json('links')->nullable(true)->comment('Дополнительные ссылки');
 
             $table->timestampsTz();
 
-            $table->foreign('encryption')->references('id')->on('algorithm_encryption')->onDelete('SET NULL')->onUpdate('CASCADE');
-            $table->foreign('consensus')->references('id')->on('algorithm_consensus')->onDelete('SET NULL')->onUpdate('CASCADE');
-            $table->foreign('image')->references('id')->on('images')->onDelete('SET NULL')->onUpdate('RESTRICT');
+            $table->foreign('encryption_id')->references('id')->on('algorithm_encryption')->onDelete('SET NULL')->onUpdate('CASCADE');
+            $table->foreign('consensus_id')->references('id')->on('algorithm_consensus')->onDelete('SET NULL')->onUpdate('CASCADE');
+            $table->foreign('image_id')->references('id')->on('images')->onDelete('SET NULL')->onUpdate('RESTRICT');
         });
     }
 

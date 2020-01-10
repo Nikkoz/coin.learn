@@ -22,7 +22,8 @@ class FileManager
     public function save(UploadedFile $file, string $path): string
     {
         $path .= '/' . Carbon::now()->format('Y-m-d');
-        $imagePath = $file->store($path);
+        $imagePath = $file->store($path, 'public');
+
         if ($imagePath === false) {
             throw new FailedFileSaveException();
         }

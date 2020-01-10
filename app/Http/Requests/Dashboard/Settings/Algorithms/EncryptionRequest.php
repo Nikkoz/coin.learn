@@ -13,6 +13,18 @@ use Illuminate\Validation\Rule;
  */
 class EncryptionRequest extends FormRequest
 {
+    /**
+     * @var Encryption
+     */
+    private $encryption;
+
+    public function __construct(Encryption $encryption, array $query = [], array $request = [], array $attributes = [], array $cookies = [], array $files = [], array $server = [], $content = null)
+    {
+        parent::__construct($query, $request, $attributes, $cookies, $files, $server, $content);
+
+        $this->encryption = $encryption;
+    }
+
     public function authorize(): bool
     {
         return true;
@@ -21,7 +33,7 @@ class EncryptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', Rule::unique('algorithm_encryption', 'name')->ignore($this->id)],
+            'name' => ['required', 'string', 'max:255', Rule::unique($this->encryption->getTable())->ignore($this->id)],
         ];
     }
 }

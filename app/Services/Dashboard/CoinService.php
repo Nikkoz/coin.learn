@@ -110,13 +110,13 @@ class CoinService
         return DB::transaction(function () use ($coin, $data) {
             $coin->fill($data);
 
-            if (!empty($data['image'])) {
+            if (!empty($data['image_id'])) {
                 $image = $this->imageService->create([
-                    'file' => $data['image'],
+                    'file' => $data['image_id'],
                     'path' => Coin::PATH
                 ]);
 
-                $coin->image = $image->id;
+                $coin->image_id = $image->id;
             }
 
 

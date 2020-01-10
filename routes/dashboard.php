@@ -25,7 +25,14 @@ Route::group([
 
         Route::post('/ajax/upload/image', 'UploadController@image')->name('ajax.upload.image');
 
-        Route::resource('coins', 'CoinController');
+        Route::group(['prefix' => 'coins', 'as' => 'coins.'], static function () {
+            Route::get('/', 'CoinController@index')->name('index');
+            Route::get('/create', 'CoinController@create')->name('create');
+            Route::get('/{id}/edit', 'CoinController@edit')->name('edit');
+            Route::put('/{id}', 'CoinController@update')->name('update');
+            Route::post('/', 'CoinController@store')->name('store');
+            Route::delete('/{id}', 'CoinController@destroy')->name('destroy');
+        });
 
         Route::group(['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
             Route::group(['prefix' => 'algorithms', 'as' => 'algorithms.', 'namespace' => 'Algorithms'], static function () {
