@@ -13,7 +13,7 @@ class CoinStatusDictionary extends BaseDictionary
     {
         return [
             static::ACTIVE => trans('global.status.active'),
-            static::DRAFT => trans('global.status.draft'),
+            static::DRAFT  => trans('global.status.draft'),
         ];
     }
 }

@@ -8,6 +8,7 @@ Breadcrumbs::register('admin.home', static function (Crumbs $crumbs) {
     $crumbs->push(trans('global.title_home'), route('admin.home'));
 });
 
+
 // Coins
 Breadcrumbs::register('admin.coins.index', static function (Crumbs $crumbs) {
     $crumbs->parent('admin.home');
@@ -23,6 +24,7 @@ Breadcrumbs::register('admin.coins.edit', static function (Crumbs $crumbs, int $
     $crumbs->parent('admin.coins.index');
     $crumbs->push(trans('coin.blade.edit.title'), route('admin.coins.edit', $id));
 });
+
 
 // Algorithms
 
@@ -54,4 +56,22 @@ Breadcrumbs::register('admin.settings.algorithms.consensus.create', static funct
 Breadcrumbs::register('admin.settings.algorithms.consensus.edit', static function (Crumbs $crumbs, int $id) {
     $crumbs->parent('admin.settings.algorithms.consensus.index');
     $crumbs->push(trans('settings.blade.algorithms.breadcrumbs.update'), route('admin.settings.algorithms.consensus.edit', $id));
+});
+
+
+// Social networks
+
+Breadcrumbs::register('admin.settings.social.networks.index', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.home');
+    $crumbs->push(trans('settings.blade.socials.networks.title'), route('admin.settings.social.networks.index'));
+});
+
+Breadcrumbs::register('admin.settings.social.networks.create', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.settings.social.networks.index');
+    $crumbs->push(trans('settings.blade.socials.networks.breadcrumbs.create'), route('admin.settings.social.networks.create'));
+});
+
+Breadcrumbs::register('admin.settings.social.networks.edit', static function (Crumbs $crumbs, int $id) {
+    $crumbs->parent('admin.settings.social.networks.index');
+    $crumbs->push(trans('settings.blade.socials.networks.breadcrumbs.update'), route('admin.settings.social.networks.edit', $id));
 });

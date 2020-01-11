@@ -3,16 +3,16 @@
 use App\Dictionaries\Coins\CoinStatusDictionary;
 use App\Dictionaries\Coins\CoinTypeDictionary;
 use App\Entities\Coin\Coin;
+use App\Entities\Image;
 use App\Entities\Settings\Consensus;
 use App\Entities\Settings\Encryption;
-use App\Entities\Image;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 
 /** @var Factory $factory */
 
 $factory->define(Coin::class, static function (Faker $faker) {
-    $name = $faker->firstNameMale;
+    $name = $faker->unique()->firstNameMale;
 
     $image = Image::where('name', '=', 'example.jpg')->first();
     $imageId = $image === null ? factory(Image::class)->create()->id : $image->id;
@@ -27,7 +27,7 @@ $factory->define(Coin::class, static function (Faker $faker) {
 
     return [
         'name'            => $name,
-        'code'            => $faker->regexify('[A-Z]{3}'),
+        'code'            => $faker->unique()->regexify('[A-Z]{3}'),
         'alias'           => Str::slug($name),
         'image_id'        => $imageId,
         'type'            => $type,

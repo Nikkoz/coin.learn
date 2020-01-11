@@ -54,6 +54,17 @@ Route::group([
                     Route::delete('/{id}', 'ConsensusController@destroy')->name('destroy');
                 });
             });
+
+            Route::group(['prefix' => 'social', 'as' => 'social.', 'namespace' => 'SocialNetworks'], static function () {
+                Route::group(['prefix' => 'networks', 'as' => 'networks.'], static function () {
+                    Route::get('/', 'SocialNetworkController@index')->name('index');
+                    Route::get('/create', 'SocialNetworkController@create')->name('create');
+                    Route::post('/', 'SocialNetworkController@store')->name('store');
+                    Route::get('/{id}/edit', 'SocialNetworkController@edit')->name('edit');
+                    Route::put('/{id}', 'SocialNetworkController@update')->name('update');
+                    Route::delete('/{id}', 'SocialNetworkController@destroy')->name('destroy');
+                });
+            });
         });
     });
 });

@@ -12,7 +12,7 @@ class CoinTypeDictionary extends BaseDictionary
     public static function getValues(): array
     {
         return [
-            self::TYPE_COIN => trans('coin.type.coin'),
+            self::TYPE_COIN  => trans('coin.type.coin'),
             self::TYPE_TOKEN => trans('coin.type.token'),
         ];
     }

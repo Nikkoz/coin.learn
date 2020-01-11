@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Dictionaries;
-
 
 use Exception;
 use Illuminate\Support\Arr;
@@ -54,6 +52,7 @@ abstract class BaseDictionary
     public static function getValueByKeys(array $keys): array
     {
         self::validateKeys($keys);
+
         return Arr::only(static::getValues(), $keys);
     }
 
@@ -67,6 +66,7 @@ abstract class BaseDictionary
     public static function getValueWithoutKeys(array $keys): array
     {
         self::validateKeys($keys);
+
         return Arr::except(static::getValues(), $keys);
     }
 
@@ -83,5 +83,4 @@ abstract class BaseDictionary
             }
         }
     }
-
 }

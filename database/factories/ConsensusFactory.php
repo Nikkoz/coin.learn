@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Consensus::class, static function (Faker $faker) {
     return [
-        'name' => $faker->firstNameMale,
+        'name' => $faker->unique()->firstNameMale,
     ];
 });
