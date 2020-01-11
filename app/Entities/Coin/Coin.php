@@ -62,6 +62,6 @@ class Coin extends Model
 
     public function image(): BelongsTo
     {
-        return $this->belongsTo(Image::class);
+        return $this->belongsTo(Image::class)->withDefault();
     }
 }
