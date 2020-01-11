@@ -188,17 +188,21 @@ return [
             'icon' => 'nav-icon fa-fw fa fa-cogs',
             'submenu' => [
                 [
-                    'text' => 'algorithms',
-                    'icon' => 'fa-fw fab fa-gg',
+                    'text'    => 'algorithms',
+                    'icon'    => 'fa-fw fab fa-gg',
                     'submenu' => [
                         [
-                            'text' => 'algorithm_encryption',
+                            'text'  => 'algorithm_encryption',
                             'route' => 'admin.settings.algorithms.encryption.index',
                         ], [
-                            'text' => 'algorithm_consensus',
+                            'text'  => 'algorithm_consensus',
                             'route' => 'admin.settings.algorithms.consensus.index',
                         ]
                     ]
+                ], [
+                    'text'  => 'social_networks',
+                    'icon'  => 'fa-fw fab fa-vk ',
+                    'route' => 'admin.settings.social.networks.index',
                 ]
             ]
         ],

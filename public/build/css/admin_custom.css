@@ -10,3 +10,7 @@
     border: 1px solid #bdbdbd;
     margin-bottom: 10px;
 }
+
+input.hide {
+    display: none;
+}

@@ -1,5 +1,6 @@
 <div class="form-group @error($name) has-error @enderror">
     <div class="custom-control custom-switch">
+        {{ Form::checkbox($name, 0, true, ['class' => 'hide']) }}
         {{ Form::checkbox($name, 1, $value, ['class' => 'custom-control-input', 'id' => $name]) }}
 
         <label for="{{ $name }}" class="custom-control-label">
