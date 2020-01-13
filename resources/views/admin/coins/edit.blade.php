@@ -176,7 +176,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($coin->socialLinks as $i => $link)
+                            @forelse ($coin->socialLinks as $i => $link)
                                 <tr data-link-id="{{ $link->id }}">
                                     <td>
                                         {{ Form::hidden("socials[{$link->id}]") }}
@@ -191,7 +191,20 @@
                                         </a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td>
+                                        {{ Form::bsText('', 'newSocials[0][link]', false) }}
+                                    </td>
+                                    <td>{{ Form::bsSelectWithoutSearch('', 'newSocials[0][network_id]', $networks, false) }}</td>
+                                    <td>{{ Form::bsText('', 'newSocials[0][description]', false) }}</td>
+                                    <td>
+                                        <a href="" class="btn btn-success input-add">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
