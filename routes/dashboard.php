@@ -64,6 +64,8 @@ Route::group([
                     Route::put('/{id}', 'SocialNetworkController@update')->name('update');
                     Route::delete('/{id}', 'SocialNetworkController@destroy')->name('destroy');
                 });
+
+                Route::delete('links/{id}', 'SocialLinkController@destroy')->name('links.destroy');
             });
         });
     });

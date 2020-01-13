@@ -70,6 +70,6 @@ class Coin extends Model
 
     public function socialLinks(): HasMany
     {
-        return $this->hasMany(SocialLink::class);
+        return $this->hasMany(SocialLink::class)->with('network');
     }
 }

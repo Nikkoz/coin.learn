@@ -6,6 +6,7 @@ use App\Entities\Settings\SocialNetworks\SocialNetwork;
 use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\SocialNetworks\SocialNetworkRepository;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Throwable;
 
@@ -119,5 +120,20 @@ class SocialNetworkService
         }
 
         return $delete;
+    }
+
+    /**
+     * Получить массив соц. сетей для формирования селектора.
+     *
+     * @return array
+     */
+    public function getAllForSelector(): array
+    {
+        /** @var Collection $collection */
+        $collection = $this->repository->getAll([], 'name', 'asc');
+
+        return $collection->mapWithKeys(static function ($item) {
+            return [$item['id'] => $item['name']];
+        })->all();
     }
 }

@@ -6,10 +6,11 @@ use App\Dictionaries\DashboardFlashTypeDictionary;
 use App\Exceptions\FailedDeleteModelException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\CoinRequest;
-use App\Repositories\Dashboard\Algorithms\ConsensusRepository;
-use App\Repositories\Dashboard\Algorithms\EncryptionRepository;
 use App\Repositories\Dashboard\CoinRepository;
+use App\Services\Dashboard\Algorithms\ConsensusService;
+use App\Services\Dashboard\Algorithms\EncryptionService;
 use App\Services\Dashboard\CoinService;
+use App\Services\Dashboard\SocialNetworks\SocialNetworkService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -21,26 +22,39 @@ class CoinController extends Controller
      */
     private $repository;
 
-    private $algorithmEncryptionRepository;
+    /**
+     * @var EncryptionService
+     */
+    private $algorithmEncryptionService;
 
-    private $algorithmConsensusRepository;
+    /**
+     * @var ConsensusService
+     */
+    private $algorithmConsensusService;
 
     /**
      * @var CoinService
      */
     private $service;
 
+    /**
+     * @var SocialNetworkService
+     */
+    private $socialNetworkService;
+
     public function __construct(
         CoinRepository $repository,
         CoinService $service,
-        EncryptionRepository $algorithmEncryptionRepository,
-        ConsensusRepository $algorithmConsensusRepository
+        EncryptionService $algorithmEncryptionService,
+        ConsensusService $algorithmConsensusService,
+        SocialNetworkService $socialNetworkService
     )
     {
         $this->repository = $repository;
-        $this->algorithmEncryptionRepository = $algorithmEncryptionRepository;
-        $this->algorithmConsensusRepository = $algorithmConsensusRepository;
+        $this->algorithmEncryptionService = $algorithmEncryptionService;
+        $this->algorithmConsensusService = $algorithmConsensusService;
         $this->service = $service;
+        $this->socialNetworkService = $socialNetworkService;
     }
 
     public function index(Request $request): View
@@ -71,9 +85,10 @@ class CoinController extends Controller
     {
         return view('admin.coins.create', [
             'algorithms' => [
-                'encryption' => $this->algorithmEncryptionRepository->getAllForSelector(),
-                'consensus'  => $this->algorithmConsensusRepository->getAllForSelector(),
-            ]
+                'encryption' => $this->algorithmEncryptionService->getAllForSelector(),
+                'consensus'  => $this->algorithmConsensusService->getAllForSelector(),
+            ],
+            'networks'   => $this->socialNetworkService->getAllForSelector(),
         ]);
     }
 
@@ -89,9 +104,10 @@ class CoinController extends Controller
         return view('admin.coins.edit', [
             'coin'       => $this->repository->getOne($id),
             'algorithms' => [
-                'encryption' => $this->algorithmEncryptionRepository->getAllForSelector(),
-                'consensus'  => $this->algorithmConsensusRepository->getAllForSelector(),
-            ]
+                'encryption' => $this->algorithmEncryptionService->getAllForSelector(),
+                'consensus'  => $this->algorithmConsensusService->getAllForSelector(),
+            ],
+            'networks'   => $this->socialNetworkService->getAllForSelector(),
         ]);
     }
 

@@ -20,15 +20,18 @@ class SocialNetworkRepository extends BaseRepository
     /**
      * Получить коллекцию соц. сетей.
      *
-     * @param array $params
+     * @param array  $params
+     *
+     * @param string $field
+     * @param string $direction
      *
      * @return Collection
      */
-    public function getAll(array $params = []): Collection
+    public function getAll(array $params = [], string $field = 'id', string $direction = 'desc'): Collection
     {
         $query = $this->prepareQueryParams($params);
 
-        return $query->orderByDesc('id')->get();
+        return $query->orderBy($field, $direction)->get();
     }
 
     /**
