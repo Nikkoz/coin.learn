@@ -34,13 +34,14 @@ class FileManager
     /**
      * Удаление файла по их пути относительно storage.
      *
-     * @param array $path
+     * @param string $path
      *
      * @return bool
      */
-    public function remove(array $path): bool
+    public function remove(string $path): bool
     {
-        $result = Storage::delete($path);
+        $result = Storage::disk('public')->delete($path);
+
         if ($result === false) {
             Log::error('Failed delete images', ['images' => $path]);
         }

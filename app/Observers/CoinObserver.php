@@ -1,14 +1,23 @@
 <?php
 
-
 namespace App\Observers;
 
-
 use App\Entities\Coin\Coin;
+use App\Services\Dashboard\ImageService;
 use Illuminate\Support\Str;
 
 class CoinObserver
 {
+    /**
+     * @var ImageService
+     */
+    private $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
+
     public function creating(Coin $coin): void
     {
         $this->setSlug($coin);
@@ -17,6 +26,11 @@ class CoinObserver
     public function updating(Coin $coin): void
     {
         $this->setSlug($coin);
+    }
+
+    public function deleted(Coin $coin): void
+    {
+        $this->imageService->delete($coin->image);
     }
 
     /**

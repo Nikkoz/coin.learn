@@ -1,14 +1,12 @@
 <?php
 
-
 namespace App\Services\Dashboard;
-
 
 use App\Entities\Image;
 use App\Exceptions\FailedSaveModelException;
 use App\Exceptions\File\FailedFileSaveException;
 use App\Managers\Dashboard\FileManager;
-use Illuminate\Http\UploadedFile;
+use Exception;
 use Throwable;
 
 class ImageService
@@ -62,5 +60,24 @@ class ImageService
         $image->fill($fillData);
 
         return $image->saveOrFail();
+    }
+
+    /**
+     * Удаление.
+     *
+     * @param Image $image
+     *
+     * @throws Exception
+     * @return bool
+     */
+    public function delete(Image $image): bool
+    {
+        $path = $image->path;
+
+        if (!($image->delete() !== true)) {
+            $this->manager->remove($path);
+        }
+
+        return !($image instanceof Image);
     }
 }
