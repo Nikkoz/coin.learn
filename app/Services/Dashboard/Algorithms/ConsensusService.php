@@ -6,6 +6,7 @@ use App\Entities\Settings\Consensus;
 use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\Algorithms\ConsensusRepository;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Throwable;
 
@@ -123,5 +124,20 @@ class ConsensusService
         }
 
         return $delete;
+    }
+
+    /**
+     * Получить массив алгоримов для формирования селектора.
+     *
+     * @return array
+     */
+    public function getAllForSelector(): array
+    {
+        /** @var Collection $collection */
+        $collection = $this->repository->getAll([], 'name', 'asc');
+
+        return $collection->mapWithKeys(static function ($item) {
+            return [$item['id'] => $item['name']];
+        })->all();
     }
 }
