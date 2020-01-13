@@ -20,40 +20,50 @@ return [
         'smart_contracts' => 'For a token, you cannot indicate the presence of smart contracts',
     ],
     'blade'      => [
-        'image_title'  => 'Icon',
-        'links_title'  => 'Links',
         'name'         => 'Name',
         'type'         => 'Type',
         'status'       => 'Status',
         'date_created' => 'Created',
         'date_updated' => 'Updated',
-        'create'       => [
+        'create'   => [
             'title' => 'Coin creation',
             'form'  => [
-                'name'            => 'Name',
                 'code'            => 'Tiker',
-                'type'            => 'Type',
                 'status'          => 'Status',
                 'smart_contracts' => 'The presence of smart contracts',
-                'platform'        => 'Platform',
-                'date_start'      => 'Launch date',
-                'algorithm'       => [
+                'platform'     => 'Platform',
+                'date_start'   => 'Launch date',
+                'algorithm'    => [
                     'encryption' => 'Encryption algorithm',
                     'consensus'  => 'Consensus algorithm',
                 ],
-                'mining'          => 'Mining',
-                'max_supply'      => 'Total coins',
-                'key_features'    => 'Key features',
-                'use'             => 'Using',
-                'icon'            => 'Choose icon ...',
-                'site'            => 'Official site',
-                'chat'            => 'Chat',
-                'link'            => 'Additional links'
+                'mining'       => 'Mining',
+                'max_supply'   => 'Total coins',
+                'key_features' => 'Key features',
+                'use'          => 'Using',
+                'icon'         => 'Choose icon ...',
+                'site'         => 'Official site',
+                'chat'         => 'Chat',
+                'link'         => 'Additional links'
             ]
         ],
-        'edit'         => [
-            'title' => 'Coin updating',
+        'edit'     => [
+            'title' => 'Update coin',
         ],
-        'save'         => 'Save coin',
+        'save'     => 'Save coin',
+        'general'  => [
+            'title' => 'General',
+            'icon'  => 'Icon',
+            'links' => 'Links'
+        ],
+        'socials'  => [
+            'title'       => 'Social links',
+            'link'        => 'Link',
+            'network'     => 'Network',
+            'description' => 'Description',
+        ],
+        'handbook' => [
+            'title' => 'Handbook'
+        ]
     ]
 ];

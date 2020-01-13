@@ -7,14 +7,8 @@
     </div>
 
     <div class="col-2 text-right">
-        @if ($key === 0)
-            <a href="#" class="btn btn-success input-add">
-                <i class="fas fa-plus"></i>
-            </a>
-        @else
-            <a href="#" class="btn btn-danger input-remove">
-                <i class="fas fa-minus"></i>
-            </a>
-        @endif
+        <a href="#" class="btn {{ $key === 0 ? 'btn-success input-add' : 'btn-danger input-remove' }}">
+            <i class="fas fa-{{ $key === 0 ? 'plus' : 'minus' }}"></i>
+        </a>
     </div>
 </div>

@@ -32,6 +32,21 @@ class SocialNetworkRepository extends BaseRepository
     }
 
     /**
+     * Получить массив соц. сетей для формирования селектора.
+     *
+     * @return array
+     */
+    public function getAllForSelector(): array
+    {
+        /** @var Collection $collection */
+        $collection = $this->queryBuilder()->orderBy('name')->get();
+
+        return $collection->mapWithKeys(static function ($item) {
+            return [$item['id'] => $item['name']];
+        })->all();
+    }
+
+    /**
      * Получить соц. сеть по id.
      *
      * @param int $id

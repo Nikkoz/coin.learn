@@ -32,7 +32,7 @@ class ConsensusRepository extends BaseRepository
     }
 
     /**
-     * Получить массив жанров для формирования селектора.
+     * Получить массив алгоримов для формирования селектора.
      *
      * @return array
      */

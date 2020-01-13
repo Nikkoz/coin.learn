@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string        $link
  * @property integer       $network_id
  * @property integer       $coin_id
- * @property boolean       $status
+ * @property string        $description
  *
  * @property SocialNetwork $network
  * @property Coin          $coin

@@ -5,6 +5,7 @@ namespace App\Services\Dashboard;
 use App\Entities\Coin\Coin;
 use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\CoinRepository;
+use App\Services\Dashboard\SocialNetworks\SocialLinkService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
@@ -22,10 +23,16 @@ class CoinService
      */
     private $imageService;
 
-    public function __construct(CoinRepository $repository, ImageService $imageService)
+    /**
+     * @var SocialLinkService
+     */
+    private $socialLinkService;
+
+    public function __construct(CoinRepository $repository, ImageService $imageService, SocialLinkService $socialLinkService)
     {
         $this->repository = $repository;
         $this->imageService = $imageService;
+        $this->socialLinkService = $socialLinkService;
     }
 
     /**
@@ -108,6 +115,16 @@ class CoinService
     protected function save(Coin $coin, array $data): bool
     {
         return DB::transaction(function () use ($coin, $data) {
+            if (isset($data['socials'])) {
+                $socials = $data['socials'];
+                unset($data['socials']);
+            }
+
+            if (isset($data['newSocials'])) {
+                $newSocials = $data['newSocials'];
+                unset($data['newSocials']);
+            }
+
             $coin->fill($data);
 
             if (!empty($data['image_id'])) {
@@ -119,8 +136,21 @@ class CoinService
                 $coin->image_id = $image->id;
             }
 
+            if (!empty($socials)) {
+                foreach ($socials as $sid => $social) {
+                    $this->socialLinkService->update($sid, $socials[$sid] + ['coin_id' => $coin->id]);
+                }
+            }
 
-            return $coin->saveOrFail();
+            $result = $coin->saveOrFail();
+
+            if (!empty($newSocials) && $result) {
+                foreach ($newSocials as $social) {
+                    $this->socialLinkService->create($social + ['coin_id' => $coin->id]);
+                }
+            }
+
+            return $result;
         });
     }
 

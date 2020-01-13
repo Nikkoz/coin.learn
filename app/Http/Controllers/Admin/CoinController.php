@@ -9,6 +9,7 @@ use App\Http\Requests\Dashboard\CoinRequest;
 use App\Repositories\Dashboard\Algorithms\ConsensusRepository;
 use App\Repositories\Dashboard\Algorithms\EncryptionRepository;
 use App\Repositories\Dashboard\CoinRepository;
+use App\Repositories\Dashboard\SocialNetworks\SocialNetworkRepository;
 use App\Services\Dashboard\CoinService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -30,17 +31,24 @@ class CoinController extends Controller
      */
     private $service;
 
+    /**
+     * @var SocialNetworkRepository
+     */
+    private $socialNetworkRepository;
+
     public function __construct(
         CoinRepository $repository,
         CoinService $service,
         EncryptionRepository $algorithmEncryptionRepository,
-        ConsensusRepository $algorithmConsensusRepository
+        ConsensusRepository $algorithmConsensusRepository,
+        SocialNetworkRepository $socialNetworkRepository
     )
     {
         $this->repository = $repository;
         $this->algorithmEncryptionRepository = $algorithmEncryptionRepository;
         $this->algorithmConsensusRepository = $algorithmConsensusRepository;
         $this->service = $service;
+        $this->socialNetworkRepository = $socialNetworkRepository;
     }
 
     public function index(Request $request): View
@@ -73,7 +81,8 @@ class CoinController extends Controller
             'algorithms' => [
                 'encryption' => $this->algorithmEncryptionRepository->getAllForSelector(),
                 'consensus'  => $this->algorithmConsensusRepository->getAllForSelector(),
-            ]
+            ],
+            'networks'   => $this->socialNetworkRepository->getAllForSelector(),
         ]);
     }
 
@@ -91,7 +100,8 @@ class CoinController extends Controller
             'algorithms' => [
                 'encryption' => $this->algorithmEncryptionRepository->getAllForSelector(),
                 'consensus'  => $this->algorithmConsensusRepository->getAllForSelector(),
-            ]
+            ],
+            'networks'   => $this->socialNetworkRepository->getAllForSelector(),
         ]);
     }
 

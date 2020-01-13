@@ -32,7 +32,7 @@ class EncryptionRepository extends BaseRepository
     }
 
     /**
-     * Получить массив жанров для формирования селектора.
+     * Получить массив алгоритмов для формирования селектора.
      *
      * @return array
      */
