@@ -19,7 +19,7 @@ return [
     'validation' => [
         'smart_contracts' => 'For a token, you cannot indicate the presence of smart contracts',
     ],
-    'blade'      => [
+    'blade' => [
         'name'         => 'Name',
         'type'         => 'Type',
         'status'       => 'Status',
@@ -65,5 +65,10 @@ return [
         'handbook' => [
             'title' => 'Handbook'
         ]
+    ],
+    'links' => [
+        'title'      => 'Social links',
+        'title_one'  => 'Social Link',
+        'list_title' => 'Links for coin ":name"',
     ]
 ];

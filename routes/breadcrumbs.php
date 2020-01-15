@@ -20,20 +20,47 @@ Breadcrumbs::register('admin.coins.create', static function (Crumbs $crumbs) {
     $crumbs->push(trans('coin.blade.create.title'), route('admin.coins.create'));
 });
 
-Breadcrumbs::register('admin.coins.edit', static function (Crumbs $crumbs, int $id) {
+Breadcrumbs::register(
+    'admin.coins.edit', static function (Crumbs $crumbs, int $id) {
     $crumbs->parent('admin.coins.index');
     $crumbs->push(trans('coin.blade.edit.title'), route('admin.coins.edit', $id));
 });
 
 
-// Algorithms
+// Links
 
-Breadcrumbs::register('admin.settings.algorithms.encryption.index', static function (Crumbs $crumbs) {
-    $crumbs->parent('admin.home');
-    $crumbs->push(trans('settings.blade.algorithms.encryption.list_title'), route('admin.settings.algorithms.encryption.index'));
+Breadcrumbs::register(
+    'admin.links.index', static function (Crumbs $crumbs, int $coinId) {
+    $crumbs->parent('admin.coins.edit', $coinId);
+    $crumbs->push(trans('coin.links.title'), route('admin.links.index', $coinId));
 });
 
-Breadcrumbs::register('admin.settings.algorithms.encryption.create', static function (Crumbs $crumbs) {
+Breadcrumbs::register(
+    'admin.links.create', static function (Crumbs $crumbs, int $coinId) {
+    $crumbs->parent('admin.links.index', $coinId);
+    $crumbs->push(trans('global.actions.objects.creation', ['object' => 'Link']), route('admin.links.create', $coinId));
+});
+
+Breadcrumbs::register(
+    'admin.links.edit', static function (Crumbs $crumbs, int $coinId, int $id) {
+    $crumbs->parent('admin.links.index', $coinId);
+    $crumbs->push(
+        trans('global.actions.objects.update', ['object' => 'Link']),
+        route('admin.links.update', ['coinId' => $coinId, 'id' => $id]));
+});
+
+
+// Algorithms
+
+Breadcrumbs::register(
+    'admin.settings.algorithms.encryption.index', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.home');
+    $crumbs->push(
+        trans('settings.blade.algorithms.encryption.list_title'), route('admin.settings.algorithms.encryption.index'));
+});
+
+Breadcrumbs::register(
+    'admin.settings.algorithms.encryption.create', static function (Crumbs $crumbs) {
     $crumbs->parent('admin.settings.algorithms.encryption.index');
     $crumbs->push(trans('settings.blade.algorithms.create'), route('admin.settings.algorithms.encryption.create'));
 });
