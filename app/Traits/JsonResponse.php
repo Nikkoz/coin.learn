@@ -2,9 +2,9 @@
 
 namespace App\Traits;
 
-use Illuminate\Http\JsonResponse as HttpJsonResponse;
+use Illuminate\Http\JsonResponse;
 
-trait JsonResponse
+trait JsonResponsible
 {
     /**
      * Отправка положительного ответа  в формате json.
@@ -12,9 +12,9 @@ trait JsonResponse
      * @param string $message
      * @param array  $data
      *
-     * @return HttpJsonResponse
+     * @return JsonResponse
      */
-    protected function sendOk(string $message, array $data = null): HttpJsonResponse
+    protected function sendOk(string $message, array $data = null): JsonResponse
     {
         return response()->json([
             'success' => true,
@@ -29,9 +29,9 @@ trait JsonResponse
      * @param string $message
      * @param array  $data
      *
-     * @return HttpJsonResponse
+     * @return JsonResponse
      */
-    protected function sendError(string $message, array $data = []): HttpJsonResponse
+    protected function sendError(string $message, array $data = []): JsonResponse
     {
         return response()->json([
             'success' => false,

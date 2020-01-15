@@ -3,7 +3,6 @@
 Route::redirect('/', '/login');
 
 Route::group([
-    //'prefix'    => 'admin',
     'as'        => 'admin.',
     'namespace' => 'Admin',
 ], static function () {
@@ -25,7 +24,7 @@ Route::group([
 
         Route::post('/ajax/upload/image', 'UploadController@image')->name('ajax.upload.image');
 
-        Route::group(['prefix' => 'coins', 'as' => 'coins.'], static function () {
+        Route::group(['prefix' => 'coins', 'as' => 'coins.', 'namespace' => 'Coins'], static function () {
             Route::get('/', 'CoinController@index')->name('index');
             Route::get('/create', 'CoinController@create')->name('create');
             Route::get('/{id}/edit', 'CoinController@edit')->name('edit');
@@ -35,7 +34,11 @@ Route::group([
         });
 
         Route::group(['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
+            Route::redirect('/', 'settings/handbooks');
+
             Route::group(['prefix' => 'algorithms', 'as' => 'algorithms.', 'namespace' => 'Algorithms'], static function () {
+                Route::redirect('/', 'algorithms/encryption');
+
                 Route::group(['prefix' => 'encryption', 'as' => 'encryption.'], static function () {
                     Route::get('/', 'EncryptionController@index')->name('index');
                     Route::get('/create', 'EncryptionController@create')->name('create');
@@ -56,6 +59,8 @@ Route::group([
             });
 
             Route::group(['prefix' => 'social', 'as' => 'social.', 'namespace' => 'SocialNetworks'], static function () {
+                Route::redirect('/', 'social/networks');
+
                 Route::group(['prefix' => 'networks', 'as' => 'networks.'], static function () {
                     Route::get('/', 'SocialNetworkController@index')->name('index');
                     Route::get('/create', 'SocialNetworkController@create')->name('create');
@@ -66,6 +71,10 @@ Route::group([
                 });
 
                 Route::delete('links/{id}', 'SocialLinkController@destroy')->name('links.destroy');
+            });
+
+            Route::group(['prefix' => 'handbooks', 'as' => 'handbooks.'], static function () {
+                Route::get('/', 'HandbookController@index')->name('index');
             });
         });
     });

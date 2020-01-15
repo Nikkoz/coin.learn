@@ -188,6 +188,14 @@ return [
             'icon' => 'nav-icon fa-fw fa fa-cogs',
             'submenu' => [
                 [
+                    'text'  => 'handbooks',
+                    'icon'  => 'fa-fw fa fa-book',
+                    'route' => 'admin.settings.handbooks.index'
+                ], [
+                    'text'  => 'social_networks',
+                    'icon'  => 'fa-fw fab fa-vk ',
+                    'route' => 'admin.settings.social.networks.index',
+                ], [
                     'text'    => 'algorithms',
                     'icon'    => 'fa-fw fab fa-gg',
                     'submenu' => [
@@ -199,10 +207,6 @@ return [
                             'route' => 'admin.settings.algorithms.consensus.index',
                         ]
                     ]
-                ], [
-                    'text'  => 'social_networks',
-                    'icon'  => 'fa-fw fab fa-vk ',
-                    'route' => 'admin.settings.social.networks.index',
                 ]
             ]
         ],

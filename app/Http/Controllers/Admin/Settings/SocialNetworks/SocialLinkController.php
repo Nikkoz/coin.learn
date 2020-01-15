@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Admin\Settings\SocialNetworks;
 
 use App\Http\Controllers\Controller;
 use App\Services\Dashboard\SocialNetworks\SocialLinkService;
-use App\Traits\JsonResponse as JsonResponseTrait;
+use App\Traits\JsonResponsible;
 use Illuminate\Http\JsonResponse;
 
 class SocialLinkController extends Controller
 {
-    use JsonResponseTrait;
+    use JsonResponsible;
 
     /**
      * @var SocialLinkService

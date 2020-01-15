@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Services\Dashboard\SocialNetworks;
+namespace App\Services\Dashboard;
 
-use App\Entities\Settings\SocialNetworks\SocialLink;
+use App\Entities\Coin\Handbook;
 use App\Exceptions\FailedSaveModelException;
-use App\Repositories\Dashboard\SocialNetworks\SocialLinkRepository;
+use App\Repositories\Dashboard\HandbookRepository;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Throwable;
 
-class SocialLinkService
+class HandbookService
 {
     private $repository;
 
-    public function __construct(SocialLinkRepository $repository)
+    public function __construct(HandbookRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -34,56 +34,56 @@ class SocialLinkService
     }
 
     /**
-     * Создание ссылки.
+     * Создание фразы.
      *
      * @param array $data - post данные
      *
      * @throws Throwable
-     * @return SocialLink
+     * @return Handbook
      */
-    public function create(array $data): SocialLink
+    public function create(array $data): Handbook
     {
-        $link = new SocialLink;
+        $handbook = new Handbook;
 
-        if (!$this->save($link, $data)) {
-            throw new FailedSaveModelException(SocialLink::class);
+        if (!$this->save($handbook, $data)) {
+            throw new FailedSaveModelException(Handbook::class);
         }
 
-        return $link;
+        return $handbook;
     }
 
     /**
-     * Обновление ссылки.
+     * Обновление фразы.
      *
      * @param int   $id
      * @param array $data
      *
      * @throws Throwable
-     * @return SocialLink
+     * @return Handbook
      */
-    public function update(int $id, array $data): SocialLink
+    public function update(int $id, array $data): Handbook
     {
-        /** @var SocialLink $link */
-        $link = $this->repository->getOne($id);
+        /** @var Handbook $handbook */
+        $handbook = $this->repository->getOne($id);
 
-        if (!$this->save($link, $data)) {
-            throw new FailedSaveModelException(SocialLink::class);
+        if (!$this->save($handbook, $data)) {
+            throw new FailedSaveModelException(Handbook::class);
         }
 
-        return $link;
+        return $handbook;
     }
 
     /**
      * Сохранение.
      *
-     * @param SocialLink $link
-     * @param array      $data
+     * @param Handbook $link
+     * @param array    $data
      *
      * @throws Exception
      * @throws Throwable
      * @return bool
      */
-    protected function save(SocialLink $link, array $data): bool
+    protected function save(Handbook $link, array $data): bool
     {
         $link->fill($data);
 
@@ -91,7 +91,7 @@ class SocialLinkService
     }
 
     /**
-     * Удаление ссылок.
+     * Удаление фраз.
      *
      * @param array $ids
      *
@@ -103,7 +103,7 @@ class SocialLinkService
         $delete = $this->repository->queryBuilder()->whereIn('id', $ids)->delete();
 
         if ($delete === null) {
-            throw new ModelNotFoundException(SocialLink::class . ' with id=' . implode(', ', $ids) . ' not found.');
+            throw new ModelNotFoundException(Handbook::class . ' with id=' . implode(', ', $ids) . ' not found.');
         }
 
         return $delete;
