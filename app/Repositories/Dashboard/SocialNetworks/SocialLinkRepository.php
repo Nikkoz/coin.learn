@@ -55,7 +55,7 @@ class SocialLinkRepository extends BaseRepository
     {
         $query = $this->prepareQueryParams($params);
 
-        return $query->with('networks', 'coins')->orderByDesc($column)->paginate($this->defaultPaginationCount);
+        return $query->orderByDesc($column)->paginate($this->defaultPaginationCount);
     }
 
     /**

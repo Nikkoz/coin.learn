@@ -39,7 +39,7 @@ class CoinRepository extends BaseRepository
      */
     public function getOne(int $id): Coin
     {
-        return $this->queryBuilder()->where('id', $id)->firstOrFail();
+        return $this->queryBuilder()->with('socialLinks')->where('id', $id)->firstOrFail();
     }
 
     /**

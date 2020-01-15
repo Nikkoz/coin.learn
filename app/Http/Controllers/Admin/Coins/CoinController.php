@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Coins;
 
 use App\Dictionaries\DashboardFlashTypeDictionary;
 use App\Exceptions\FailedDeleteModelException;
