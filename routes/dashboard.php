@@ -24,13 +24,26 @@ Route::group([
 
         Route::post('/ajax/upload/image', 'UploadController@image')->name('ajax.upload.image');
 
-        Route::group(['prefix' => 'coins', 'as' => 'coins.', 'namespace' => 'Coins'], static function () {
-            Route::get('/', 'CoinController@index')->name('index');
-            Route::get('/create', 'CoinController@create')->name('create');
-            Route::get('/{id}/edit', 'CoinController@edit')->name('edit');
-            Route::put('/{id}', 'CoinController@update')->name('update');
-            Route::post('/', 'CoinController@store')->name('store');
-            Route::delete('/{id}', 'CoinController@destroy')->name('destroy');
+        Route::group(
+            ['prefix' => 'coins', 'namespace' => 'Coins'], static function () {
+            Route::group(['as' => 'coins.'], static function () {
+                Route::get('/', 'CoinController@index')->name('index');
+                Route::get('/create', 'CoinController@create')->name('create');
+                Route::get('/{id}/edit', 'CoinController@edit')->name('edit');
+                Route::put('/{id}', 'CoinController@update')->name('update');
+                Route::post('/', 'CoinController@store')->name('store');
+                Route::delete('/{id}', 'CoinController@destroy')->name('destroy');
+            });
+
+            // links
+            Route::group(['prefix' => '{coinId}/links', 'as' => 'links.'], static function () {
+                Route::get('/', 'SocialLinkController@index')->name('index');
+                Route::get('/create', 'SocialLinkController@create')->name('create');
+                Route::get('/{id}/edit', 'SocialLinkController@edit')->name('edit');
+                Route::put('/{id}', 'SocialLinkController@update')->name('update');
+                Route::post('/', 'SocialLinkController@store')->name('store');
+                Route::delete('/{id}', 'SocialLinkController@destroy')->name('destroy');
+            });
         });
 
         Route::group(['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
@@ -69,8 +82,6 @@ Route::group([
                     Route::put('/{id}', 'SocialNetworkController@update')->name('update');
                     Route::delete('/{id}', 'SocialNetworkController@destroy')->name('destroy');
                 });
-
-                Route::delete('links/{id}', 'SocialLinkController@destroy')->name('links.destroy');
             });
 
             Route::group(['prefix' => 'handbooks', 'as' => 'handbooks.'], static function () {

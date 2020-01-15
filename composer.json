@@ -18,9 +18,11 @@
     "laravel/ui": "^1.1",
     "laravelcollective/html": "^6.0",
     "yajra/laravel-datatables-oracle": "~9.0",
+    "browner12/helpers": "^3.0",
     "ext-json": "*"
   },
   "require-dev": {
+    "roave/security-advisories": "dev-master",
     "barryvdh/laravel-debugbar": "^3.2",
     "barryvdh/laravel-ide-helper": "^2.6",
     "beyondcode/laravel-dump-server": "^1.3",

@@ -88,8 +88,9 @@
                             <form action="{{ route('admin.coins.destroy', $coin->id) }}" method="POST"
                                   onsubmit="return confirm({{ trans('global.blade.sure_delete') }});"
                                   style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                @csrf
+                                @method('DELETE')
+
                                 <button type="submit" class="btn btn-sm btn-danger">
                                     <i class="fa fa-trash"></i>
                                 </button>
