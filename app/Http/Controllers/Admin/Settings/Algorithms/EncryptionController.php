@@ -53,7 +53,8 @@ class EncryptionController extends Controller
 
     public function edit(int $id): View
     {
-        return view('admin.settings.algorithms.encryption.edit', [
+        return view(
+            'admin.settings.algorithms.encryption.edit', [
             'algorithm' => $this->repository->getOne($id)
         ]);
     }
@@ -74,7 +75,6 @@ class EncryptionController extends Controller
             throw new FailedDeleteModelException();
         }
 
-        return back()->with(
-            DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Algorithm']));
+        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Algorithm']));
     }
 }

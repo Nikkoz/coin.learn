@@ -13,14 +13,8 @@ use Illuminate\View\View;
 
 class SocialNetworkController extends Controller
 {
-    /**
-     * @var SocialNetworkRepository
-     */
     private $repository;
 
-    /**
-     * @var SocialNetworkService
-     */
     private $service;
 
     public function __construct(SocialNetworkRepository $repository, SocialNetworkService $service)
@@ -68,13 +62,12 @@ class SocialNetworkController extends Controller
         );
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id): RedirectResponse
     {
         if ($this->service->delete($id) === false) {
             throw new FailedDeleteModelException();
         }
 
-        return back()->with(
-            DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Network']));
+        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Network']));
     }
 }

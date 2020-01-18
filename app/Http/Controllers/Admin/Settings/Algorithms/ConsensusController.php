@@ -68,7 +68,6 @@ class ConsensusController extends Controller
             throw new FailedDeleteModelException();
         }
 
-        return back()->with(
-            DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Algorithm']));
+        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Algorithm']));
     }
 }

@@ -18,9 +18,6 @@ class HandbookController extends Controller
 
     private $coinService;
 
-    /**
-     * @var HandbookService
-     */
     private $service;
 
     public function __construct(HandbookRepository $repository, HandbookService $service, CoinService $coinService)
@@ -78,7 +75,6 @@ class HandbookController extends Controller
             throw new FailedDeleteModelException();
         }
 
-        return back()->with(
-            DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Handbook']));
+        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Handbook']));
     }
 }

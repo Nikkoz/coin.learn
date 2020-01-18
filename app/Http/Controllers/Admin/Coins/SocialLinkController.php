@@ -15,24 +15,12 @@ use Illuminate\View\View;
 
 class SocialLinkController extends Controller
 {
-    /**
-     * @var SocialLinkService
-     */
     private $service;
 
-    /**
-     * @var SocialLinkRepository
-     */
     private $repository;
 
-    /**
-     * @var CoinRepository
-     */
     private $coinRepository;
 
-    /**
-     * @var SocialNetworkService
-     */
     private $networkService;
 
     public function __construct(
@@ -98,7 +86,6 @@ class SocialLinkController extends Controller
             throw new FailedDeleteModelException();
         }
 
-        return back()->with(
-            DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Link']));
+        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Link']));
     }
 }
