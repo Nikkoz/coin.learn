@@ -7,6 +7,7 @@ use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\CoinRepository;
 use App\Services\Dashboard\SocialNetworks\SocialLinkService;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 use Throwable;
@@ -48,18 +49,6 @@ class CoinService
         $model = $this->repository->getOne($id);
 
         return !($model->delete() !== true);
-    }
-
-    /**
-     * Массовое удаление по ids.
-     *
-     * @param array $ids
-     *
-     * @return bool
-     */
-    public function massDelete(array $ids): bool
-    {
-        return $this->deleteModels($ids);
     }
 
     /**
@@ -171,5 +160,21 @@ class CoinService
         }
 
         return $delete;
+    }
+
+    /**
+     * Получить массив монет для формирования селектора.
+     *
+     * @return array
+     */
+    public function getAllForSelector(): array
+    {
+        /** @var Collection $collection */
+        $collection = $this->repository->getAll([], 'name', 'asc');
+
+        return $collection->mapWithKeys(
+            static function ($item) {
+                return [$item['id'] => $item['name']];
+            })->all();
     }
 }

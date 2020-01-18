@@ -8,12 +8,13 @@ return [
         'disable' => 'Disable',
     ],
     'actions'    => [
-        'add'     => 'Add',
-        'update'  => 'Update',
-        'edit'    => 'Edit',
-        'delete'  => 'Delete',
-        'cancel'  => 'Cancel',
-        'objects' => [
+        'add'       => 'Add',
+        'update'    => 'Update',
+        'edit'      => 'Edit',
+        'delete'    => 'Delete',
+        'cancel'    => 'Cancel',
+        'save_edit' => 'Save and editing',
+        'objects'   => [
             'add'      => 'Add :object',
             'save'     => 'Save :object',
             'creation' => ':object creation',
@@ -32,12 +33,19 @@ return [
             'select_one' => 'Select one ...'
         ],
         'fields'       => [
-            'name'        => 'Name',
-            'link'        => 'Link',
-            'network'     => 'Network',
-            'phrase'      => 'Phrase',
-            'status'      => 'Status',
-            'description' => 'Description'
+            'name'         => 'Name',
+            'link'         => 'Link',
+            'network'      => 'Network',
+            'phrase'       => 'Phrase',
+            'status'       => 'Status',
+            'description'  => 'Description',
+            'title'        => 'Title',
+            'coin'         => 'Coin',
+            'check_case'   => 'Check case',
+            'type'         => 'Type',
+            'date_created' => 'Created',
+            'date_updated' => 'Updated',
+            'code'         => 'Tiker',
         ]
     ]
 ];

@@ -1,6 +1,6 @@
 @extends('admin.coins.menu')
 
-@section('title', trans('coin.blade.edit.title'))
+@section('title', trans('global.actions.objects.update', ['object' => 'Coin']))
 
 @section('inner_content')
     {!! Form::open(['url' => route('admin.coins.update', $coin->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
@@ -23,19 +23,19 @@
                 </div>
 
                 <div class="card-body">
-                    {{ Form::bsSwitch('coin.blade.status', 'status', $coin->status) }}
+                    {{ Form::bsSwitch('global.blade.fields.status', 'status', $coin->status) }}
 
                     <div class="row">
                         <div class="col-md-4">
-                            {{ Form::bsText('coin.blade.name', 'name', true, $coin->name) }}
+                            {{ Form::bsText('global.blade.fields.name', 'name', true, $coin->name) }}
                         </div>
 
                         <div class="col-md-4">
-                            {{ Form::bsText('coin.blade.create.form.code', 'code', true, $coin->code) }}
+                            {{ Form::bsText('global.blade.fields.code', 'code', true, $coin->code) }}
                         </div>
 
                         <div class="col-md-4">
-                            {{ Form::bsSelectWithoutSearch('coin.blade.type', 'type', CoinTypeDictionary::getValues(), true, $coin->type) }}
+                            {{ Form::bsSelectWithoutSearch('global.blade.fields.type', 'type', CoinTypeDictionary::getValues(), true, $coin->type) }}
                         </div>
                     </div>
 
@@ -138,7 +138,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-footer text-right">
-                    {{ Form::submit(trans('coin.blade.save'), ['class' => 'btn btn-success']) }}
+                    {{ Form::submit(trans('global.actions.objects.save', ['object' => 'coin']), ['class' => 'btn btn-success']) }}
                 </div>
             </div>
         </div>

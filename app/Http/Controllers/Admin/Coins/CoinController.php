@@ -17,29 +17,14 @@ use Illuminate\View\View;
 
 class CoinController extends Controller
 {
-    /**
-     * @var CoinRepository
-     */
     private $repository;
 
-    /**
-     * @var EncryptionService
-     */
     private $algorithmEncryptionService;
 
-    /**
-     * @var ConsensusService
-     */
     private $algorithmConsensusService;
 
-    /**
-     * @var CoinService
-     */
     private $service;
 
-    /**
-     * @var SocialNetworkService
-     */
     private $socialNetworkService;
 
     public function __construct(
@@ -94,9 +79,18 @@ class CoinController extends Controller
 
     public function store(CoinRequest $request): RedirectResponse
     {
-        $this->service->create($request->validated());
+        if ($request->exists('editing')) {
+            $route = 'admin.coins.edit';
 
-        return redirect()->route('admin.coins.index')->with(DashboardFlashTypeDictionary::SUCCESS, trans('coin.saved'));
+            $request->request->remove('editing');
+        }
+
+        $coin = $this->service->create($request->validated());
+
+        return redirect()->route($route ?? 'admin.coins.index', isset($route) ? $coin->id : '')->with(
+            DashboardFlashTypeDictionary::SUCCESS,
+            trans('global.actions.objects.saved', ['object' => 'Coin'])
+        );
     }
 
     public function edit(int $id): View
@@ -113,17 +107,20 @@ class CoinController extends Controller
 
     public function update(CoinRequest $request, int $id): RedirectResponse
     {
-        $this->service->update($id, $request->validated());
+        $coin = $this->service->update($id, $request->validated());
 
-        return redirect()->route('admin.coins.index')->with(DashboardFlashTypeDictionary::SUCCESS, trans('coin.updated', ['name' => $request->name]));
+        return redirect()->route('admin.coins.index')->with(
+            DashboardFlashTypeDictionary::SUCCESS,
+            trans('global.actions.objects.updated', ['object' => 'Coin', 'name' => $coin->name])
+        );
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id): RedirectResponse
     {
         if ($this->service->delete($id) === false) {
             throw new FailedDeleteModelException();
         }
 
-        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('coin.deleted'));
+        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Coin']));
     }
 }

@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @property Image        $image
  * @property SocialLink[] $socialLinks
+ * @property Handbook[]   $handbooks
  */
 class Coin extends Model
 {
@@ -45,11 +46,11 @@ class Coin extends Model
      */
     public const PATH = 'images' . DIRECTORY_SEPARATOR . 'coins';
 
-    public $guarded = ['id', 'alias'];
+    public    $guarded = ['id', 'alias'];
 
     protected $dateFormat = 'Y-m-d H:i:sO';
 
-    protected $casts = [
+    protected $casts   = [
         'links' => 'array'
     ];
 
@@ -71,5 +72,10 @@ class Coin extends Model
     public function socialLinks(): HasMany
     {
         return $this->hasMany(SocialLink::class)->with('network');
+    }
+
+    public function handbooks(): HasMany
+    {
+        return $this->hasMany(Handbook::class);
     }
 }

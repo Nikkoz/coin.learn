@@ -15,24 +15,12 @@ use Illuminate\View\View;
 
 class SocialLinkController extends Controller
 {
-    /**
-     * @var SocialLinkService
-     */
     private $service;
 
-    /**
-     * @var SocialLinkRepository
-     */
     private $repository;
 
-    /**
-     * @var CoinRepository
-     */
     private $coinRepository;
 
-    /**
-     * @var SocialNetworkService
-     */
     private $networkService;
 
     public function __construct(
@@ -50,7 +38,7 @@ class SocialLinkController extends Controller
 
     public function index(int $coinId): View
     {
-        $links = $this->repository->getPagination(['coin_id' => $coinId]);
+        $links = $this->repository->getPagination(['coin_id' => $coinId], 'id', ['network']);
         $coin = $this->coinRepository->getOne($coinId);
 
         return view('admin.coins.links.index', compact('links', 'coin'));
@@ -84,11 +72,11 @@ class SocialLinkController extends Controller
 
     public function update(SocialLinkRequest $request, int $coinId, int $id): RedirectResponse
     {
-        $this->service->update($id, $request->validated());
+        $socialLink = $this->service->update($id, $request->validated());
 
         return redirect()->route('admin.links.index', $coinId)->with(
             DashboardFlashTypeDictionary::SUCCESS, trans(
-            'global.actions.objects.updated', ['object' => 'Link', 'name' => $request->link]
+            'global.actions.objects.updated', ['object' => 'Link', 'name' => $socialLink->link]
         ));
     }
 
@@ -98,6 +86,6 @@ class SocialLinkController extends Controller
             throw new FailedDeleteModelException();
         }
 
-        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted'));
+        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Link']));
     }
 }

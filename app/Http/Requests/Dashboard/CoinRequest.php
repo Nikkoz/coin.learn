@@ -15,10 +15,11 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
- * @property int   $id - Идентификатор монеты
- * @property int   $type - Выбранный тип (Монета или Токен)
- * @property array $socials - Массив ссылок на соц. сети
- * @property array $newSocials - Массив новых ссылок на соц. сети
+ * @property int    $id - Идентификатор монеты
+ * @property int    $type - Выбранный тип (Монета или Токен)
+ * @property array  $socials - Массив ссылок на соц. сети
+ * @property array  $newSocials - Массив новых ссылок на соц. сети
+ * @property string $name - название монеты
  */
 class CoinRequest extends FormRequest
 {

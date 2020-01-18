@@ -3,7 +3,6 @@
 Route::redirect('/', '/login');
 
 Route::group([
-    //'prefix'    => 'admin',
     'as'        => 'admin.',
     'namespace' => 'Admin',
 ], static function () {
@@ -35,11 +34,21 @@ Route::group([
                 Route::put('/{id}', 'CoinController@update')->name('update');
                 Route::post('/', 'CoinController@store')->name('store');
                 Route::delete('/{id}', 'CoinController@destroy')->name('destroy');
+
+                // handbooks
+                Route::group(
+                    ['prefix' => '{coinId}/handbooks', 'as' => 'handbooks.'], static function () {
+                    Route::get('/', 'HandbookController@index')->name('index');
+                    Route::get('/create', 'HandbookController@create')->name('create');
+                    Route::get('/{id}/edit', 'HandbookController@edit')->name('edit');
+                    Route::put('/{id}', 'HandbookController@update')->name('update');
+                    Route::post('/', 'HandbookController@store')->name('store');
+                    Route::delete('/{id}', 'HandbookController@destroy')->name('destroy');
+                });
             });
 
             // links
-            Route::group(
-                ['prefix' => '{coinId}/links', 'as' => 'links.'], static function () {
+            Route::group(['prefix' => '{coinId}/links', 'as' => 'links.'], static function () {
                 Route::get('/', 'SocialLinkController@index')->name('index');
                 Route::get('/create', 'SocialLinkController@create')->name('create');
                 Route::get('/{id}/edit', 'SocialLinkController@edit')->name('edit');
@@ -49,10 +58,23 @@ Route::group([
             });
         });
 
-        Route::group(
-            ['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
+        Route::group(['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
+            Route::redirect('/', 'settings/handbooks');
+
+            Route::group(
+                ['prefix' => '/handbooks', 'as' => 'handbooks.'], static function () {
+                Route::get('/', 'HandbookController@index')->name('index');
+                Route::get('/create', 'HandbookController@create')->name('create');
+                Route::get('/{id}/edit', 'HandbookController@edit')->name('edit');
+                Route::put('/{id}', 'HandbookController@update')->name('update');
+                Route::post('/', 'HandbookController@store')->name('store');
+                Route::delete('/{id}', 'HandbookController@destroy')->name('destroy');
+            });
+
             Route::group(
                 ['prefix' => 'algorithms', 'as' => 'algorithms.', 'namespace' => 'Algorithms'], static function () {
+                Route::redirect('/', 'algorithms/encryption');
+
                 Route::group(
                     ['prefix' => 'encryption', 'as' => 'encryption.'], static function () {
                     Route::get('/', 'EncryptionController@index')->name('index');
@@ -74,6 +96,8 @@ Route::group([
             });
 
             Route::group(['prefix' => 'social', 'as' => 'social.', 'namespace' => 'SocialNetworks'], static function () {
+                Route::redirect('/', 'social/networks');
+
                 Route::group(['prefix' => 'networks', 'as' => 'networks.'], static function () {
                     Route::get('/', 'SocialNetworkController@index')->name('index');
                     Route::get('/create', 'SocialNetworkController@create')->name('create');

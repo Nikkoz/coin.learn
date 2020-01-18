@@ -24,4 +24,5 @@ return [
     'algorithm_encryption' => 'Encryption',
     'algorithm_consensus'  => 'Consensus',
     'social_networks'      => 'Social networks',
+    'handbooks'            => 'Handbooks',
 ];

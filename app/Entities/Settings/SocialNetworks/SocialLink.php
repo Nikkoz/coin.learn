@@ -3,6 +3,8 @@
 namespace App\Entities\Settings\SocialNetworks;
 
 use App\Entities\Coin\Coin;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -15,6 +17,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property SocialNetwork $network
  * @property Coin          $coin
+ *
+ * @method static Builder|SocialLink newModelQuery()
+ * @method static Builder|SocialLink newQuery()
+ * @method static Builder|SocialLink query()
+ * @method static Builder|SocialLink whereCoinId($value)
+ * @method static Builder|SocialLink whereDescription($value)
+ * @method static Builder|SocialLink whereId($value)
+ * @method static Builder|SocialLink whereLink($value)
+ * @method static Builder|SocialLink whereNetworkId($value)
+ *
+ * @mixin Eloquent
  */
 class SocialLink extends Model
 {

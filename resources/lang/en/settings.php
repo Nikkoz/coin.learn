@@ -6,10 +6,6 @@ return [
         'coin'       => 'Coin',
         'algorithms' => [
             'title'       => 'algorithms',
-            'create'      => 'Algorithm creation',
-            'update'      => 'Updating algorithm ":name"',
-            'saved'       => 'Algorithm saved.',
-            'deleted'     => 'Algorithm deleted.',
             'actions'     => [
                 'add'    => 'Add algorithm',
                 'update' => 'Update algorithm',
@@ -44,11 +40,6 @@ return [
                 'network'     => 'Social network',
                 'name'        => 'Network ":name"',
                 'list_title'  => 'List of social networks',
-                'create'      => 'Network creation',
-                'update'      => 'Update network',
-                'saved'       => 'Network saved.',
-                'updated'     => 'Network ":name" updated.',
-                'deleted'     => 'Network deleted.',
                 'breadcrumbs' => [
                     'create' => 'Network creation',
                     'update' => 'Network update'

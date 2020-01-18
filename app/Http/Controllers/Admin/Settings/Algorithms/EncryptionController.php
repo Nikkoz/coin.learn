@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin\Settings\Algorithms;
 
 use App\Dictionaries\DashboardFlashTypeDictionary;
-use App\Entities\Settings\Encryption;
 use App\Exceptions\FailedDeleteModelException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Settings\Algorithms\EncryptionRequest;
 use App\Repositories\Dashboard\Algorithms\EncryptionRepository;
 use App\Services\Dashboard\Algorithms\EncryptionService;
-use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -49,24 +47,25 @@ class EncryptionController extends Controller
 
         return redirect()->route('admin.settings.algorithms.encryption.index')->with(
             DashboardFlashTypeDictionary::SUCCESS,
-            trans('settings.blade.algorithms.saved')
+            trans('global.actions.objects.saved', ['object' => 'Algorithm'])
         );
     }
 
     public function edit(int $id): View
     {
-        return view('admin.settings.algorithms.encryption.edit', [
+        return view(
+            'admin.settings.algorithms.encryption.edit', [
             'algorithm' => $this->repository->getOne($id)
         ]);
     }
 
     public function update(EncryptionRequest $request, int $id): RedirectResponse
     {
-        $this->service->update($id, $request->validated());
+        $algorithm = $this->service->update($id, $request->validated());
 
         return redirect()->route('admin.settings.algorithms.encryption.index')->with(
             DashboardFlashTypeDictionary::SUCCESS,
-            trans('settings.blade.algorithms.saved')
+            trans('global.actions.objects.updated', ['object' => 'Algorithm', 'name' => $algorithm->name])
         );
     }
 
@@ -76,6 +75,6 @@ class EncryptionController extends Controller
             throw new FailedDeleteModelException();
         }
 
-        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('settings.blade.algorithms.deleted'));
+        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Algorithm']));
     }
 }

@@ -13,14 +13,8 @@ use Illuminate\View\View;
 
 class SocialNetworkController extends Controller
 {
-    /**
-     * @var SocialNetworkRepository
-     */
     private $repository;
 
-    /**
-     * @var SocialNetworkService
-     */
     private $service;
 
     public function __construct(SocialNetworkRepository $repository, SocialNetworkService $service)
@@ -47,7 +41,7 @@ class SocialNetworkController extends Controller
 
         return redirect()->route('admin.settings.social.networks.index')->with(
             DashboardFlashTypeDictionary::SUCCESS,
-            trans('settings.blade.socials.networks.saved')
+            trans('global.actions.objects.saved', ['object' => 'Network'])
         );
     }
 
@@ -60,20 +54,20 @@ class SocialNetworkController extends Controller
 
     public function update(SocialNetworkRequest $request, int $id): RedirectResponse
     {
-        $this->service->update($id, $request->validated());
+        $network = $this->service->update($id, $request->validated());
 
         return redirect()->route('admin.settings.social.networks.index')->with(
             DashboardFlashTypeDictionary::SUCCESS,
-            trans('settings.blade.socials.networks.updated', ['name' => $request->name])
+            trans('global.actions.objects.updated', ['object' => 'Network', 'name' => $network->name])
         );
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id): RedirectResponse
     {
         if ($this->service->delete($id) === false) {
             throw new FailedDeleteModelException();
         }
 
-        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('settings.blade.socials.networks.deleted'));
+        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Network']));
     }
 }

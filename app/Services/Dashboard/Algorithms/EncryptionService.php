@@ -38,18 +38,6 @@ class EncryptionService
     }
 
     /**
-     * Массовое удаление по ids.
-     *
-     * @param array $ids
-     *
-     * @return bool
-     */
-    public function massDelete(array $ids): bool
-    {
-        return $this->deleteModels($ids);
-    }
-
-    /**
      * Создание алгоритма шифрования.
      *
      * @param array $data - post данные

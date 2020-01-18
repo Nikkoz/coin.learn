@@ -8,7 +8,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
-                {{ trans('coin.links.title_one') }}
+                {{ trans('links.title_one') }}
             </h3>
         </div>
 
