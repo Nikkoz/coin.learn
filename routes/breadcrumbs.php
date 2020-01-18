@@ -63,7 +63,8 @@ Breadcrumbs::register(
     $crumbs->parent('admin.coins.handbooks.index', $coinId);
     $crumbs->push(
         trans('global.actions.objects.creation', ['object' => 'Handbook']),
-        route('admin.coins.handbooks.create', $coinId));
+        route('admin.coins.handbooks.create', $coinId)
+    );
 });
 
 Breadcrumbs::register(
@@ -131,7 +132,8 @@ Breadcrumbs::register(
     $crumbs->parent('admin.settings.social.networks.index');
     $crumbs->push(
         trans('global.actions.objects.update', ['object' => 'Network']),
-        route('admin.settings.social.networks.edit', $id));
+        route('admin.settings.social.networks.edit', $id)
+    );
 });
 
 
