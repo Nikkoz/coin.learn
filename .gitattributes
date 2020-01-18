@@ -1,3 +1,4 @@
-* linguist-language=php
-* linguist-vendored
-public/* linguist-vendored=false
+#* linguist-language=php
+#* linguist-vendored
+#public/* linguist-vendored=false
+public/* linguist-documentation
