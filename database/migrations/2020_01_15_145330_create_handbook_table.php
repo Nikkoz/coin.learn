@@ -16,7 +16,7 @@ class CreateHandbookTable extends Migration
             $table->string('alias', 50)->nullable(false);
             $table->unsignedBigInteger('coin_id')->nullable(false)->comment('Монета');
             $table->boolean('check_case')->default(0)->comment('Регистрозависимость');
-            $table->boolean('status')->default(1)->comment('Активна ли фраза');
+            $table->tinyInteger('status')->nullable(false)->default(0)->comment('Статус');
 
             $table->foreign('coin_id')->references('id')->on('coins')->onDelete('CASCADE')->onUpdate('RESTRICT');
         });

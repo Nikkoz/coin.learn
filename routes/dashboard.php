@@ -26,13 +26,25 @@ Route::group([
 
         Route::group(
             ['prefix' => 'coins', 'namespace' => 'Coins'], static function () {
-            Route::group(['as' => 'coins.'], static function () {
+            Route::group(
+                ['as' => 'coins.'], static function () {
                 Route::get('/', 'CoinController@index')->name('index');
                 Route::get('/create', 'CoinController@create')->name('create');
                 Route::get('/{id}/edit', 'CoinController@edit')->name('edit');
                 Route::put('/{id}', 'CoinController@update')->name('update');
                 Route::post('/', 'CoinController@store')->name('store');
                 Route::delete('/{id}', 'CoinController@destroy')->name('destroy');
+
+                // handbooks
+                Route::group(
+                    ['prefix' => '{coinId}/handbooks', 'as' => 'handbooks.'], static function () {
+                    Route::get('/', 'HandbookController@index')->name('index');
+                    Route::get('/create', 'HandbookController@create')->name('create');
+                    Route::get('/{id}/edit', 'HandbookController@edit')->name('edit');
+                    Route::put('/{id}', 'HandbookController@update')->name('update');
+                    Route::post('/', 'HandbookController@store')->name('store');
+                    Route::delete('/{id}', 'HandbookController@destroy')->name('destroy');
+                });
             });
 
             // links
@@ -49,10 +61,22 @@ Route::group([
         Route::group(['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
             Route::redirect('/', 'settings/handbooks');
 
-            Route::group(['prefix' => 'algorithms', 'as' => 'algorithms.', 'namespace' => 'Algorithms'], static function () {
+            Route::group(
+                ['prefix' => '/handbooks', 'as' => 'handbooks.'], static function () {
+                Route::get('/', 'HandbookController@index')->name('index');
+                Route::get('/create', 'HandbookController@create')->name('create');
+                Route::get('/{id}/edit', 'HandbookController@edit')->name('edit');
+                Route::put('/{id}', 'HandbookController@update')->name('update');
+                Route::post('/', 'HandbookController@store')->name('store');
+                Route::delete('/{id}', 'HandbookController@destroy')->name('destroy');
+            });
+
+            Route::group(
+                ['prefix' => 'algorithms', 'as' => 'algorithms.', 'namespace' => 'Algorithms'], static function () {
                 Route::redirect('/', 'algorithms/encryption');
 
-                Route::group(['prefix' => 'encryption', 'as' => 'encryption.'], static function () {
+                Route::group(
+                    ['prefix' => 'encryption', 'as' => 'encryption.'], static function () {
                     Route::get('/', 'EncryptionController@index')->name('index');
                     Route::get('/create', 'EncryptionController@create')->name('create');
                     Route::get('/{id}/edit', 'EncryptionController@edit')->name('edit');
@@ -82,10 +106,6 @@ Route::group([
                     Route::put('/{id}', 'SocialNetworkController@update')->name('update');
                     Route::delete('/{id}', 'SocialNetworkController@destroy')->name('destroy');
                 });
-            });
-
-            Route::group(['prefix' => 'handbooks', 'as' => 'handbooks.'], static function () {
-                Route::get('/', 'HandbookController@index')->name('index');
             });
         });
     });

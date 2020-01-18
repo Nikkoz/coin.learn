@@ -48,7 +48,7 @@
 
             <div class="card-tools">
                 <a class="btn btn-xs btn-success" href="{{ route('admin.coins.create') }}">
-                    {{ trans('coin.actions.add') }}
+                    {{ trans('global.actions.objects.add', ['object' => 'coin']) }}
                 </a>
             </div>
         </div>
@@ -58,11 +58,11 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>{{ trans('coin.blade.name') }}</th>
-                    <th>{{ trans('coin.blade.type') }}</th>
-                    <th>{{ trans('coin.blade.status') }}</th>
-                    <th>{{ trans('coin.blade.date_created') }}</th>
-                    <th>{{ trans('coin.blade.date_updated') }}</th>
+                    <th>{{ trans('global.blade.fields.name') }}</th>
+                    <th>{{ trans('global.blade.fields.type') }}</th>
+                    <th>{{ trans('global.blade.fields.status') }}</th>
+                    <th>{{ trans('global.blade.fields.date_created') }}</th>
+                    <th>{{ trans('global.blade.fields.date_updated') }}</th>
                     <th>&nbsp;</th>
                 </tr>
                 </thead>
@@ -74,9 +74,9 @@
                         <td>{{ $coin->name }} ({{ $coin->code }})</td>
                         <td>{{ CoinTypeDictionary::getValueByKey($coin->type) }}</td>
                         <td>
-                                <span class="badge {{ $coin->status ? 'badge-success' : 'badge-danger' }}">
-                                    {{ CoinStatusDictionary::getValueByKey($coin->status) }}
-                                </span>
+                            <span class="badge {{ $coin->status ? 'badge-success' : 'badge-danger' }}">
+                                {{ CoinStatusDictionary::getValueByKey($coin->status) }}
+                            </span>
                         </td>
                         <td>{{ $coin->created_at }}</td>
                         <td>{{ $coin->updated_at }}</td>

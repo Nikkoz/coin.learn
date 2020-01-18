@@ -1,12 +1,12 @@
 @extends('admin.coins.menu')
 
-@section('title', trans('coin.links.list_title', ['name' => $coin->name]))
+@section('title', trans('links.list_title', ['name' => $coin->name]))
 
 @section('inner_content')
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
-                {{ trans('coin.links.title') }}
+                {{ trans('links.title') }}
             </h3>
 
             <div class="card-tools">

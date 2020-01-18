@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Settings;
+namespace App\Http\Controllers\Admin\Coins;
 
 use App\Dictionaries\DashboardFlashTypeDictionary;
 use App\Exceptions\FailedDeleteModelException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Settings\HandbookRequest;
+use App\Repositories\Dashboard\CoinRepository;
 use App\Repositories\Dashboard\HandbookRepository;
 use App\Services\Dashboard\CoinService;
 use App\Services\Dashboard\HandbookService;
@@ -16,63 +17,71 @@ class HandbookController extends Controller
 {
     private $repository;
 
-    private $coinService;
+    private $coinRepository;
 
-    /**
-     * @var HandbookService
-     */
     private $service;
 
-    public function __construct(HandbookRepository $repository, HandbookService $service, CoinService $coinService)
+    private $coinService;
+
+    public function __construct(
+        HandbookRepository $repository,
+        CoinRepository $coinRepository,
+        HandbookService $service,
+        CoinService $coinService
+    )
     {
         $this->repository = $repository;
-        $this->coinService = $coinService;
+        $this->coinRepository = $coinRepository;
         $this->service = $service;
+        $this->coinService = $coinService;
     }
 
-    public function index(): View
+    public function index(int $coinId): View
     {
-        $handbooks = $this->repository->getPagination([], 'id', ['coin']);
+        $coin = $this->coinRepository->getOne($coinId);
+        $handbooks = $this->repository->getPagination(['coin_id' => $coinId], 'id', ['coin']);
 
-        return view('admin.settings.handbooks.index', compact('handbooks'));
+        return view('admin.coins.handbooks.index', compact('handbooks', 'coin'));
     }
 
-    public function create(): View
+    public function create(int $coinId): View
     {
+        $coin = $this->coinRepository->getOne($coinId);
         $coins = $this->coinService->getAllForSelector();
 
-        return view('admin.settings.handbooks.create', compact('coins'));
+        return view('admin.coins.handbooks.create', compact('coin', 'coins'));
     }
 
-    public function store(HandbookRequest $request): RedirectResponse
+    public function store(HandbookRequest $request, int $coinId): RedirectResponse
     {
         $this->service->create($request->validated());
 
-        return redirect()->route('admin.settings.handbooks.index')->with(
+        return redirect()->route('admin.coins.handbooks.index', $coinId)->with(
             DashboardFlashTypeDictionary::SUCCESS,
             trans('global.actions.objects.saved', ['object' => 'Handbook'])
         );
     }
 
-    public function edit(int $id): View
+    public function edit(int $coinId, int $id): View
     {
+        $coin = $this->coinRepository->getOne($coinId);
         $coins = $this->coinService->getAllForSelector();
         $handbook = $this->repository->getOne($id);
 
-        return view('admin.settings.handbooks.edit', compact('handbook', 'coins'));
+        return view('admin.coins.handbooks.edit', compact('handbook', 'coin', 'coins'));
     }
 
-    public function update(HandbookRequest $request, int $id): RedirectResponse
+    public function update(HandbookRequest $request, int $coinId, int $id): RedirectResponse
     {
         $handbook = $this->service->update($id, $request->validated());
 
-        return redirect()->route('admin.settings.handbooks.index')->with(
+        return redirect()->route('admin.coins.handbooks.index', $coinId)->with(
             DashboardFlashTypeDictionary::SUCCESS,
             trans('global.actions.objects.updated', ['object' => 'Handbook', 'name' => $handbook->title])
         );
     }
 
-    public function destroy(int $id): RedirectResponse
+    public function destroy(int $coinId, int $id): RedirectResponse
     {
         if ($this->service->delete($id) === false) {
             throw new FailedDeleteModelException();

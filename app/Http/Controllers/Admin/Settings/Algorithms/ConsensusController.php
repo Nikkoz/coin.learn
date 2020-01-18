@@ -6,7 +6,6 @@ use App\Dictionaries\DashboardFlashTypeDictionary;
 use App\Exceptions\FailedDeleteModelException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Settings\Algorithms\ConsensusRequest;
-use App\Http\Requests\Dashboard\Settings\Algorithms\EncryptionRequest;
 use App\Repositories\Dashboard\Algorithms\ConsensusRepository;
 use App\Services\Dashboard\Algorithms\ConsensusService;
 use Illuminate\Http\RedirectResponse;
@@ -14,14 +13,8 @@ use Illuminate\View\View;
 
 class ConsensusController extends Controller
 {
-    /**
-     * @var ConsensusRepository
-     */
     private $repository;
 
-    /**
-     * @var ConsensusService
-     */
     private $service;
 
     public function __construct(ConsensusRepository $repository, ConsensusService $service)
@@ -48,7 +41,7 @@ class ConsensusController extends Controller
 
         return redirect()->route('admin.settings.algorithms.consensus.index')->with(
             DashboardFlashTypeDictionary::SUCCESS,
-            trans('settings.blade.algorithms.saved')
+            trans('global.actions.objects.saved', ['object' => 'Algorithm'])
         );
     }
 
@@ -61,11 +54,11 @@ class ConsensusController extends Controller
 
     public function update(ConsensusRequest $request, int $id): RedirectResponse
     {
-        $this->service->update($id, $request->validated());
+        $algorithm = $this->service->update($id, $request->validated());
 
         return redirect()->route('admin.settings.algorithms.consensus.index')->with(
             DashboardFlashTypeDictionary::SUCCESS,
-            trans('settings.blade.algorithms.saved')
+            trans('global.actions.objects.updated', ['object' => 'Algorithm', 'name' => $algorithm->name])
         );
     }
 
@@ -75,6 +68,7 @@ class ConsensusController extends Controller
             throw new FailedDeleteModelException();
         }
 
-        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('settings.blade.algorithms.deleted'));
+        return back()->with(
+            DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Algorithm']));
     }
 }

@@ -1,8 +1,8 @@
-@extends('admin.layout.app')
+@extends('admin.coins.menu')
 
-@section('title', trans('handbooks.title_all_list'))
+@section('title', trans('handbooks.list_title', ['name' => $coin->name]))
 
-@section('content')
+@section('inner_content')
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
@@ -10,7 +10,7 @@
             </h3>
 
             <div class="card-tools">
-                <a class="btn btn-xs btn-success" href="{{ route('admin.settings.handbooks.create') }}">
+                <a class="btn btn-xs btn-success" href="{{ route('admin.coins.handbooks.create', $coin->id) }}">
                     {{ trans('global.actions.objects.add', ['object' => 'Handbook']) }}
                 </a>
             </div>
@@ -45,10 +45,10 @@
                         </td>
                         <td class="text-right">
                             <a class="btn btn-sm btn-info"
-                               href="{{ route('admin.settings.handbooks.edit', $handbook->id) }}">
+                               href="{{ route('admin.coins.handbooks.edit', ['coinId' => $coin->id, 'id' => $handbook->id]) }}">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <form action="{{ route('admin.settings.handbooks.destroy', $handbook->id) }}"
+                            <form action="{{ route('admin.coins.handbooks.destroy', ['coinId' => $coin->id, 'id' => $handbook->id]) }}"
                                   method="POST"
                                   onsubmit="return confirm({{ trans('global.blade.sure_delete') }});"
                                   style="display: inline-block;">

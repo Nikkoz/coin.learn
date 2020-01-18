@@ -18,18 +18,20 @@
 
                         <a href="{{ route('admin.links.index', ['coinId' => $coin->id]) }}"
                            class="list-group-item d-flex justify-content-between align-items-center list-group-item-action {{ checkMenuItemActive(route('admin.links.index', ['coinId' => $coin->id])) }}">
-                            <b>{{ trans('coin.links.title') }}</b>
+                            <b>{{ trans('links.title') }}</b>
 
                             <span class="badge badge-success badge-pill">
-                            {{ $coin->socialLinks->count() }}
-                        </span>
+                                {{ $coin->socialLinks->count() }}
+                            </span>
                         </a>
 
-                        <a href="{{--{{ route('admin.handbooks.index', ['coinId' => $coin->id]) }}--}}"
-                           class="list-group-item d-flex justify-content-between align-items-center list-group-item-action {{--{{ checkMenuItemActive(route('admin.coins.edit', $coin->id)) }}--}}">
-                            <b>handbooks{{--{{ trans('coin.handbooks.title') }}--}}</b>
+                        <a href="{{ route('admin.coins.handbooks.index', ['coinId' => $coin->id]) }}"
+                           class="list-group-item d-flex justify-content-between align-items-center list-group-item-action {{ checkMenuItemActive(route('admin.coins.handbooks.index', $coin->id)) }}">
+                            <b>{{ trans('handbooks.title') }}</b>
 
-                            <span class="badge badge-success badge-pill">2</span>
+                            <span class="badge badge-success badge-pill">
+                                {{ $coin->handbooks->count() }}
+                            </span>
                         </a>
                     </div>
 

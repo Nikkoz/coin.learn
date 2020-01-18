@@ -17,13 +17,13 @@ Breadcrumbs::register('admin.coins.index', static function (Crumbs $crumbs) {
 
 Breadcrumbs::register('admin.coins.create', static function (Crumbs $crumbs) {
     $crumbs->parent('admin.coins.index');
-    $crumbs->push(trans('coin.blade.create.title'), route('admin.coins.create'));
+    $crumbs->push(trans('global.actions.objects.creation', ['object' => 'Coin']), route('admin.coins.create'));
 });
 
 Breadcrumbs::register(
     'admin.coins.edit', static function (Crumbs $crumbs, int $id) {
     $crumbs->parent('admin.coins.index');
-    $crumbs->push(trans('coin.blade.edit.title'), route('admin.coins.edit', $id));
+    $crumbs->push(trans('global.actions.objects.update', ['object' => 'Coin']), route('admin.coins.edit', $id));
 });
 
 
@@ -32,7 +32,7 @@ Breadcrumbs::register(
 Breadcrumbs::register(
     'admin.links.index', static function (Crumbs $crumbs, int $coinId) {
     $crumbs->parent('admin.coins.edit', $coinId);
-    $crumbs->push(trans('coin.links.title'), route('admin.links.index', $coinId));
+    $crumbs->push(trans('links.title'), route('admin.links.index', $coinId));
 });
 
 Breadcrumbs::register(
@@ -46,7 +46,33 @@ Breadcrumbs::register(
     $crumbs->parent('admin.links.index', $coinId);
     $crumbs->push(
         trans('global.actions.objects.update', ['object' => 'Link']),
-        route('admin.links.update', ['coinId' => $coinId, 'id' => $id]));
+        route('admin.links.update', ['coinId' => $coinId, 'id' => $id])
+    );
+});
+
+// Handbooks in Coin
+
+Breadcrumbs::register(
+    'admin.coins.handbooks.index', static function (Crumbs $crumbs, int $coinId) {
+    $crumbs->parent('admin.coins.edit', $coinId);
+    $crumbs->push(trans('handbooks.title'), route('admin.coins.handbooks.index', $coinId));
+});
+
+Breadcrumbs::register(
+    'admin.coins.handbooks.create', static function (Crumbs $crumbs, int $coinId) {
+    $crumbs->parent('admin.coins.handbooks.index', $coinId);
+    $crumbs->push(
+        trans('global.actions.objects.creation', ['object' => 'Handbook']),
+        route('admin.coins.handbooks.create', $coinId));
+});
+
+Breadcrumbs::register(
+    'admin.coins.handbooks.edit', static function (Crumbs $crumbs, int $coinId, int $id) {
+    $crumbs->parent('admin.coins.handbooks.index', $coinId);
+    $crumbs->push(
+        trans('global.actions.objects.update', ['object' => 'Handbook']),
+        route('admin.coins.handbooks.update', ['coinId' => $coinId, 'id' => $id])
+    );
 });
 
 
@@ -93,12 +119,40 @@ Breadcrumbs::register('admin.settings.social.networks.index', static function (C
     $crumbs->push(trans('settings.blade.socials.networks.title'), route('admin.settings.social.networks.index'));
 });
 
-Breadcrumbs::register('admin.settings.social.networks.create', static function (Crumbs $crumbs) {
+Breadcrumbs::register(
+    'admin.settings.social.networks.create', static function (Crumbs $crumbs) {
     $crumbs->parent('admin.settings.social.networks.index');
-    $crumbs->push(trans('settings.blade.socials.networks.breadcrumbs.create'), route('admin.settings.social.networks.create'));
+    $crumbs->push(
+        trans('global.actions.objects.add', ['object' => 'Network']), route('admin.settings.social.networks.create'));
 });
 
-Breadcrumbs::register('admin.settings.social.networks.edit', static function (Crumbs $crumbs, int $id) {
+Breadcrumbs::register(
+    'admin.settings.social.networks.edit', static function (Crumbs $crumbs, int $id) {
     $crumbs->parent('admin.settings.social.networks.index');
-    $crumbs->push(trans('settings.blade.socials.networks.breadcrumbs.update'), route('admin.settings.social.networks.edit', $id));
+    $crumbs->push(
+        trans('global.actions.objects.update', ['object' => 'Network']),
+        route('admin.settings.social.networks.edit', $id));
+});
+
+
+// Handbooks
+
+Breadcrumbs::register(
+    'admin.settings.handbooks.index', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.home');
+    $crumbs->push(trans('handbooks.title'), route('admin.settings.handbooks.index'));
+});
+
+Breadcrumbs::register(
+    'admin.settings.handbooks.create', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.settings.handbooks.index');
+    $crumbs->push(
+        trans('global.actions.objects.add', ['object' => 'Handbook']), route('admin.settings.handbooks.create'));
+});
+
+Breadcrumbs::register(
+    'admin.settings.handbooks.edit', static function (Crumbs $crumbs, int $id) {
+    $crumbs->parent('admin.settings.handbooks.index');
+    $crumbs->push(
+        trans('global.actions.objects.update', ['object' => 'Handbook']), route('admin.settings.handbooks.edit', $id));
 });

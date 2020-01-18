@@ -94,9 +94,18 @@ class CoinController extends Controller
 
     public function store(CoinRequest $request): RedirectResponse
     {
-        $this->service->create($request->validated());
+        if ($request->exists('editing')) {
+            $route = 'admin.coins.edit';
 
-        return redirect()->route('admin.coins.index')->with(DashboardFlashTypeDictionary::SUCCESS, trans('coin.saved'));
+            $request->request->remove('editing');
+        }
+
+        $coin = $this->service->create($request->validated());
+
+        return redirect()->route($route ?? 'admin.coins.index', isset($route) ? $coin->id : '')->with(
+            DashboardFlashTypeDictionary::SUCCESS,
+            trans('global.actions.objects.saved', ['object' => 'Coin'])
+        );
     }
 
     public function edit(int $id): View
@@ -113,9 +122,12 @@ class CoinController extends Controller
 
     public function update(CoinRequest $request, int $id): RedirectResponse
     {
-        $this->service->update($id, $request->validated());
+        $coin = $this->service->update($id, $request->validated());
 
-        return redirect()->route('admin.coins.index')->with(DashboardFlashTypeDictionary::SUCCESS, trans('coin.updated', ['name' => $request->name]));
+        return redirect()->route('admin.coins.index')->with(
+            DashboardFlashTypeDictionary::SUCCESS,
+            trans('global.actions.objects.updated', ['object' => 'Coin', 'name' => $coin->name])
+        );
     }
 
     public function destroy(int $id)
@@ -124,6 +136,7 @@ class CoinController extends Controller
             throw new FailedDeleteModelException();
         }
 
-        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('coin.deleted'));
+        return back()->with(
+            DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Coin']));
     }
 }

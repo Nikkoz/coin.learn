@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 
-@section('title', trans('settings.blade.socials.networks.create'))
+@section('title', trans('global.actions.add', ['object' => 'Network']))
 
 @section('content')
     <div class="row">
@@ -15,7 +15,7 @@
                 {!! Form::open(['url' => route('admin.settings.social.networks.store'), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
                 <div class="card-body">
-                    {{ Form::bsSwitch('coin.blade.create.form.status', 'status') }}
+                    {{ Form::bsSwitch('global.blade.fields.status', 'status') }}
 
                     {{ Form::bsText('settings.blade.socials.network', 'name') }}
 

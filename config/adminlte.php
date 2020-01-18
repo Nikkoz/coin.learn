@@ -180,9 +180,9 @@ return [
         ],
         ['header' => 'main'],
         [
-            'text' => 'coin_title',
+            'text'  => 'coin_title',
+            'icon'  => 'nav-icon fa-fw fab fa-bitcoin',
             'route' => 'admin.coins.index',
-            'icon' => 'nav-icon fa-fw fab fa-bitcoin'
         ], [
             'text' => 'settings',
             'icon' => 'nav-icon fa-fw fa fa-cogs',
