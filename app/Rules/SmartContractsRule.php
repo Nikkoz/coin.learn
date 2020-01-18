@@ -12,7 +12,7 @@ class SmartContractsRule implements Rule
      */
     private $type;
 
-    public function __construct(int $type)
+    public function __construct(?int $type)
     {
         $this->type = $type;
     }

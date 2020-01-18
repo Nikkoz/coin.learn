@@ -9,7 +9,6 @@ use App\Dictionaries\Coins\CoinTypeDictionary;
 use App\Entities\Coin\Coin;
 use App\Entities\Settings\Consensus;
 use App\Entities\Settings\Encryption;
-use App\Entities\Settings\SocialNetworks\SocialNetwork;
 use App\Rules\SmartContractsRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -87,14 +86,6 @@ class CoinRequest extends FormRequest
             'links'                    => ['nullable', 'array'],
             'links.*'                  => ['nullable', 'distinct', 'string', 'max:50'],
             'image_id'                 => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:5000'],
-            'socials'                  => ['nullable', 'array'],
-            'socials.*.link'           => ['nullable', 'string', 'max:100'],
-            'socials.*.network_id'     => ['required', 'integer', Rule::in(SocialNetwork::all()->pluck('id')->toArray())],
-            'socials.*.description'    => ['nullable', 'string'],
-            'newSocials'               => ['nullable', 'array'],
-            'newSocials.*.link'        => ['nullable', 'string', 'max:100'],
-            'newSocials.*.network_id'  => ['required', 'integer', Rule::in(SocialNetwork::all()->pluck('id')->toArray())],
-            'newSocials.*.description' => ['nullable', 'string'],
         ];
     }
 }
