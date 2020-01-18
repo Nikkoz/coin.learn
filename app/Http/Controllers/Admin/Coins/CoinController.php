@@ -17,29 +17,14 @@ use Illuminate\View\View;
 
 class CoinController extends Controller
 {
-    /**
-     * @var CoinRepository
-     */
     private $repository;
 
-    /**
-     * @var EncryptionService
-     */
     private $algorithmEncryptionService;
 
-    /**
-     * @var ConsensusService
-     */
     private $algorithmConsensusService;
 
-    /**
-     * @var CoinService
-     */
     private $service;
 
-    /**
-     * @var SocialNetworkService
-     */
     private $socialNetworkService;
 
     public function __construct(
@@ -130,13 +115,12 @@ class CoinController extends Controller
         );
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id): RedirectResponse
     {
         if ($this->service->delete($id) === false) {
             throw new FailedDeleteModelException();
         }
 
-        return back()->with(
-            DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Coin']));
+        return back()->with(DashboardFlashTypeDictionary::SUCCESS, trans('global.actions.objects.deleted', ['object' => 'Coin']));
     }
 }
