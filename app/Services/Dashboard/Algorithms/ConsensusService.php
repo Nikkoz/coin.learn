@@ -7,7 +7,6 @@ use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\Algorithms\ConsensusRepository;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Throwable;
 
 class ConsensusService
@@ -93,25 +92,6 @@ class ConsensusService
         $consensus->fill($data);
 
         return $consensus->saveOrFail();
-    }
-
-    /**
-     * Удаление алгоритмов консенсуса.
-     *
-     * @param array $ids
-     *
-     * @throws ModelNotFoundException
-     * @return bool
-     */
-    protected function deleteModels(array $ids): bool
-    {
-        $delete = $this->repository->queryBuilder()->whereIn('id', $ids)->delete();
-
-        if ($delete === null) {
-            throw new ModelNotFoundException(Consensus::class . ' with id=' . implode(', ', $ids) . ' not found.');
-        }
-
-        return $delete;
     }
 
     /**

@@ -26,7 +26,9 @@ class CreateSocialLinksTable extends Migration
             $table->unsignedBigInteger('coin_id')->nullable(false)->comment('Монета');
             $table->text('description')->nullable(true)->comment('Описание ссылки');
 
-            $table->foreign('network_id')->references('id')->on('social_networks')->onDelete('CASCADE')->onUpdate('RESTRICT');
+            $table->foreign('network_id')->references('id')->on('social_networks')->onDelete('CASCADE')
+                ->onUpdate('RESTRICT');
+            $table->foreign('coin_id')->references('id')->on('coins')->onDelete('CASCADE')->onUpdate('RESTRICT');
         });
     }
 
