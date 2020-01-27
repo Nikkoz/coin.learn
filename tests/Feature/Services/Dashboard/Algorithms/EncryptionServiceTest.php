@@ -4,7 +4,6 @@ namespace Tests\Feature\Services\Dashboard\Algorithms;
 
 use App\Entities\Settings\Encryption;
 use App\Exceptions\FailedSaveModelException;
-use App\Repositories\Dashboard\Algorithms\EncryptionRepository;
 use App\Services\Dashboard\Algorithms\EncryptionService;
 use Exception;
 use Tests\DashboardTestCase;
@@ -23,7 +22,7 @@ class EncryptionServiceTest extends DashboardTestCase
     {
         parent::__construct($name, $data, $dataName);
 
-        $this->service = new EncryptionService(new EncryptionRepository);
+        $this->service = app(EncryptionService::class);
     }
 
     /**

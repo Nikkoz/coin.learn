@@ -3,7 +3,6 @@
 namespace Tests\Feature\Services\Dashboard\SocialNetworks;
 
 use App\Entities\Settings\SocialNetworks\SocialNetwork;
-use App\Repositories\Dashboard\SocialNetworks\SocialNetworkRepository;
 use App\Services\Dashboard\SocialNetworks\SocialNetworkService;
 use Tests\DashboardTestCase;
 use Throwable;
@@ -21,7 +20,7 @@ class SocialNetworkServiceTest extends DashboardTestCase
     {
         parent::__construct($name, $data, $dataName);
 
-        $this->service = new SocialNetworkService(new SocialNetworkRepository);
+        $this->service = app(SocialNetworkService::class);
     }
 
     /**

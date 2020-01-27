@@ -5,7 +5,6 @@ namespace Tests\Feature\Services\Dashboard\SocialNetworks;
 use App\Entities\Coin\Coin;
 use App\Entities\Settings\SocialNetworks\SocialLink;
 use App\Entities\Settings\SocialNetworks\SocialNetwork;
-use App\Repositories\Dashboard\SocialNetworks\SocialLinkRepository;
 use App\Services\Dashboard\SocialNetworks\SocialLinkService;
 use Exception;
 use Tests\DashboardTestCase;
@@ -34,7 +33,7 @@ class SocialLinkServiceTest extends DashboardTestCase
     {
         parent::__construct($name, $data, $dataName);
 
-        $this->service = new SocialLinkService(new SocialLinkRepository);
+        $this->service = app(SocialLinkService::class);
     }
 
     protected function setUp(): void

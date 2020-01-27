@@ -4,7 +4,6 @@ namespace Tests\Feature\Services\Dashboard\Algorithms;
 
 use App\Entities\Settings\Consensus;
 use App\Exceptions\FailedSaveModelException;
-use App\Repositories\Dashboard\Algorithms\ConsensusRepository;
 use App\Services\Dashboard\Algorithms\ConsensusService;
 use Exception;
 use Tests\DashboardTestCase;
@@ -23,7 +22,7 @@ class ConsensusServiceTest extends DashboardTestCase
     {
         parent::__construct($name, $data, $dataName);
 
-        $this->service = new ConsensusService(new ConsensusRepository);
+        $this->service = app(ConsensusService::class);
     }
 
     /**

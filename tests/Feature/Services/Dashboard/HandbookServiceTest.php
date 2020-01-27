@@ -4,7 +4,6 @@ namespace Tests\Feature\Services\Dashboard;
 
 use App\Entities\Coin\Coin;
 use App\Entities\Coin\Handbook;
-use App\Repositories\Dashboard\HandbookRepository;
 use App\Services\Dashboard\HandbookService;
 use Tests\DashboardTestCase;
 use Throwable;
@@ -27,7 +26,7 @@ class HandbookServiceTest extends DashboardTestCase
     {
         parent::__construct($name, $data, $dataName);
 
-        $this->service = new HandbookService(new HandbookRepository);
+        $this->service = app(HandbookService::class);
     }
 
     public function setUp(): void
