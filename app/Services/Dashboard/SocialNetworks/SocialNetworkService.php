@@ -7,7 +7,6 @@ use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\SocialNetworks\SocialNetworkRepository;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Throwable;
 
 class SocialNetworkService
@@ -89,25 +88,6 @@ class SocialNetworkService
         $network->fill($data);
 
         return $network->saveOrFail();
-    }
-
-    /**
-     * Удаление соц. сетей.
-     *
-     * @param array $ids
-     *
-     * @throws ModelNotFoundException
-     * @return bool
-     */
-    protected function deleteModels(array $ids): bool
-    {
-        $delete = $this->repository->queryBuilder()->whereIn('id', $ids)->delete();
-
-        if ($delete === null) {
-            throw new ModelNotFoundException(SocialNetwork::class . ' with id=' . implode(', ', $ids) . ' not found.');
-        }
-
-        return $delete;
     }
 
     /**

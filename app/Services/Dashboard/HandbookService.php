@@ -6,7 +6,6 @@ use App\Entities\Coin\Handbook;
 use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\HandbookRepository;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Throwable;
 
 class HandbookService
@@ -88,24 +87,5 @@ class HandbookService
         $link->fill($data);
 
         return $link->saveOrFail();
-    }
-
-    /**
-     * Удаление фраз.
-     *
-     * @param array $ids
-     *
-     * @throws ModelNotFoundException
-     * @return bool
-     */
-    protected function deleteModels(array $ids): bool
-    {
-        $delete = $this->repository->queryBuilder()->whereIn('id', $ids)->delete();
-
-        if ($delete === null) {
-            throw new ModelNotFoundException(Handbook::class . ' with id=' . implode(', ', $ids) . ' not found.');
-        }
-
-        return $delete;
     }
 }

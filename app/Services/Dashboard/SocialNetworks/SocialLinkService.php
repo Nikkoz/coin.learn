@@ -6,7 +6,6 @@ use App\Entities\Settings\SocialNetworks\SocialLink;
 use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\SocialNetworks\SocialLinkRepository;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Throwable;
 
 class SocialLinkService
@@ -88,24 +87,5 @@ class SocialLinkService
         $link->fill($data);
 
         return $link->saveOrFail();
-    }
-
-    /**
-     * Удаление ссылок.
-     *
-     * @param array $ids
-     *
-     * @throws ModelNotFoundException
-     * @return bool
-     */
-    protected function deleteModels(array $ids): bool
-    {
-        $delete = $this->repository->queryBuilder()->whereIn('id', $ids)->delete();
-
-        if ($delete === null) {
-            throw new ModelNotFoundException(SocialLink::class . ' with id=' . implode(', ', $ids) . ' not found.');
-        }
-
-        return $delete;
     }
 }

@@ -54,7 +54,7 @@ class ImageService
         }
 
         if (isset($data['sort'])) {
-            $fillData['sort'] = $data['description'];
+            $fillData['sort'] = $data['sort'];
         }
 
         $image->fill($fillData);
