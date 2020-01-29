@@ -19,9 +19,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $coins = $this->coinService->getCoinsCount();
-        $sites = $this->siteService->getSitesCount();
-
+        $coins = $this->coinService->getCount();
+        $sites = $this->siteService->getCount();
 
         return view('admin.home', compact('coins', 'sites'));
     }

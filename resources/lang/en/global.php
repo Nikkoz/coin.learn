@@ -30,11 +30,18 @@ return [
         'search'       => 'Find',
         'reset_filter' => 'Reset Filter',
         'list'         => [
-            'select_one' => 'Select one ...'
+            'select_one' => 'Select one ...',
         ],
         'count'        => [
             'coins' => 'Total coins',
             'sites' => 'Total sites',
+        ],
+        'title'        => [
+            'exchanges' => 'Exchanges',
+            'exchange'  => 'Exchange',
+            'list'      => [
+                'exchanges' => 'List of exchanges',
+            ],
         ],
         'fields'       => [
             'name'         => 'Name',
@@ -51,6 +58,6 @@ return [
             'date_updated' => 'Updated',
             'code'         => 'Tiker',
             'upload'       => 'Last Upload',
-        ]
-    ]
+        ],
+    ],
 ];

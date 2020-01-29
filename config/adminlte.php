@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'title' => 'Coin',
-    'title_prefix' => '',
+    'title'         => 'Coin',
+    'title_prefix'  => '',
     'title_postfix' => '',
 
     /*
@@ -30,12 +30,12 @@ return [
     |
     */
 
-    'logo' => '<b>Coin</b>Local',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image-xl',
-    'logo_img_xl' => null,
+    'logo'              => '<b>Coin</b>Local',
+    'logo_img'          => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img_class'    => 'brand-image-xl',
+    'logo_img_xl'       => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'CoinLocal',
+    'logo_img_alt'      => 'CoinLocal',
 
     /*
     |--------------------------------------------------------------------------
@@ -49,11 +49,11 @@ return [
     |
     */
 
-    'layout_topnav' => null,
-    'layout_boxed' => null,
+    'layout_topnav'        => null,
+    'layout_boxed'         => null,
     'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
+    'layout_fixed_navbar'  => null,
+    'layout_fixed_footer'  => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -67,15 +67,15 @@ return [
     |
     */
 
-    'classes_body' => '',
-    'classes_brand' => '',
-    'classes_brand_text' => '',
-    'classes_content_header' => 'container-fluid',
-    'classes_content' => 'container-fluid',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
-    'classes_topnav_nav' => 'navbar-expand-md',
+    'classes_body'             => '',
+    'classes_brand'            => '',
+    'classes_brand_text'       => '',
+    'classes_content_header'   => 'container-fluid',
+    'classes_content'          => 'container-fluid',
+    'classes_sidebar'          => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar_nav'      => '',
+    'classes_topnav'           => 'navbar-white navbar-light',
+    'classes_topnav_nav'       => 'navbar-expand-md',
     'classes_topnav_container' => 'container',
 
     /*
@@ -90,15 +90,15 @@ return [
     |
     */
 
-    'sidebar_mini' => true,
-    'sidebar_collapse' => false,
-    'sidebar_collapse_auto_size' => false,
-    'sidebar_collapse_remember' => false,
+    'sidebar_mini'                            => true,
+    'sidebar_collapse'                        => false,
+    'sidebar_collapse_auto_size'              => false,
+    'sidebar_collapse_remember'               => false,
     'sidebar_collapse_remember_no_transition' => true,
-    'sidebar_scrollbar_theme' => 'os-theme-light',
-    'sidebar_scrollbar_auto_hide' => 'l',
-    'sidebar_nav_accordion' => true,
-    'sidebar_nav_animation_speed' => 300,
+    'sidebar_scrollbar_theme'                 => 'os-theme-light',
+    'sidebar_scrollbar_auto_hide'             => 'l',
+    'sidebar_nav_accordion'                   => true,
+    'sidebar_nav_animation_speed'             => 300,
 
     /*
     |--------------------------------------------------------------------------
@@ -112,12 +112,12 @@ return [
     |
     */
 
-    'right_sidebar' => false,
-    'right_sidebar_icon' => 'fas fa-cogs',
-    'right_sidebar_theme' => 'dark',
-    'right_sidebar_slide' => true,
-    'right_sidebar_push' => true,
-    'right_sidebar_scrollbar_theme' => 'os-theme-light',
+    'right_sidebar'                     => false,
+    'right_sidebar_icon'                => 'fas fa-cogs',
+    'right_sidebar_theme'               => 'dark',
+    'right_sidebar_slide'               => true,
+    'right_sidebar_push'                => true,
+    'right_sidebar_scrollbar_theme'     => 'os-theme-light',
     'right_sidebar_scrollbar_auto_hide' => 'l',
 
     /*
@@ -174,103 +174,49 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
+            'text'   => 'search',
             'search' => true,
             'topnav' => true,
+        ],
+        ['header' => 'account_settings'],
+        [
+            'text' => 'Users',
         ],
         ['header' => 'main'],
         [
             'text'  => 'coin_title',
             'icon'  => 'nav-icon fa-fw fab fa-bitcoin',
             'route' => 'admin.coins.index',
-        ], [
-            'text' => 'settings',
-            'icon' => 'nav-icon fa-fw fa fa-cogs',
-            'submenu' => [
-                [
-                    'text'  => 'handbooks',
-                    'icon'  => 'fa-fw fa fa-book',
-                    'route' => 'admin.settings.handbooks.index'
-                ], [
-                    'text'  => 'social_networks',
-                    'icon'  => 'fa-fw fab fa-vk',
-                    'route' => 'admin.settings.social.networks.index',
-                ], [
-                    'text'  => 'sites',
-                    'icon'  => 'fa-fw fab fa-internet-explorer',
-                    'route' => 'admin.settings.sites.index',
-                ], [
-                    'text'    => 'algorithms',
-                    'icon'    => 'fa-fw fab fa-gg',
-                    'submenu' => [
-                        [
-                            'text'  => 'algorithm_encryption',
-                            'route' => 'admin.settings.algorithms.encryption.index',
-                        ], [
-                            'text'  => 'algorithm_consensus',
-                            'route' => 'admin.settings.algorithms.consensus.index',
-                        ]
-                    ]
-                ]
-            ]
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'settings'],
         [
-            'text' => 'profile',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text'  => 'handbooks',
+            'icon'  => 'fa-fw fa fa-book',
+            'route' => 'admin.settings.handbooks.index',
         ], [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text'  => 'social_networks',
+            'icon'  => 'fa-fw fab fa-vk',
+            'route' => 'admin.settings.social.networks.index',
         ], [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
+            'text'  => 'sites',
+            'icon'  => 'fa-fw fab fa-internet-explorer',
+            'route' => 'admin.settings.sites.index',
+        ], [
+            'text'  => 'exchanges',
+            'icon'  => 'fa-fw fa fa-exchange-alt',
+            'route' => 'admin.settings.exchanges.index',
+        ], [
+            'text'    => 'algorithms',
+            'icon'    => 'fa-fw fab fa-gg',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
+                    'text'  => 'algorithm_encryption',
+                    'route' => 'admin.settings.algorithms.encryption.index',
+                ], [
+                    'text'  => 'algorithm_consensus',
+                    'route' => 'admin.settings.algorithms.consensus.index',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-        ], [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-        ], [
-            'text' => 'information',
-            'icon_color' => 'aqua',
         ],
     ],
 
@@ -310,142 +256,142 @@ return [
 
     'plugins' => [
         [
-            'name' => 'Datatables',
+            'name'   => 'Datatables',
             'active' => false,
-            'files' => [
+            'files'  => [
                 [
-                    'type' => 'js',
-                    'asset' => false,
+                    'type'     => 'js',
+                    'asset'    => false,
                     'location' => '//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.js',
                 ],
                 [
-                    'type' => 'css',
-                    'asset' => false,
+                    'type'     => 'css',
+                    'asset'    => false,
                     'location' => '//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.css',
                 ],
             ],
         ],
         [
-            'name' => 'Select2',
+            'name'   => 'Select2',
             'active' => true,
-            'files' => [
+            'files'  => [
                 [
-                    'type' => 'js',
-                    'asset' => false,
+                    'type'     => 'js',
+                    'asset'    => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
                 ],
                 [
-                    'type' => 'css',
-                    'asset' => false,
+                    'type'     => 'css',
+                    'asset'    => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
                 ],
             ],
         ],
         [
-            'name' => 'Chartjs',
+            'name'   => 'Chartjs',
             'active' => false,
-            'files' => [
+            'files'  => [
                 [
-                    'type' => 'js',
-                    'asset' => false,
+                    'type'     => 'js',
+                    'asset'    => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
             ],
         ],
         [
-            'name' => 'Sweetalert2',
+            'name'   => 'Sweetalert2',
             'active' => false,
-            'files' => [
+            'files'  => [
                 [
-                    'type' => 'js',
-                    'asset' => false,
+                    'type'     => 'js',
+                    'asset'    => false,
                     'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
                 ],
             ],
         ],
         [
-            'name' => 'Pace',
+            'name'   => 'Pace',
             'active' => false,
-            'files' => [
+            'files'  => [
                 [
-                    'type' => 'css',
-                    'asset' => false,
+                    'type'     => 'css',
+                    'asset'    => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
                 ],
                 [
-                    'type' => 'js',
-                    'asset' => false,
+                    'type'     => 'js',
+                    'asset'    => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
                 ],
             ],
         ],
         [
-            'name' => 'Toastr',
+            'name'   => 'Toastr',
             'active' => true,
-            'files' => [
+            'files'  => [
                 [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'
+                    'type'     => 'css',
+                    'asset'    => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css',
                 ], [
-                    'type' => 'js',
-                    'asset' => false,
+                    'type'     => 'js',
+                    'asset'    => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js',
-                ]
-            ]
+                ],
+            ],
         ],
         [
-            'name' => 'SummerNote',
+            'name'   => 'SummerNote',
             'active' => true,
-            'files' => [
+            'files'  => [
                 [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css'
+                    'type'     => 'css',
+                    'asset'    => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css',
                 ], [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js'
-                ]
-            ]
+                    'type'     => 'js',
+                    'asset'    => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js',
+                ],
+            ],
         ],
         [
-            'name' => 'bsCustomFileInput',
+            'name'   => 'bsCustomFileInput',
             'active' => 'true',
-            'files' => [
+            'files'  => [
                 [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js'
-                ]
-            ]
+                    'type'     => 'js',
+                    'asset'    => false,
+                    'location' => '//cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js',
+                ],
+            ],
         ],
         [
-            'name' => 'moment',
+            'name'   => 'moment',
             'active' => true,
-            'files' => [
+            'files'  => [
                 [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/momentjs/latest/moment.min.js'
-                ]
-            ]
+                    'type'     => 'js',
+                    'asset'    => false,
+                    'location' => '//cdn.jsdelivr.net/momentjs/latest/moment.min.js',
+                ],
+            ],
         ],
         [
-            'name' => 'datePickerRange',
+            'name'   => 'datePickerRange',
             'active' => true,
-            'files' => [
+            'files'  => [
                 [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css'
+                    'type'     => 'css',
+                    'asset'    => false,
+                    'location' => '//cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css',
                 ],
                 [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js'
-                ]
-            ]
-        ]
+                    'type'     => 'js',
+                    'asset'    => false,
+                    'location' => '//cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js',
+                ],
+            ],
+        ],
     ],
 ];

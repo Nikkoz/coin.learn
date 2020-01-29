@@ -152,10 +152,27 @@ Breadcrumbs::register('admin.settings.sites.index', static function (Crumbs $cru
 
 Breadcrumbs::register('admin.settings.sites.create', static function (Crumbs $crumbs) {
     $crumbs->parent('admin.settings.sites.index');
-    $crumbs->push(trans('global.actions.objects.add', ['object' => 'Sites']), route('admin.settings.sites.create'));
+    $crumbs->push(trans('global.actions.objects.add', ['object' => 'Site']), route('admin.settings.sites.create'));
 });
 
 Breadcrumbs::register('admin.settings.sites.edit', static function (Crumbs $crumbs, int $id) {
     $crumbs->parent('admin.settings.sites.index');
     $crumbs->push(trans('global.actions.objects.update', ['object' => 'Site']), route('admin.settings.sites.edit', $id));
+});
+
+// Exchanges
+
+Breadcrumbs::register('admin.settings.exchanges.index', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.home');
+    $crumbs->push(trans('global.blade.title.exchanges'), route('admin.settings.exchanges.index'));
+});
+
+Breadcrumbs::register('admin.settings.exchanges.create', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.settings.exchanges.index');
+    $crumbs->push(trans('global.actions.objects.add', ['object' => 'Exchange']), route('admin.settings.exchanges.create'));
+});
+
+Breadcrumbs::register('admin.settings.exchanges.edit', static function (Crumbs $crumbs, int $id) {
+    $crumbs->parent('admin.settings.exchanges.index');
+    $crumbs->push(trans('global.actions.objects.update', ['object' => 'Exchange']), route('admin.settings.exchanges.edit', $id));
 });

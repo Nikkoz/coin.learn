@@ -2,11 +2,11 @@
 
 namespace App\Services\Dashboard;
 
+use Exception;
+use Throwable;
 use App\Entities\Settings\Site;
 use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\SiteRepository;
-use Exception;
-use Throwable;
 
 class SiteService
 {
@@ -89,7 +89,7 @@ class SiteService
         return $site->saveOrFail();
     }
 
-    public function getSitesCount(): int
+    public function getCount(): int
     {
         return $this->repository->queryBuilder()->count();
     }

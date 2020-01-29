@@ -19,11 +19,12 @@ return [
 
     'main'                 => 'Main',
     'coin_title'           => 'Coins',
-    'settings'             => 'Settings',
+    'settings'             => 'SETTINGS',
     'algorithms'           => 'Algorithms',
     'algorithm_encryption' => 'Encryption',
     'algorithm_consensus'  => 'Consensus',
     'social_networks'      => 'Social networks',
     'handbooks'            => 'Handbooks',
     'sites'                => 'Sites',
+    'exchanges'            => 'Exchanges',
 ];
