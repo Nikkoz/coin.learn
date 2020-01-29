@@ -54,7 +54,7 @@ class ImageService
         }
 
         if (isset($data['sort'])) {
-            $fillData['sort'] = $data['description'];
+            $fillData['sort'] = $data['sort'];
         }
 
         $image->fill($fillData);
@@ -73,11 +73,12 @@ class ImageService
     public function delete(Image $image): bool
     {
         $path = $image->path;
+        $result = $image->delete();
 
-        if (!($image->delete() !== true)) {
-            $this->manager->remove($path);
+        if ($result === true) {
+            $result = $this->manager->remove($path);
         }
 
-        return !($image instanceof Image);
+        return $result;
     }
 }
