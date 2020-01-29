@@ -2,13 +2,13 @@
 
 namespace App\Services\Dashboard;
 
-use App\Entities\Coin\Coin;
-use App\Exceptions\FailedSaveModelException;
-use App\Repositories\Dashboard\CoinRepository;
 use Exception;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\DB;
 use Throwable;
+use App\Entities\Coin\Coin;
+use Illuminate\Support\Facades\DB;
+use App\Exceptions\FailedSaveModelException;
+use Illuminate\Database\Eloquent\Collection;
+use App\Repositories\Dashboard\CoinRepository;
 
 class CoinService
 {
@@ -130,7 +130,7 @@ class CoinService
     /**
      * Общее кол-во монет
      */
-    public function getCoinsCount(): int
+    public function getCount(): int
     {
         return $this->repository->queryBuilder()->count();
     }

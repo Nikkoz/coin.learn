@@ -2,11 +2,11 @@
 
 namespace App\Entities\Settings;
 
-use App\Entities\Coin\Coin;
 use Eloquent;
+use App\Entities\Coin\Coin;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -23,11 +23,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Encryption extends Model
 {
-    protected $table = 'algorithm_encryption';
+    protected $table      = 'algorithm_encryption';
 
-    protected $fillable = ['name'];
+    protected $fillable   = ['name'];
 
-    public $timestamps = false;
+    public    $timestamps = false;
 
     public function coin(): HasMany
     {

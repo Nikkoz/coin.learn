@@ -1,17 +1,17 @@
 @extends('admin.layout.app')
 
-@section('title', trans('settings.blade.socials.networks.title'))
+@section('title', trans('global.blade.title.list.exchanges'))
 
 @section('content')
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
-                {{ trans('settings.blade.socials.networks.list_title') }}
+                {{ trans('global.blade.title.exchanges') }}
             </h3>
 
             <div class="card-tools">
-                <a class="btn btn-xs btn-success" href="{{ route('admin.settings.social.networks.create') }}">
-                    {{ trans('settings.blade.socials.networks.actions.add') }}
+                <a class="btn btn-xs btn-success" href="{{ route('admin.settings.exchanges.create') }}">
+                    {{ trans('global.actions.objects.add', ['object' => 'Exchanges']) }}
                 </a>
             </div>
         </div>
@@ -21,28 +21,30 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>{{ trans('settings.blade.name') }}</th>
+                    <th>{{ trans('global.blade.fields.name') }}</th>
+                    <th>{{ trans('global.blade.fields.network') }}</th>
                     <th>{{ trans('global.blade.fields.status') }}</th>
                     <th>&nbsp;</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                @foreach($networks as $network)
-                    <tr data-entry-id="{{ $network->id }}">
-                        <td>{{ ($networks->perPage() * ($networks->currentPage() - 1)) + $loop->iteration }}</td>
-                        <td>{{ $network->name }}</td>
+                @foreach($exchanges as $exchange)
+                    <tr data-entry-id="{{ $exchange->id }}">
+                        <td>{{ ($exchanges->perPage() * ($exchanges->currentPage() - 1)) + $loop->iteration }}</td>
+                        <td>{{ $exchange->name }}</td>
+                        <td>{{ $exchange->network->name }}</td>
                         <td>
-                            <span class="badge {{ $network->status ? 'badge-success' : 'badge-danger' }}">
-                                {{ StatusDictionary::getValueByKey($network->status) }}
+                            <span class="badge {{ $exchange->status ? 'badge-success' : 'badge-danger' }}">
+                                {{ StatusDictionary::getValueByKey($exchange->status) }}
                             </span>
                         </td>
                         <td class="text-right">
                             <a class="btn btn-sm btn-info"
-                               href="{{ route('admin.settings.social.networks.edit', $network->id) }}">
+                               href="{{ route('admin.settings.exchanges.edit', $exchange->id) }}">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <form action="{{ route('admin.settings.social.networks.destroy', $network->id) }}"
+                            <form action="{{ route('admin.settings.exchanges.destroy', $exchange->id) }}"
                                   method="POST"
                                   onsubmit="return confirm({{ trans('global.blade.sure_delete') }});"
                                   style="display: inline-block;">
@@ -60,7 +62,7 @@
             </table>
 
             <div class="pl-3 pt-3">
-                {{ $networks->links() }}
+                {{ $exchanges->links() }}
             </div>
         </div>
     </div>

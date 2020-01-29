@@ -112,6 +112,16 @@ Route::group([
                 Route::post('/', 'SiteController@store')->name('store');
                 Route::delete('/{id}', 'SiteController@destroy')->name('destroy');
             });
+
+            Route::group(['prefix' => 'exchanges', 'as' => 'exchanges.'], static function () {
+                Route::get('/', 'ExchangeController@index')->name('index');
+                Route::get('/create', 'ExchangeController@create')->name('create');
+                Route::get('/{id}/edit', 'ExchangeController@edit')->name('edit');
+                Route::get('/{id}/edit', 'ExchangeController@edit')->name('edit');
+                Route::put('/{id}', 'ExchangeController@update')->name('update');
+                Route::post('/', 'ExchangeController@store')->name('store');
+                Route::delete('/{id}', 'ExchangeController@destroy')->name('destroy');
+            });
         });
     });
 });

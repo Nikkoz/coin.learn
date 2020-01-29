@@ -2,12 +2,13 @@
 
 namespace App\Services\Dashboard\SocialNetworks;
 
-use App\Entities\Settings\SocialNetworks\SocialNetwork;
-use App\Exceptions\FailedSaveModelException;
-use App\Repositories\Dashboard\SocialNetworks\SocialNetworkRepository;
 use Exception;
-use Illuminate\Database\Eloquent\Collection;
 use Throwable;
+use App\Dictionaries\StatusDictionary;
+use Illuminate\Database\Eloquent\Collection;
+use App\Exceptions\FailedSaveModelException;
+use App\Entities\Settings\SocialNetworks\SocialNetwork;
+use App\Repositories\Dashboard\SocialNetworks\SocialNetworkRepository;
 
 class SocialNetworkService
 {
@@ -98,7 +99,7 @@ class SocialNetworkService
     public function getAllForSelector(): array
     {
         /** @var Collection $collection */
-        $collection = $this->repository->getAll([], 'name', 'asc');
+        $collection = $this->repository->getAll(['status' => StatusDictionary::ACTIVE], 'name', 'asc');
 
         return $collection->mapWithKeys(static function ($item) {
             return [$item['id'] => $item['name']];
