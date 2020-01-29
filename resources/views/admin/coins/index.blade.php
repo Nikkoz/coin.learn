@@ -14,7 +14,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="inputStatus">Status</label>
-                {{ Form::select('status', ['-1' => trans('global.blade.list.select_one')] + CoinStatusDictionary::getValues(), request('status'), ['class' => 'form-control custom-select']) }}
+                {{ Form::select('status', ['-1' => trans('global.blade.list.select_one')] + StatusDictionary::getValues(), request('status'), ['class' => 'form-control custom-select']) }}
             </div>
         </div>
 
@@ -75,7 +75,7 @@
                         <td>{{ CoinTypeDictionary::getValueByKey($coin->type) }}</td>
                         <td>
                             <span class="badge {{ $coin->status ? 'badge-success' : 'badge-danger' }}">
-                                {{ CoinStatusDictionary::getValueByKey($coin->status) }}
+                                {{ StatusDictionary::getValueByKey($coin->status) }}
                             </span>
                         </td>
                         <td>{{ $coin->created_at }}</td>

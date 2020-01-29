@@ -193,8 +193,12 @@ return [
                     'route' => 'admin.settings.handbooks.index'
                 ], [
                     'text'  => 'social_networks',
-                    'icon'  => 'fa-fw fab fa-vk ',
+                    'icon'  => 'fa-fw fab fa-vk',
                     'route' => 'admin.settings.social.networks.index',
+                ], [
+                    'text'  => 'sites',
+                    'icon'  => 'fa-fw fab fa-internet-explorer',
+                    'route' => 'admin.settings.sites.index',
                 ], [
                     'text'    => 'algorithms',
                     'icon'    => 'fa-fw fab fa-gg',

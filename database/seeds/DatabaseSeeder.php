@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SocialNetworkTableSeeder::class);
         $this->call(SocialLinksTableSeeder::class);
         $this->call(HandbookTableSeeder::class);
+        $this->call(SiteTableSeeder::class);
     }
 }

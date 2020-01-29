@@ -10,8 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * App\Entities\Settings\Encryption
- *
  * @property integer                $id
  * @property string                 $name
  * @property-read Collection|Coin[] $coin

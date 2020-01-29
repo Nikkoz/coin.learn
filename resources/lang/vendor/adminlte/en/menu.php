@@ -25,4 +25,5 @@ return [
     'algorithm_consensus'  => 'Consensus',
     'social_networks'      => 'Social networks',
     'handbooks'            => 'Handbooks',
+    'sites'                => 'Sites',
 ];

@@ -8,7 +8,6 @@ use App\Repositories\Dashboard\CoinRepository;
 use App\Services\Dashboard\SocialNetworks\SocialLinkService;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -144,25 +143,6 @@ class CoinService
     }
 
     /**
-     * Удаление монет.
-     *
-     * @param array $ids
-     *
-     * @throws ModelNotFoundException
-     * @return bool
-     */
-    protected function deleteModels(array $ids): bool
-    {
-        $delete = $this->repository->queryBuilder()->whereIn('id', $ids)->delete();
-
-        if ($delete === null) {
-            throw new ModelNotFoundException(Coin::class . ' with id=' . implode(', ', $ids) . ' not found.');
-        }
-
-        return $delete;
-    }
-
-    /**
      * Получить массив монет для формирования селектора.
      *
      * @return array
@@ -176,5 +156,13 @@ class CoinService
             static function ($item) {
                 return [$item['id'] => $item['name']];
             })->all();
+    }
+
+    /**
+     * Общее кол-во монет
+     */
+    public function getCoinsCount(): int
+    {
+        return $this->repository->queryBuilder()->count();
     }
 }

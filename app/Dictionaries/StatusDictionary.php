@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Dictionaries\Handbook;
+namespace App\Dictionaries;
 
-use App\Dictionaries\BaseDictionary;
-
-class HandbookStatusDictionary extends BaseDictionary
+class StatusDictionary extends BaseDictionary
 {
     public const ACTIVE   = 1;
     public const DISABLED = 0;

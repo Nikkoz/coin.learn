@@ -23,6 +23,9 @@ RUN apt-get -qq update && apt-get -qq install -y \
 
 #RUN php7-xsl
 
+#RUN apt-get add --no-cache tzdata
+#ENV TZ Europe/Moscow
+
 # Clear cache
 RUN rm -rf /var/lib/apt/lists/*
 

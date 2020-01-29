@@ -40,7 +40,7 @@
                         </td>
                         <td>
                             <span class="badge {{ $handbook->status ? 'badge-success' : 'badge-danger' }}">
-                                {{ HandbookStatusDictionary::getValueByKey($handbook->status) }}
+                                {{ StatusDictionary::getValueByKey($handbook->status) }}
                             </span>
                         </td>
                         <td class="text-right">
