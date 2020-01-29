@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Moscow',
 
     /*
     |--------------------------------------------------------------------------
@@ -230,8 +230,7 @@ return [
 
         //Dictionaries
         'CoinTypeDictionary'           => App\Dictionaries\Coins\CoinTypeDictionary::class,
-        'CoinStatusDictionary'         => App\Dictionaries\Coins\CoinStatusDictionary::class,
         'DashboardFlashTypeDictionary' => App\Dictionaries\DashboardFlashTypeDictionary::class,
-        'HandbookStatusDictionary'     => \App\Dictionaries\Handbook\HandbookStatusDictionary::class,
+        'StatusDictionary'             => App\Dictionaries\StatusDictionary::class,
     ],
 ];

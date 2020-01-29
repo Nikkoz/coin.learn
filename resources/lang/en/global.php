@@ -32,6 +32,10 @@ return [
         'list'         => [
             'select_one' => 'Select one ...'
         ],
+        'count'        => [
+            'coins' => 'Total coins',
+            'sites' => 'Total sites',
+        ],
         'fields'       => [
             'name'         => 'Name',
             'link'         => 'Link',
@@ -46,6 +50,7 @@ return [
             'date_created' => 'Created',
             'date_updated' => 'Updated',
             'code'         => 'Tiker',
+            'upload'       => 'Last Upload',
         ]
     ]
 ];

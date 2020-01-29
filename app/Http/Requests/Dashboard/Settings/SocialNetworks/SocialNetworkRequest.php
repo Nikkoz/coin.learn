@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Dashboard\Settings\SocialNetworks;
 
-use App\Dictionaries\SocialNetworks\NetworkStatusDictionary;
+use App\Dictionaries\StatusDictionary;
 use App\Entities\Settings\SocialNetworks\SocialNetwork;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -35,7 +35,7 @@ class SocialNetworkRequest extends FormRequest
         return [
             'name'   => ['required', 'string', 'max:100', Rule::unique($this->network->getTable())->ignore($this->id)],
             'link'   => ['required', 'string', 'max:100', Rule::unique($this->network->getTable())->ignore($this->id)],
-            'status' => ['nullable', 'integer', Rule::in(NetworkStatusDictionary::getKeys())]
+            'status' => ['nullable', 'integer', Rule::in(StatusDictionary::getKeys())]
         ];
     }
 }

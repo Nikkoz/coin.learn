@@ -126,4 +126,12 @@ class CoinService
                 return [$item['id'] => $item['name']];
             })->all();
     }
+
+    /**
+     * Общее кол-во монет
+     */
+    public function getCoinsCount(): int
+    {
+        return $this->repository->queryBuilder()->count();
+    }
 }

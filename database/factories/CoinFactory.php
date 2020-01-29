@@ -1,7 +1,7 @@
 <?php
 
-use App\Dictionaries\Coins\CoinStatusDictionary;
 use App\Dictionaries\Coins\CoinTypeDictionary;
+use App\Dictionaries\StatusDictionary;
 use App\Entities\Coin\Coin;
 use App\Entities\Image;
 use App\Entities\Settings\Consensus;
@@ -40,6 +40,6 @@ $factory->define(Coin::class, static function (Faker $faker) {
         'max_supply'      => $faker->numberBetween(1000000, 1000000000),
         'key_features'    => $faker->randomHtml(3, 1),
         'use'             => $faker->randomHtml(2, 2),
-        'status'          => $faker->randomKey(CoinStatusDictionary::getValues()),
+        'status'          => $faker->randomKey(StatusDictionary::getValues()),
     ];
 });

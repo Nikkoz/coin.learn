@@ -1,17 +1,17 @@
 @extends('admin.layout.app')
 
-@section('title', trans('handbooks.title_all_list'))
+@section('title', trans('sites.title_all_list'))
 
 @section('content')
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
-                {{ trans('handbooks.title') }}
+                {{ trans('sites.title') }}
             </h3>
 
             <div class="card-tools">
-                <a class="btn btn-xs btn-success" href="{{ route('admin.settings.handbooks.create') }}">
-                    {{ trans('global.actions.objects.add', ['object' => 'Handbook']) }}
+                <a class="btn btn-xs btn-success" href="{{ route('admin.settings.sites.create') }}">
+                    {{ trans('global.actions.objects.add', ['object' => 'Site']) }}
                 </a>
             </div>
         </div>
@@ -21,34 +21,30 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>{{ trans('global.blade.fields.title') }}</th>
-                    <th>{{ trans('global.blade.fields.coin') }}</th>
-                    <th class="text-center">{{ trans('global.blade.fields.check_case') }}</th>
+                    <th>{{ trans('global.blade.fields.name') }}</th>
+                    <th>{{ trans('global.blade.fields.upload') }}</th>
                     <th>{{ trans('global.blade.fields.status') }}</th>
                     <th>&nbsp;</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                @foreach($handbooks as $handbook)
-                    <tr data-entry-id="{{ $handbook->id }}">
-                        <td>{{ ($handbooks->perPage() * ($handbooks->currentPage() - 1)) + $loop->iteration }}</td>
-                        <td>{{ $handbook->title }}</td>
-                        <td>{{ $handbook->coin->name }}</td>
-                        <td class="text-center">
-                            <i class="fas fa-circle text-{{ $handbook->check_case ? 'success' : 'danger' }}"></i>
-                        </td>
+                @foreach($sites as $site)
+                    <tr data-entry-id="{{ $site->id }}">
+                        <td>{{ ($sites->perPage() * ($sites->currentPage() - 1)) + $loop->iteration }}</td>
+                        <td>{{ $site->name }}</td>
+                        <td>{{ $site->upload }}</td>
                         <td>
-                            <span class="badge {{ $handbook->status ? 'badge-success' : 'badge-danger' }}">
-                                {{ StatusDictionary::getValueByKey($handbook->status) }}
+                            <span class="badge {{ $site->status ? 'badge-success' : 'badge-danger' }}">
+                                {{ StatusDictionary::getValueByKey($site->status) }}
                             </span>
                         </td>
                         <td class="text-right">
                             <a class="btn btn-sm btn-info"
-                               href="{{ route('admin.settings.handbooks.edit', $handbook->id) }}">
+                               href="{{ route('admin.settings.sites.edit', $site->id) }}">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <form action="{{ route('admin.settings.handbooks.destroy', $handbook->id) }}"
+                            <form action="{{ route('admin.settings.sites.destroy', $site->id) }}"
                                   method="POST"
                                   onsubmit="return confirm({{ trans('global.blade.sure_delete') }});"
                                   style="display: inline-block;">
@@ -66,7 +62,7 @@
             </table>
 
             <div class="pl-3 pt-3">
-                {{ $handbooks->links() }}
+                {{ $sites->links() }}
             </div>
         </div>
     </div>

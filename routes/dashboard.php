@@ -24,10 +24,8 @@ Route::group([
 
         Route::post('/ajax/upload/image', 'UploadController@image')->name('ajax.upload.image');
 
-        Route::group(
-            ['prefix' => 'coins', 'namespace' => 'Coins'], static function () {
-            Route::group(
-                ['as' => 'coins.'], static function () {
+        Route::group(['prefix' => 'coins', 'namespace' => 'Coins'], static function () {
+            Route::group(['as' => 'coins.'], static function () {
                 Route::get('/', 'CoinController@index')->name('index');
                 Route::get('/create', 'CoinController@create')->name('create');
                 Route::get('/{id}/edit', 'CoinController@edit')->name('edit');
@@ -36,8 +34,7 @@ Route::group([
                 Route::delete('/{id}', 'CoinController@destroy')->name('destroy');
 
                 // handbooks
-                Route::group(
-                    ['prefix' => '{coinId}/handbooks', 'as' => 'handbooks.'], static function () {
+                Route::group(['prefix' => '{coinId}/handbooks', 'as' => 'handbooks.'], static function () {
                     Route::get('/', 'HandbookController@index')->name('index');
                     Route::get('/create', 'HandbookController@create')->name('create');
                     Route::get('/{id}/edit', 'HandbookController@edit')->name('edit');
@@ -61,8 +58,7 @@ Route::group([
         Route::group(['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
             Route::redirect('/', 'settings/handbooks');
 
-            Route::group(
-                ['prefix' => '/handbooks', 'as' => 'handbooks.'], static function () {
+            Route::group(['prefix' => '/handbooks', 'as' => 'handbooks.'], static function () {
                 Route::get('/', 'HandbookController@index')->name('index');
                 Route::get('/create', 'HandbookController@create')->name('create');
                 Route::get('/{id}/edit', 'HandbookController@edit')->name('edit');
@@ -71,12 +67,11 @@ Route::group([
                 Route::delete('/{id}', 'HandbookController@destroy')->name('destroy');
             });
 
-            Route::group(
-                ['prefix' => 'algorithms', 'as' => 'algorithms.', 'namespace' => 'Algorithms'], static function () {
+            Route::group(['prefix' => 'algorithms', 'as' => 'algorithms.', 'namespace' => 'Algorithms'], static function (
+            ) {
                 Route::redirect('/', 'algorithms/encryption');
 
-                Route::group(
-                    ['prefix' => 'encryption', 'as' => 'encryption.'], static function () {
+                Route::group(['prefix' => 'encryption', 'as' => 'encryption.'], static function () {
                     Route::get('/', 'EncryptionController@index')->name('index');
                     Route::get('/create', 'EncryptionController@create')->name('create');
                     Route::get('/{id}/edit', 'EncryptionController@edit')->name('edit');
@@ -106,6 +101,16 @@ Route::group([
                     Route::put('/{id}', 'SocialNetworkController@update')->name('update');
                     Route::delete('/{id}', 'SocialNetworkController@destroy')->name('destroy');
                 });
+            });
+
+            Route::group(['prefix' => 'sites', 'as' => 'sites.'], static function () {
+                Route::get('/', 'SiteController@index')->name('index');
+                Route::get('/create', 'SiteController@create')->name('create');
+                Route::get('/{id}/edit', 'SiteController@edit')->name('edit');
+                Route::get('/{id}/edit', 'SiteController@edit')->name('edit');
+                Route::put('/{id}', 'SiteController@update')->name('update');
+                Route::post('/', 'SiteController@store')->name('store');
+                Route::delete('/{id}', 'SiteController@destroy')->name('destroy');
             });
         });
     });

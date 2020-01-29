@@ -75,17 +75,17 @@ class HandbookService
     /**
      * Сохранение.
      *
-     * @param Handbook $link
-     * @param array    $data
+     * @param Handbook $handbook
+     * @param array $data
      *
-     * @throws Exception
-     * @throws Throwable
      * @return bool
+     * @throws Throwable
+     * @throws Exception
      */
-    protected function save(Handbook $link, array $data): bool
+    protected function save(Handbook $handbook, array $data): bool
     {
-        $link->fill($data);
+        $handbook->fill($data);
 
-        return $link->saveOrFail();
+        return $handbook->saveOrFail();
     }
 }

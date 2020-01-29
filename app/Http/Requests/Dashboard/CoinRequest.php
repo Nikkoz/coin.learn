@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Http\Requests\Dashboard;
 
-
-use App\Dictionaries\Coins\CoinStatusDictionary;
 use App\Dictionaries\Coins\CoinTypeDictionary;
+use App\Dictionaries\StatusDictionary;
 use App\Entities\Coin\Coin;
 use App\Entities\Settings\Consensus;
 use App\Entities\Settings\Encryption;
@@ -80,7 +78,7 @@ class CoinRequest extends FormRequest
             'max_supply'               => ['nullable', 'integer'],
             'key_features'             => ['nullable', 'min:10'],
             'use'                      => ['nullable', 'min:10'],
-            'status'                   => ['nullable', 'integer', Rule::in(CoinStatusDictionary::getKeys())],
+            'status'                   => ['nullable', 'integer', Rule::in(StatusDictionary::getKeys())],
             'site'                     => ['nullable', 'string', 'max:50'],
             'chat'                     => ['nullable', 'string', 'max:50'],
             'links'                    => ['nullable', 'array'],
