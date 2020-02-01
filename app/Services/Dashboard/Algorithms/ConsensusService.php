@@ -2,12 +2,13 @@
 
 namespace App\Services\Dashboard\Algorithms;
 
+use Log;
+use Exception;
+use Throwable;
 use App\Entities\Settings\Consensus;
+use Illuminate\Database\Eloquent\Collection;
 use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\Algorithms\ConsensusRepository;
-use Exception;
-use Illuminate\Database\Eloquent\Collection;
-use Throwable;
 
 class ConsensusService
 {
@@ -83,15 +84,19 @@ class ConsensusService
      * @param Consensus $consensus
      * @param array     $data
      *
-     * @throws Exception
-     * @throws Throwable
      * @return bool
      */
     protected function save(Consensus $consensus, array $data): bool
     {
-        $consensus->fill($data);
+        try {
+            $consensus->fill($data);
 
-        return $consensus->saveOrFail();
+            return $consensus->saveOrFail();
+        } catch (Throwable $e) {
+            Log::error($e->getMessage(), ['data' => $data]);
+        }
+
+        return false;
     }
 
     /**

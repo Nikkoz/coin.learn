@@ -2,11 +2,12 @@
 
 namespace App\Services\Dashboard;
 
+use Log;
+use Exception;
+use Throwable;
 use App\Entities\Coin\Handbook;
 use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\HandbookRepository;
-use Exception;
-use Throwable;
 
 class HandbookService
 {
@@ -79,13 +80,17 @@ class HandbookService
      * @param array $data
      *
      * @return bool
-     * @throws Throwable
-     * @throws Exception
      */
     protected function save(Handbook $handbook, array $data): bool
     {
-        $handbook->fill($data);
+        try {
+            $handbook->fill($data);
 
-        return $handbook->saveOrFail();
+            return $handbook->saveOrFail();
+        } catch (Throwable $e) {
+            Log::error($e->getMessage(), ['data' => $data]);
+        }
+
+        return false;
     }
 }

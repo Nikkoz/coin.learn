@@ -2,12 +2,13 @@
 
 namespace App\Services\Dashboard;
 
-use App\Entities\Image;
-use App\Exceptions\FailedSaveModelException;
-use App\Exceptions\File\FailedFileSaveException;
-use App\Managers\Dashboard\FileManager;
+use Log;
 use Exception;
 use Throwable;
+use App\Entities\Image;
+use App\Managers\Dashboard\FileManager;
+use App\Exceptions\FailedSaveModelException;
+use App\Exceptions\File\FailedFileSaveException;
 
 class ImageService
 {
@@ -37,8 +38,7 @@ class ImageService
      * @param array $data
      *
      * @throws FailedFileSaveException
-     * @throws Throwable
-     * @return int
+     * @return bool
      */
     protected function save(Image $image, array $data): bool
     {
@@ -57,9 +57,15 @@ class ImageService
             $fillData['sort'] = $data['sort'];
         }
 
-        $image->fill($fillData);
+        try {
+            $image->fill($fillData);
 
-        return $image->saveOrFail();
+            return $image->saveOrFail();
+        } catch (Throwable $e) {
+            Log::error($e->getMessage(), ['data' => $data]);
+        }
+
+        return false;
     }
 
     /**

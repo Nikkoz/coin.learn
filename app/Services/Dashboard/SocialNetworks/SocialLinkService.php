@@ -2,11 +2,12 @@
 
 namespace App\Services\Dashboard\SocialNetworks;
 
-use App\Entities\Settings\SocialNetworks\SocialLink;
-use App\Exceptions\FailedSaveModelException;
-use App\Repositories\Dashboard\SocialNetworks\SocialLinkRepository;
+use Log;
 use Exception;
 use Throwable;
+use App\Exceptions\FailedSaveModelException;
+use App\Entities\Settings\SocialNetworks\SocialLink;
+use App\Repositories\Dashboard\SocialNetworks\SocialLinkRepository;
 
 class SocialLinkService
 {
@@ -78,14 +79,18 @@ class SocialLinkService
      * @param SocialLink $link
      * @param array      $data
      *
-     * @throws Exception
-     * @throws Throwable
      * @return bool
      */
     protected function save(SocialLink $link, array $data): bool
     {
-        $link->fill($data);
+        try {
+            $link->fill($data);
 
-        return $link->saveOrFail();
+            return $link->saveOrFail();
+        } catch (Throwable $e) {
+            Log::error($e->getMessage(), ['data' => $data]);
+        }
+
+        return false;
     }
 }
