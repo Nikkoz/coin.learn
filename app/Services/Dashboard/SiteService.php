@@ -2,6 +2,7 @@
 
 namespace App\Services\Dashboard;
 
+use Log;
 use Exception;
 use Throwable;
 use App\Entities\Settings\Site;
@@ -22,8 +23,8 @@ class SiteService
      *
      * @param int $id
      *
-     * @return bool
      * @throws Exception
+     * @return bool
      */
     public function delete(int $id): bool
     {
@@ -37,8 +38,8 @@ class SiteService
      *
      * @param array $data - post данные
      *
-     * @return Site
      * @throws Throwable
+     * @return Site
      */
     public function create(array $data): Site
     {
@@ -54,11 +55,11 @@ class SiteService
     /**
      * Обновление сайта.
      *
-     * @param int $id
+     * @param int   $id
      * @param array $data
      *
-     * @return Site
      * @throws Throwable
+     * @return Site
      */
     public function update(int $id, array $data): Site
     {
@@ -75,18 +76,22 @@ class SiteService
     /**
      * Сохранение.
      *
-     * @param Site $site
+     * @param Site  $site
      * @param array $data
      *
      * @return bool
-     * @throws Throwable
-     * @throws Exception
      */
     public function save(Site $site, array $data): bool
     {
-        $site->fill($data);
+        try {
+            $site->fill($data);
 
-        return $site->saveOrFail();
+            return $site->saveOrFail();
+        } catch (Throwable $e) {
+            Log::error($e->getMessage(), ['data' => $data]);
+        }
+
+        return false;
     }
 
     public function getCount(): int

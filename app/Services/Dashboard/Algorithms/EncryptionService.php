@@ -2,12 +2,13 @@
 
 namespace App\Services\Dashboard\Algorithms;
 
+use Log;
+use Exception;
+use Throwable;
 use App\Entities\Settings\Encryption;
+use Illuminate\Database\Eloquent\Collection;
 use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\Algorithms\EncryptionRepository;
-use Exception;
-use Illuminate\Database\Eloquent\Collection;
-use Throwable;
 
 class EncryptionService
 {
@@ -83,15 +84,19 @@ class EncryptionService
      * @param Encryption $encryption
      * @param array      $data
      *
-     * @throws Exception
-     * @throws Throwable
      * @return bool
      */
     protected function save(Encryption $encryption, array $data): bool
     {
-        $encryption->fill($data);
+        try {
+            $encryption->fill($data);
 
-        return $encryption->saveOrFail();
+            return $encryption->saveOrFail();
+        } catch (Throwable $e) {
+            Log::error($e->getMessage(), ['data' => $data]);
+        }
+
+        return false;
     }
 
     /**

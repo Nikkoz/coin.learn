@@ -2,6 +2,7 @@
 
 namespace App\Services\Dashboard\SocialNetworks;
 
+use Log;
 use Exception;
 use Throwable;
 use App\Dictionaries\StatusDictionary;
@@ -80,15 +81,19 @@ class SocialNetworkService
      * @param SocialNetwork $network
      * @param array         $data
      *
-     * @throws Exception
-     * @throws Throwable
      * @return bool
      */
     protected function save(SocialNetwork $network, array $data): bool
     {
-        $network->fill($data);
+        try {
+            $network->fill($data);
 
-        return $network->saveOrFail();
+            return $network->saveOrFail();
+        } catch (Throwable $e) {
+            Log::error($e->getMessage(), ['data' => $data]);
+        }
+
+        return false;
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Services\Dashboard;
 
+use Log;
 use Exception;
 use Throwable;
 use App\Entities\Settings\Exchange;
@@ -78,14 +79,19 @@ class ExchangeService
      * @param Exchange $exchange
      * @param array    $data
      *
-     * @throws Throwable
      * @return bool
      */
     public function save(Exchange $exchange, array $data): bool
     {
-        $exchange->fill($data);
+        try {
+            $exchange->fill($data);
 
-        return $exchange->saveOrFail();
+            return $exchange->saveOrFail();
+        } catch (Throwable $e) {
+            Log::error($e->getMessage(), ['data' => $data]);
+        }
+
+        return false;
     }
 
     public function getCount(): int
