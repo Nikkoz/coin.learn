@@ -1,0 +1,57 @@
+@extends('admin.layout.app')
+
+@section('title', trans('global.actions.objects.update', ['object' => 'Post']))
+
+@section('content')
+    {!! Form::open(['url' => route('admin.news.update', $post->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+
+    {{ Form::hidden('type', $post->type) }}
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                {{ trans('global.blade.title.post') }}
+            </h3>
+        </div>
+
+        <div class="card-body">
+            {{ Form::bsSwitch('global.blade.fields.status', 'status', $post->status) }}
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{ Form::bsText('global.blade.fields.title', 'title', true, $post->title) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ Form::bsText('global.blade.fields.section', 'section', false, $post->section) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ Form::bsText('global.blade.fields.link', 'link', true, $post->link) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ Form::bsSelect('global.blade.fields.site', 'site_id', $sites, true, $post->site_id) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ Form::bsDateTime('global.blade.fields.date', 'created', true, $post->created) }}
+                </div>
+            </div>
+
+            {{ Form::bsTextarea('global.blade.fields.text', 'text', true, $post->text) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-footer text-right">
+                    {{ Form::submit(trans('global.actions.objects.save', ['object' => 'post']), ['class' => 'btn btn-success']) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {!! Form::close() !!}
+@endsection

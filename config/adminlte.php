@@ -182,11 +182,33 @@ return [
         [
             'text' => 'Users',
         ],
-        ['header' => 'main'],
+        ['header' => 'main_menu'],
         [
-            'text'  => 'coin_title',
+            'text'  => 'coins',
             'icon'  => 'nav-icon fa-fw fab fa-bitcoin',
             'route' => 'admin.coins.index',
+        ], [
+            'text'    => 'resources',
+            'icon'    => 'nav-icon fa-fw fa fa-rss-square',
+            'submenu' => [
+                [
+                    'text'  => 'news',
+                    'icon'  => 'fa-fw fa fa-newspaper ml-3',
+                    'route' => 'admin.news.index',
+                ], [
+                    'text'  => 'twitter',
+                    'icon'  => 'fa-fw fab fa-twitter ml-3',
+                    'route' => 'admin.home',
+                ], [
+                    'text'  => 'facebook',
+                    'icon'  => 'fa-fw fab fa-facebook ml-3',
+                    'route' => 'admin.home',
+                ], [
+                    'text'  => 'redit',
+                    'icon'  => 'fa-fw fab fa-reddit ml-3',
+                    'route' => 'admin.home',
+                ],
+            ],
         ],
         ['header' => 'settings'],
         [
@@ -210,10 +232,12 @@ return [
             'icon'    => 'fa-fw fab fa-gg',
             'submenu' => [
                 [
-                    'text'  => 'algorithm_encryption',
+                    'text'  => 'encryption',
+                    'icon'  => 'far fa-fw fa-circle ml-3',
                     'route' => 'admin.settings.algorithms.encryption.index',
                 ], [
-                    'text'  => 'algorithm_consensus',
+                    'text'  => 'consensus',
+                    'icon'  => 'far fa-fw fa-circle ml-3',
                     'route' => 'admin.settings.algorithms.consensus.index',
                 ],
             ],

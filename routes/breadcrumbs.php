@@ -10,6 +10,7 @@ Breadcrumbs::register('admin.home', static function (Crumbs $crumbs) {
 
 
 // Coins
+
 Breadcrumbs::register('admin.coins.index', static function (Crumbs $crumbs) {
     $crumbs->parent('admin.home');
     $crumbs->push(trans('coin.title'), route('admin.coins.index'));
@@ -69,6 +70,22 @@ Breadcrumbs::register('admin.coins.handbooks.edit', static function (Crumbs $cru
     );
 });
 
+// Posts
+
+Breadcrumbs::register('admin.news.index', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.home');
+    $crumbs->push(trans('global.blade.title.news'), route('admin.news.index'));
+});
+
+Breadcrumbs::register('admin.news.create', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.news.index');
+    $crumbs->push(trans('global.actions.objects.add', ['object' => 'post']), route('admin.news.create'));
+});
+
+Breadcrumbs::register('admin.news.edit', static function (Crumbs $crumbs, int $id) {
+    $crumbs->parent('admin.news.index');
+    $crumbs->push(trans('global.actions.objects.update', ['object' => 'News']), route('admin.news.edit', $id));
+});
 
 // Algorithms
 

@@ -55,6 +55,17 @@ Route::group([
             });
         });
 
+        Route::group(['namespace' => 'Posts'], static function () {
+            Route::group(['prefix' => 'news', 'as' => 'news.'], static function () {
+                Route::get('/', 'NewsController@index')->name('index');
+                Route::get('/create', 'NewsController@create')->name('create');
+                Route::get('/{id}/edit', 'NewsController@edit')->name('edit');
+                Route::put('/{id}', 'NewsController@update')->name('update');
+                Route::post('/', 'NewsController@store')->name('store');
+                Route::delete('/{id}', 'NewsController@destroy')->name('destroy');
+            });
+        });
+
         Route::group(['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
             Route::redirect('/', 'settings/handbooks');
 
