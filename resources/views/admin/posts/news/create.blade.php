@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    {{ Form::bsText('global.blade.fields.section', 'section', false) }}
+                    {{ Form::bsText('global.blade.fields.section', 'section', true) }}
                 </div>
 
                 <div class="col-md-6">
