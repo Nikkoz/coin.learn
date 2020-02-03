@@ -5,6 +5,7 @@ namespace App\Http\Requests\Dashboard\Posts;
 use App\Entities\Coin\Coin;
 use Illuminate\Validation\Rule;
 use App\Entities\Settings\Site;
+use App\Entities\Coin\Handbook;
 use App\Dictionaries\StatusDictionary;
 use App\Dictionaries\PostTypeDictionary;
 use Illuminate\Foundation\Http\FormRequest;
@@ -46,15 +47,17 @@ class PostRequest extends FormRequest
                 'string',
                 'max:255',
             ],
-            'created'   => ['required', 'date_format:Y-m-d H:i'],
-            'section'   => [
+            'handbooks' => ['nullable', 'array'],
+            'handbooks.*' => ['integer', Rule::in(Handbook::all()->pluck('id')->toArray())],
+            'created' => ['required', 'date_format:Y-m-d H:i'],
+            'section' => [
                 Rule::requiredIf(function () {
                     return (int)$this->type === PostTypeDictionary::TYPE_POST;
                 }),
                 'string',
                 'max:100',
             ],
-            'site_id'   => [
+            'site_id' => [
                 Rule::requiredIf(function () {
                     return (int)$this->type === PostTypeDictionary::TYPE_POST;
                 }),

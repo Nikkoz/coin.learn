@@ -9,7 +9,7 @@ use App\Entities\Settings\SocialNetworks\SocialNetwork;
 
 $factory->define(Exchange::class, static function (Faker $faker) {
     $network = SocialNetwork::all();
-    $networkId = $network->isEmpty() ? factory(SocialNetwork::class)->create()->id : $faker->randomElement($network)->id;
+    $networkId = $network->isEmpty() ? factory(SocialNetwork::class)->create()->id : $network->random()->id;
 
     return [
         'name'        => $faker->unique()->firstNameMale,

@@ -87,7 +87,11 @@ class PostService
         try {
             $post->fill($data);
 
-            return $post->saveOrFail();
+            $post->saveOrFail();
+
+            $post->handbooks()->sync($data['handbooks']);
+
+            return true;
         } catch (Throwable $e) {
             Log::error($e->getMessage(), ['data' => $data]);
         }

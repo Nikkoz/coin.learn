@@ -37,6 +37,10 @@
                 <div class="col-md-6">
                     {{ Form::bsDateTime('global.blade.fields.date', 'created') }}
                 </div>
+
+                <div class="col-md-6">
+                    {{ Form::bsSelectMultiple('global.blade.fields.handbooks', 'handbooks[]', $handbooks, false) }}
+                </div>
             </div>
 
             {{ Form::bsTextarea('global.blade.fields.text', 'text') }}

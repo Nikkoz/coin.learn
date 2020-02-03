@@ -18,19 +18,23 @@ class DashboardFormServiceProvider extends ServiceProvider
         ]);
 
         Form::component('bsSelect', 'components.dashboard.form.select', [
-            'label', 'name', 'options', 'isRequired' => true, 'value' => null, 'help' => null, 'attributes' => []
+            'label', 'name', 'options', 'isRequired' => true, 'value' => null, 'help' => null, 'attributes' => [],
         ]);
 
         Form::component('bsSelectWithoutSearch', 'components.dashboard.form.select-without-search', [
-            'label', 'name', 'options', 'isRequired' => true, 'value' => null, 'help' => null, 'attributes' => []
+            'label', 'name', 'options', 'isRequired' => true, 'value' => null, 'help' => null, 'attributes' => [],
+        ]);
+
+        Form::component('bsSelectMultiple', 'components.dashboard.form.select_multiple', [
+            'label', 'name', 'options', 'isRequired' => true, 'value' => null, 'help' => null, 'attributes' => [],
         ]);
 
         Form::component('bsCheckbox', 'components.dashboard.form.checkbox', [
-            'label', 'name', 'value' => null, 'help' => null, 'attributes' => []
+            'label', 'name', 'value' => null, 'help' => null, 'attributes' => [],
         ]);
 
         Form::component('bsSwitch', 'components.dashboard.form.switch', [
-            'label', 'name', 'value' => null, 'help' => null, 'attributes' => []
+            'label', 'name', 'value' => null, 'help' => null, 'attributes' => [],
         ]);
 
         Form::component('bsFile', 'components.dashboard.form.image', [

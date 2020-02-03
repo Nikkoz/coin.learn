@@ -1,13 +1,13 @@
 <?php
 
-use App\Dictionaries\Coins\CoinTypeDictionary;
-use App\Dictionaries\StatusDictionary;
-use App\Entities\Coin\Coin;
 use App\Entities\Image;
+use App\Entities\Coin\Coin;
+use Faker\Generator as Faker;
 use App\Entities\Settings\Consensus;
 use App\Entities\Settings\Encryption;
-use Faker\Generator as Faker;
+use App\Dictionaries\StatusDictionary;
 use Illuminate\Database\Eloquent\Factory;
+use App\Dictionaries\Coins\CoinTypeDictionary;
 
 /** @var Factory $factory */
 
@@ -20,10 +20,10 @@ $factory->define(Coin::class, static function (Faker $faker) {
     $type = $faker->randomKey(CoinTypeDictionary::getValues());
 
     $encryption = Encryption::all();
-    $encryptionId = $encryption->isEmpty() ? factory(Encryption::class)->create()->id : $faker->randomElement($encryption)->id;
+    $encryptionId = $encryption->isEmpty() ? factory(Encryption::class)->create()->id : $encryption->random()->id;
 
     $consesus = Consensus::all();
-    $consesusId = $consesus->isEmpty() ? factory(Consensus::class)->create()->id : $faker->randomElement($consesus)->id;
+    $consesusId = $consesus->isEmpty() ? factory(Consensus::class)->create()->id : $consesus->random()->id;
 
     return [
         'name'            => $name,

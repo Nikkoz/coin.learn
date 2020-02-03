@@ -71,6 +71,7 @@ return [
             'date'         => 'Date of creation',
             'section'      => 'Section',
             'site'         => 'Site',
+            'text'         => 'Text',
         ],
     ],
 ];

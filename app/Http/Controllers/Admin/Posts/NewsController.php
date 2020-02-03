@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Services\Dashboard\PostService;
 use App\Services\Dashboard\SiteService;
 use App\Dictionaries\PostTypeDictionary;
+use App\Services\Dashboard\HandbookService;
 use App\Repositories\Dashboard\PostRepository;
 use App\Exceptions\FailedDeleteModelException;
 use App\Http\Requests\Dashboard\Posts\PostRequest;
@@ -21,11 +22,19 @@ class NewsController extends Controller
 
     private $siteService;
 
-    public function __construct(PostService $service, PostRepository $repository, SiteService $siteService)
+    private $handbookService;
+
+    public function __construct(
+        PostService $service,
+        PostRepository $repository,
+        SiteService $siteService,
+        HandbookService $handbookService
+    )
     {
         $this->service = $service;
         $this->repository = $repository;
         $this->siteService = $siteService;
+        $this->handbookService = $handbookService;
     }
 
     public function index(): View
@@ -41,6 +50,7 @@ class NewsController extends Controller
     {
         return view('admin.posts.news.create', [
             'sites' => $this->siteService->getAllForSelector(),
+            'handbooks' => $this->handbookService->getAllForSelector(),
         ]);
     }
 
@@ -59,6 +69,7 @@ class NewsController extends Controller
         return view('admin.posts.news.edit', [
             'post'  => $this->repository->getOne($id),
             'sites' => $this->siteService->getAllForSelector(),
+            'handbooks' => $this->handbookService->getAllForSelector(),
         ]);
     }
 
