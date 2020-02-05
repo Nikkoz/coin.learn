@@ -89,7 +89,7 @@ class PostService
 
             $post->saveOrFail();
 
-            $post->handbooks()->sync($data['handbooks']);
+            $post->handbooks()->sync($data['handbooks'] ?? []);
 
             return true;
         } catch (Throwable $e) {

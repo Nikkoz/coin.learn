@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Services\Dashboard\Algorithms;
 
+use Exception;
+use Throwable;
+use Tests\DashboardTestCase;
 use App\Entities\Settings\Consensus;
 use App\Exceptions\FailedSaveModelException;
 use App\Services\Dashboard\Algorithms\ConsensusService;
-use Exception;
-use Tests\DashboardTestCase;
-use Throwable;
 
 class ConsensusServiceTest extends DashboardTestCase
 {
@@ -18,11 +18,11 @@ class ConsensusServiceTest extends DashboardTestCase
      */
     private $service;
 
-    public function __construct($name = null, array $data = [], $dataName = '')
+    public function setUp(): void
     {
-        parent::__construct($name, $data, $dataName);
+        parent::setUp();
 
-        $this->service = app(ConsensusService::class);
+        $this->service = app()->make(ConsensusService::class);
     }
 
     /**

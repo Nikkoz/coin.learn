@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Services\Dashboard\SocialNetworks;
 
+use Throwable;
+use Tests\DashboardTestCase;
 use App\Entities\Settings\SocialNetworks\SocialNetwork;
 use App\Services\Dashboard\SocialNetworks\SocialNetworkService;
-use Tests\DashboardTestCase;
-use Throwable;
 
 class SocialNetworkServiceTest extends DashboardTestCase
 {
@@ -16,16 +16,17 @@ class SocialNetworkServiceTest extends DashboardTestCase
      */
     private $service;
 
-    public function __construct($name = null, array $data = [], $dataName = '')
+    public function setUp(): void
     {
-        parent::__construct($name, $data, $dataName);
+        parent::setUp();
 
-        $this->service = app(SocialNetworkService::class);
+        $this->service = app()->make(SocialNetworkService::class);
     }
 
     /**
      * @param array $data
-     * @param bool $error
+     * @param bool  $error
+     *
      * @throws Throwable
      *
      * @dataProvider providerCreate
@@ -63,7 +64,7 @@ class SocialNetworkServiceTest extends DashboardTestCase
 
         $this->assertDatabaseMissing($this->table, [
             'name' => 'Vk',
-            'link' => 'old'
+            'link' => 'old',
         ]);
     }
 

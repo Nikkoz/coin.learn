@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Services\Dashboard;
 
+use Mockery;
 use App\Entities\Image;
+use Tests\DashboardTestCase;
+use Illuminate\Http\UploadedFile;
 use App\Managers\Dashboard\FileManager;
 use App\Services\Dashboard\ImageService;
-use Illuminate\Http\UploadedFile;
-use Mockery;
-use Tests\DashboardTestCase;
 
 class ImageServiceTest extends DashboardTestCase
 {
@@ -21,13 +21,18 @@ class ImageServiceTest extends DashboardTestCase
     public function __construct($name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
+    }
+
+    public function setUp(): void
+    {
+        parent::setUp();
 
         $fileManager = Mockery::mock(FileManager::class);
         $fileManager->shouldReceive('save')
             ->andReturn('public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'example.jpg');
         $fileManager->shouldReceive('remove')->andReturn(true);
 
-        $this->service = new ImageService($fileManager);
+        $this->service = app()->make(ImageService::class, [$fileManager]);
     }
 
     public function testCreate(): void
@@ -38,7 +43,7 @@ class ImageServiceTest extends DashboardTestCase
             'file'        => $file,
             'path'        => 'public' . DIRECTORY_SEPARATOR . 'images',
             'description' => 'description',
-            'sort'        => 100
+            'sort'        => 100,
         ];
 
         $this->service->create($data);
@@ -46,7 +51,7 @@ class ImageServiceTest extends DashboardTestCase
         $this->assertDatabaseHas($this->table, [
             'name'        => 'example.jpg',
             'description' => 'description',
-            'sort'        => 100
+            'sort'        => 100,
         ]);
     }
 

@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Services\Dashboard\Algorithms;
 
+use Exception;
+use Throwable;
+use Tests\DashboardTestCase;
 use App\Entities\Settings\Encryption;
 use App\Exceptions\FailedSaveModelException;
 use App\Services\Dashboard\Algorithms\EncryptionService;
-use Exception;
-use Tests\DashboardTestCase;
-use Throwable;
 
 class EncryptionServiceTest extends DashboardTestCase
 {
@@ -18,11 +18,11 @@ class EncryptionServiceTest extends DashboardTestCase
      */
     private $service;
 
-    public function __construct($name = null, array $data = [], $dataName = '')
+    public function setUp(): void
     {
-        parent::__construct($name, $data, $dataName);
+        parent::setUp();
 
-        $this->service = app(EncryptionService::class);
+        $this->service = app()->make(EncryptionService::class);
     }
 
     /**
