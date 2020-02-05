@@ -2,8 +2,10 @@
 
 namespace App\Entities\Coin;
 
+use App\Entities\Post;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property integer $id
@@ -14,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property integer $status
  *
  * @property Coin    $coin
+ * @property Post[]  $posts
  */
 class Handbook extends Model
 {
@@ -24,5 +27,10 @@ class Handbook extends Model
     public function coin(): BelongsTo
     {
         return $this->belongsTo(Coin::class);
+    }
+
+    public function posts(): BelongsToMany
+    {
+        return $this->belongsToMany(Post::class, 'post_handbook_assignments');
     }
 }

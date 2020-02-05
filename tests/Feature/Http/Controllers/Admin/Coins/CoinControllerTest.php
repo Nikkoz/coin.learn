@@ -2,13 +2,13 @@
 
 namespace Tests\Feature\Http\Controllers\Admin\Coins;
 
-use App\Dictionaries\Coins\CoinTypeDictionary;
-use App\Entities\Coin\Coin;
 use App\Entities\Image;
-use App\Managers\Dashboard\FileManager;
+use App\Entities\Coin\Coin;
+use Tests\DashboardTestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Tests\DashboardTestCase;
+use App\Managers\Dashboard\FileManager;
+use App\Dictionaries\Coins\CoinTypeDictionary;
 
 class CoinControllerTest extends DashboardTestCase
 {
@@ -42,7 +42,7 @@ class CoinControllerTest extends DashboardTestCase
     public function testStore(array $params, string $session, bool $isError): void
     {
         if ($isError) {
-            $coin = factory(Coin::class)->create($params);
+            factory(Coin::class)->create($params);
         }
 
         $response = $this->post(route('admin.coins.store'), $params);

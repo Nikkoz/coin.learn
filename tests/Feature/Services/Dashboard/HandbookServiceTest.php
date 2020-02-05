@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Services\Dashboard;
 
+use Throwable;
 use App\Entities\Coin\Coin;
+use Tests\DashboardTestCase;
 use App\Entities\Coin\Handbook;
 use App\Services\Dashboard\HandbookService;
-use Tests\DashboardTestCase;
-use Throwable;
 
 class HandbookServiceTest extends DashboardTestCase
 {
@@ -22,18 +22,12 @@ class HandbookServiceTest extends DashboardTestCase
      */
     private $coin;
 
-    public function __construct($name = null, array $data = [], $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-
-        $this->service = app(HandbookService::class);
-    }
-
     public function setUp(): void
     {
         parent::setUp();
 
         $this->coin = factory(Coin::class)->create();
+        $this->service = app()->make(HandbookService::class);
     }
 
     /**

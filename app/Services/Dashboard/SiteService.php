@@ -6,7 +6,9 @@ use Log;
 use Exception;
 use Throwable;
 use App\Entities\Settings\Site;
+use App\Dictionaries\StatusDictionary;
 use App\Exceptions\FailedSaveModelException;
+use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Dashboard\SiteRepository;
 
 class SiteService
@@ -30,7 +32,7 @@ class SiteService
     {
         $model = $this->repository->getOne($id);
 
-        return !($model->delete() !== true);
+        return $model->delete() === true;
     }
 
     /**
@@ -97,5 +99,20 @@ class SiteService
     public function getCount(): int
     {
         return $this->repository->queryBuilder()->count();
+    }
+
+    /**
+     * Получить массив сайтов для формирования селектора.
+     *
+     * @return array
+     */
+    public function getAllForSelector(): array
+    {
+        /** @var Collection $collection */
+        $collection = $this->repository->getAll(['status' => StatusDictionary::ACTIVE], 'name', 'asc');
+
+        return $collection->mapWithKeys(static function ($item) {
+            return [$item['id'] => $item['name']];
+        })->all();
     }
 }

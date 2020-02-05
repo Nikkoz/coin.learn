@@ -2,13 +2,15 @@
 
 namespace App\Entities\Coin;
 
+use App\Entities\Post;
 use App\Entities\Image;
 use App\Entities\Settings\Consensus;
 use App\Entities\Settings\Encryption;
-use App\Entities\Settings\SocialNetworks\SocialLink;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Entities\Settings\SocialNetworks\SocialLink;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer      $id
@@ -16,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string       $code
  * @property string       $alias
  * @property integer      $type
- * @property integer      $publish
+ * @property integer      $status
  * @property integer      $image_id
  * @property integer      $smart_contracts
  * @property string       $platform
@@ -38,6 +40,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Image        $image
  * @property SocialLink[] $socialLinks
  * @property Handbook[]   $handbooks
+ * @property Post[]       $posts
+ *
+ * @method Builder active()
  */
 class Coin extends Model
 {
@@ -46,12 +51,12 @@ class Coin extends Model
      */
     public const PATH = 'images' . DIRECTORY_SEPARATOR . 'coins';
 
-    public    $guarded = ['id', 'alias'];
+    public    $guarded    = ['id', 'alias'];
 
     protected $dateFormat = 'Y-m-d H:i:sO';
 
-    protected $casts   = [
-        'links' => 'array'
+    protected $casts      = [
+        'links' => 'array',
     ];
 
     public function encryption(): BelongsTo
@@ -77,5 +82,15 @@ class Coin extends Model
     public function handbooks(): HasMany
     {
         return $this->hasMany(Handbook::class);
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('status', StatusDictionary::ACTIVE);
     }
 }

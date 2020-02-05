@@ -30,7 +30,7 @@ class SocialLinkService
     {
         $model = $this->repository->getOne($id);
 
-        return !($model->delete() !== true);
+        return $model->delete() === true;
     }
 
     /**

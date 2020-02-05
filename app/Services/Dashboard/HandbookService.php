@@ -7,6 +7,7 @@ use Exception;
 use Throwable;
 use App\Entities\Coin\Handbook;
 use App\Exceptions\FailedSaveModelException;
+use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Dashboard\HandbookRepository;
 
 class HandbookService
@@ -30,7 +31,7 @@ class HandbookService
     {
         $model = $this->repository->getOne($id);
 
-        return !($model->delete() !== true);
+        return $model->delete() === true;
     }
 
     /**
@@ -77,7 +78,7 @@ class HandbookService
      * Сохранение.
      *
      * @param Handbook $handbook
-     * @param array $data
+     * @param array    $data
      *
      * @return bool
      */
@@ -92,5 +93,20 @@ class HandbookService
         }
 
         return false;
+    }
+
+    /**
+     * Получить массив фраз для формирования селектора.
+     *
+     * @return array
+     */
+    public function getAllForSelector(): array
+    {
+        /** @var Collection $collection */
+        $collection = $this->repository->getAll([], 'title', 'asc');
+
+        return $collection->mapWithKeys(static function ($item) {
+            return [$item['id'] => $item['title']];
+        })->all();
     }
 }

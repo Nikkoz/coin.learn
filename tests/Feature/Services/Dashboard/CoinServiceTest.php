@@ -2,40 +2,35 @@
 
 namespace Tests\Feature\Services\Dashboard;
 
-use App\Dictionaries\Coins\CoinTypeDictionary;
+use Mockery;
 use App\Entities\Coin\Coin;
-use App\Entities\Settings\SocialNetworks\SocialLink;
-use App\Entities\Settings\SocialNetworks\SocialNetwork;
+use Tests\DashboardTestCase;
+use Illuminate\Http\UploadedFile;
 use App\Managers\Dashboard\FileManager;
-use App\Repositories\Dashboard\CoinRepository;
 use App\Services\Dashboard\CoinService;
 use App\Services\Dashboard\ImageService;
-use Illuminate\Http\UploadedFile;
-use Mockery;
-use Tests\DashboardTestCase;
+use App\Dictionaries\Coins\CoinTypeDictionary;
+use App\Repositories\Dashboard\CoinRepository;
+use App\Entities\Settings\SocialNetworks\SocialLink;
+use App\Entities\Settings\SocialNetworks\SocialNetwork;
 
 class CoinServiceTest extends DashboardTestCase
 {
     private $table       = 'coins';
-    private $linksTable  = 'social_links';
+
     private $imagesTable = 'images';
 
-    /**
-     * @var CoinService
-     */
-    private $service;
-
-    public function __construct($name = null, array $data = [], $dataName = '')
+    public function setUp(): void
     {
-        parent::__construct($name, $data, $dataName);
+        parent::setUp();
 
         $fileManager = Mockery::mock(FileManager::class);
         $fileManager->shouldReceive('save')
             ->andReturn('public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'example.jpg');
         $fileManager->shouldReceive('remove')->andReturn(true);
 
-        $imageService = new ImageService($fileManager);
-        $this->service = new CoinService(new CoinRepository, $imageService);
+        $imageService = app()->make(ImageService::class, [$fileManager]);
+        $this->service = app()->make(CoinService::class, [new CoinRepository, $imageService]);
     }
 
     public function testCreate(): void
@@ -59,7 +54,7 @@ class CoinServiceTest extends DashboardTestCase
         ]);
 
         $this->assertDatabaseHas($this->imagesTable, [
-            'id' => $coin->image_id
+            'id' => $coin->image_id,
         ]);
     }
 
@@ -94,7 +89,7 @@ class CoinServiceTest extends DashboardTestCase
         ]);
 
         $this->assertDatabaseHas($this->imagesTable, [
-            'id' => $coin->image_id
+            'id' => $coin->image_id,
         ]);
     }
 
@@ -109,13 +104,13 @@ class CoinServiceTest extends DashboardTestCase
 
         /** @var SocialLink $link */
         $link = factory(SocialLink::class)->create([
-            'coin_id' => $coin->id
+            'coin_id' => $coin->id,
         ]);
 
         $this->service->delete($coin->id);
 
         $this->assertDatabaseMissing($this->table, [
-            'id' => $coin->id
+            'id' => $coin->id,
         ]);
     }
 }

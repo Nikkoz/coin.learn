@@ -7,6 +7,12 @@ return [
         'draft'   => 'Draft',
         'disable' => 'Disable',
     ],
+    'post_types' => [
+        'post'     => 'Post',
+        'twitter'  => 'Twitter',
+        'facebook' => 'facebook',
+        'reddit'   => 'Redit',
+    ],
     'actions'    => [
         'add'       => 'Add',
         'update'    => 'Update',
@@ -39,6 +45,9 @@ return [
         'title'        => [
             'exchanges' => 'Exchanges',
             'exchange'  => 'Exchange',
+            'news'      => 'News',
+            'news_list' => 'List of news',
+            'post'      => 'Post',
             'list'      => [
                 'exchanges' => 'List of exchanges',
             ],
@@ -58,6 +67,11 @@ return [
             'date_updated' => 'Updated',
             'code'         => 'Tiker',
             'upload'       => 'Last Upload',
+            'handbooks'    => 'Handbook Phrases',
+            'date'         => 'Date of creation',
+            'section'      => 'Section',
+            'site'         => 'Site',
+            'text'         => 'Text',
         ],
     ],
 ];
