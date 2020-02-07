@@ -49,11 +49,13 @@ return [
             'news'      => 'News',
             'twitter'   => 'Twitter',
             'facebook'  => 'Facebook',
+            'reddit'    => 'Reddit',
             'post'      => 'Post',
             'list'      => [
                 'exchanges' => 'List of exchanges',
                 'twitter'   => 'List of twitter posts',
                 'facebook'  => 'List of facebook posts',
+                'reddit'    => 'List of reddit posts',
                 'news'      => 'List of news',
             ],
         ],

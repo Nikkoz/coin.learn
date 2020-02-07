@@ -87,7 +87,7 @@ class PostService
     protected function save(Post $post, array $data): bool
     {
         try {
-            if ($data['type'] !== PostTypeDictionary::TYPE_POST) {
+            if ($data['type'] !== PostTypeDictionary::TYPE_POST && $data['type'] !== PostTypeDictionary::TYPE_REDDIT) {
                 $data['title'] = Str::limit(strip_tags($data['text']), 40);
             }
 

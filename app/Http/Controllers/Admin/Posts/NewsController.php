@@ -9,9 +9,9 @@ use App\Services\Dashboard\PostService;
 use App\Services\Dashboard\SiteService;
 use App\Dictionaries\PostTypeDictionary;
 use App\Services\Dashboard\HandbookService;
+use App\Http\Requests\Dashboard\PostRequest;
 use App\Repositories\Dashboard\PostRepository;
 use App\Exceptions\FailedDeleteModelException;
-use App\Http\Requests\Dashboard\Posts\PostRequest;
 use App\Dictionaries\DashboardFlashTypeDictionary;
 
 class NewsController extends Controller

@@ -206,7 +206,7 @@ return [
                 ], [
                     'text'  => 'redit',
                     'icon'  => 'fa-fw fab fa-reddit ml-3',
-                    'route' => 'admin.home',
+                    'route' => 'admin.reddit.index',
                 ],
             ],
         ],

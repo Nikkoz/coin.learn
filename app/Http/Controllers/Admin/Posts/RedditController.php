@@ -13,7 +13,7 @@ use App\Repositories\Dashboard\PostRepository;
 use App\Exceptions\FailedDeleteModelException;
 use App\Dictionaries\DashboardFlashTypeDictionary;
 
-class FacebookController extends Controller
+class RedditController extends Controller
 {
     private $service;
 
@@ -30,21 +30,21 @@ class FacebookController extends Controller
 
     public function index(): View
     {
-        return view('admin.posts.facebook.index', [
-            'posts' => $this->repository->getPagination(['type' => PostTypeDictionary::TYPE_FACEBOOK], 'id', ['coin']),
+        return view('admin.posts.reddit.index', [
+            'posts' => $this->repository->getPagination(['type' => PostTypeDictionary::TYPE_REDDIT], 'id', ['coin']),
         ]);
     }
 
     public function create(): View
     {
-        return view('admin.posts.facebook.create', ['coins' => $this->coinService->getAllForSelector()]);
+        return view('admin.posts.reddit.create', ['coins' => $this->coinService->getAllForSelector()]);
     }
 
     public function store(PostRequest $request): RedirectResponse
     {
         $this->service->create($request->validated());
 
-        return redirect()->route('admin.facebook.index')->with(
+        return redirect()->route('admin.reddit.index')->with(
             DashboardFlashTypeDictionary::SUCCESS,
             trans('global.actions.objects.saved', ['object' => 'Post'])
         );
@@ -52,7 +52,7 @@ class FacebookController extends Controller
 
     public function edit(int $id): View
     {
-        return view('admin.posts.facebook.edit', [
+        return view('admin.posts.reddit.edit', [
             'post'  => $this->repository->getOne($id),
             'coins' => $this->coinService->getAllForSelector(),
         ]);
@@ -62,7 +62,7 @@ class FacebookController extends Controller
     {
         $post = $this->service->update($id, $request->validated());
 
-        return redirect()->route('admin.facebook.index')->with(
+        return redirect()->route('admin.reddit.index')->with(
             DashboardFlashTypeDictionary::SUCCESS,
             trans('global.actions.objects.updated', ['object' => 'Post', 'name' => $post->title])
         );

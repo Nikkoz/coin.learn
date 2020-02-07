@@ -82,6 +82,15 @@ Route::group([
                 Route::post('/', 'FacebookController@store')->name('store');
                 Route::delete('/{id}', 'FacebookController@destroy')->name('destroy');
             });
+
+            Route::group(['prefix' => 'reddit', 'as' => 'reddit.'], static function () {
+                Route::get('/', 'RedditController@index')->name('index');
+                Route::get('/create', 'RedditController@create')->name('create');
+                Route::get('/{id}/edit', 'RedditController@edit')->name('edit');
+                Route::put('/{id}', 'RedditController@update')->name('update');
+                Route::post('/', 'RedditController@store')->name('store');
+                Route::delete('/{id}', 'RedditController@destroy')->name('destroy');
+            });
         });
 
         Route::group(['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
