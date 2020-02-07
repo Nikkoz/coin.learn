@@ -121,6 +121,23 @@ Breadcrumbs::register('admin.facebook.edit', static function (Crumbs $crumbs, in
     $crumbs->push(trans('global.actions.objects.update', ['object' => 'Post']), route('admin.facebook.edit', $id));
 });
 
+// Reddit
+
+Breadcrumbs::register('admin.reddit.index', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.home');
+    $crumbs->push(trans('global.blade.title.reddit'), route('admin.reddit.index'));
+});
+
+Breadcrumbs::register('admin.reddit.create', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.reddit.index');
+    $crumbs->push(trans('global.actions.objects.add', ['object' => 'post']), route('admin.reddit.create'));
+});
+
+Breadcrumbs::register('admin.reddit.edit', static function (Crumbs $crumbs, int $id) {
+    $crumbs->parent('admin.reddit.index');
+    $crumbs->push(trans('global.actions.objects.update', ['object' => 'Post']), route('admin.reddit.edit', $id));
+});
+
 // Algorithms
 
 Breadcrumbs::register('admin.settings.algorithms.encryption.index', static function (Crumbs $crumbs) {

@@ -8,9 +8,9 @@ use Illuminate\Http\RedirectResponse;
 use App\Services\Dashboard\PostService;
 use App\Services\Dashboard\CoinService;
 use App\Dictionaries\PostTypeDictionary;
+use App\Http\Requests\Dashboard\PostRequest;
 use App\Repositories\Dashboard\PostRepository;
 use App\Exceptions\FailedDeleteModelException;
-use App\Http\Requests\Dashboard\Posts\PostRequest;
 use App\Dictionaries\DashboardFlashTypeDictionary;
 
 class TwitterController extends Controller

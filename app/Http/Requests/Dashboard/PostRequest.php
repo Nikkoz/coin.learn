@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Posts;
+namespace App\Http\Requests\Dashboard;
 
 use App\Entities\Coin\Coin;
 use Illuminate\Validation\Rule;
@@ -46,7 +46,7 @@ class PostRequest extends FormRequest
             'coin_id'     => ['nullable', 'integer', Rule::in(Coin::all()->pluck('id')->toArray())],
             'title'       => [
                 Rule::requiredIf(function () {
-                    return (int)$this->type === PostTypeDictionary::TYPE_POST;
+                    return (int)$this->type === PostTypeDictionary::TYPE_POST || (int)$this->type === PostTypeDictionary::TYPE_REDDIT;
                 }),
                 'string',
                 'max:255',
@@ -92,7 +92,7 @@ class PostRequest extends FormRequest
             ],
             'shares'      => [
                 Rule::requiredIf(function () {
-                    return (int)$this->type !== PostTypeDictionary::TYPE_POST;
+                    return (int)$this->type !== PostTypeDictionary::TYPE_POST && (int)$this->type !== PostTypeDictionary::TYPE_REDDIT;
                 }),
                 'integer',
             ],
