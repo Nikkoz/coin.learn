@@ -5,6 +5,7 @@ namespace Tests\Feature\Services\Dashboard;
 use Throwable;
 use Exception;
 use App\Entities\Post;
+use Illuminate\Support\Arr;
 use Tests\DashboardTestCase;
 use App\Entities\Coin\Handbook;
 use App\Services\Dashboard\PostService;
@@ -70,7 +71,7 @@ class PostServiceTest extends DashboardTestCase
         /** @var Post $post */
         $post = factory(Post::class)->create($data);
 
-        $this->service->update($post->id, ['title' => 'new title']);
+        $this->service->update($post->id, Arr::prepend($data, 'new title', 'title'));
 
         $this->assertDatabaseHas($this->table, ['title' => 'new title']);
         $this->assertDatabaseMissing($this->table, ['title' => $data['title']]);
