@@ -198,7 +198,7 @@ return [
                 ], [
                     'text'  => 'twitter',
                     'icon'  => 'fa-fw fab fa-twitter ml-3',
-                    'route' => 'admin.home',
+                    'route' => 'admin.twitter.index',
                 ], [
                     'text'  => 'facebook',
                     'icon'  => 'fa-fw fab fa-facebook ml-3',

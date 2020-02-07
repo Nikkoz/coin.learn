@@ -87,6 +87,23 @@ Breadcrumbs::register('admin.news.edit', static function (Crumbs $crumbs, int $i
     $crumbs->push(trans('global.actions.objects.update', ['object' => 'News']), route('admin.news.edit', $id));
 });
 
+// Posts
+
+Breadcrumbs::register('admin.twitter.index', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.home');
+    $crumbs->push(trans('global.blade.title.twitter'), route('admin.twitter.index'));
+});
+
+Breadcrumbs::register('admin.twitter.create', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.twitter.index');
+    $crumbs->push(trans('global.actions.objects.add', ['object' => 'post']), route('admin.twitter.create'));
+});
+
+Breadcrumbs::register('admin.twitter.edit', static function (Crumbs $crumbs, int $id) {
+    $crumbs->parent('admin.twitter.index');
+    $crumbs->push(trans('global.actions.objects.update', ['object' => 'Twitter']), route('admin.twitter.edit', $id));
+});
+
 // Algorithms
 
 Breadcrumbs::register('admin.settings.algorithms.encryption.index', static function (Crumbs $crumbs) {

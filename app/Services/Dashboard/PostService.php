@@ -6,6 +6,8 @@ use Log;
 use Throwable;
 use Exception;
 use App\Entities\Post;
+use Illuminate\Support\Str;
+use App\Dictionaries\PostTypeDictionary;
 use App\Exceptions\FailedSaveModelException;
 use App\Repositories\Dashboard\PostRepository;
 
@@ -85,6 +87,10 @@ class PostService
     protected function save(Post $post, array $data): bool
     {
         try {
+            if ($data['type'] !== PostTypeDictionary::TYPE_POST) {
+                $data['title'] = Str::limit(strip_tags($data['text']), 40);
+            }
+
             $post->fill($data);
 
             $post->saveOrFail();

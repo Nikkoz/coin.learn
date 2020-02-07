@@ -7,7 +7,7 @@ class  PostTypeDictionary extends BaseDictionary
     public const TYPE_POST     = 1;
     public const TYPE_TWITTER  = 2;
     public const TYPE_FACEBOOK = 3;
-    public const TYPE_REDIT    = 4;
+    public const TYPE_REDDIT   = 4;
 
     /**
      * @inheritDoc
@@ -18,7 +18,7 @@ class  PostTypeDictionary extends BaseDictionary
             static::TYPE_POST     => trans('global.post_types.post'),
             static::TYPE_TWITTER  => trans('global.post_types.twitter'),
             static::TYPE_FACEBOOK => trans('global.post_types.facebook'),
-            static::TYPE_REDIT    => trans('global.post_types.reddit'),
+            static::TYPE_REDDIT   => trans('global.post_types.reddit'),
         ];
     }
 }

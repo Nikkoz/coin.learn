@@ -2,20 +2,18 @@
 
 namespace App\Http\Requests\Dashboard;
 
-use App\Dictionaries\Coins\CoinTypeDictionary;
-use App\Dictionaries\StatusDictionary;
 use App\Entities\Coin\Coin;
+use Illuminate\Validation\Rule;
+use App\Rules\SmartContractsRule;
 use App\Entities\Settings\Consensus;
 use App\Entities\Settings\Encryption;
-use App\Rules\SmartContractsRule;
+use App\Dictionaries\StatusDictionary;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+use App\Dictionaries\Coins\CoinTypeDictionary;
 
 /**
  * @property int    $id - Идентификатор монеты
  * @property int    $type - Выбранный тип (Монета или Токен)
- * @property array  $socials - Массив ссылок на соц. сети
- * @property array  $newSocials - Массив новых ссылок на соц. сети
  * @property string $name - название монеты
  */
 class CoinRequest extends FormRequest
@@ -35,32 +33,6 @@ class CoinRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
-    }
-
-    public function prepareForValidation(): void
-    {
-        $socials = $this->socials;
-        $newSocials = $this->newSocials;
-
-        if (!empty($this->socials)) {
-            foreach ($socials as $key => $social) {
-                if (empty($social->link)) {
-                    unset($socials[$key]);
-                }
-            }
-
-            $this->socials = $socials;
-        }
-
-        if (!empty($this->newSocials)) {
-            foreach ($newSocials as $key => $social) {
-                if (empty($newSocials->link)) {
-                    unset($newSocials[$key]);
-                }
-            }
-
-            $this->newSocials = array_filter($newSocials);
-        }
     }
 
     public function rules(): array

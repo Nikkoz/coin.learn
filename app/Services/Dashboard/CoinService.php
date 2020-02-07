@@ -6,6 +6,7 @@ use Exception;
 use Throwable;
 use App\Entities\Coin\Coin;
 use Illuminate\Support\Facades\DB;
+use App\Dictionaries\StatusDictionary;
 use App\Exceptions\FailedSaveModelException;
 use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Dashboard\CoinRepository;
@@ -119,7 +120,7 @@ class CoinService
     public function getAllForSelector(): array
     {
         /** @var Collection $collection */
-        $collection = $this->repository->getAll([], 'name', 'asc');
+        $collection = $this->repository->getAll(['status' => StatusDictionary::ACTIVE], 'name', 'asc');
 
         return $collection->mapWithKeys(
             static function ($item) {

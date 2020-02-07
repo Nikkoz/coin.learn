@@ -1,16 +1,16 @@
 @extends('admin.layout.app')
 
-@section('title', trans('global.blade.title.list.news'))
+@section('title', trans('global.blade.title.list.twitter'))
 
 @section('content')
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
-                {{ trans('global.blade.title.news') }}
+                {{ trans('global.blade.title.twitter') }}
             </h3>
 
             <div class="card-tools">
-                <a class="btn btn-xs btn-success" href="{{ route('admin.news.create') }}">
+                <a class="btn btn-xs btn-success" href="{{ route('admin.twitter.create') }}">
                     {{ trans('global.actions.objects.add', ['object' => 'post']) }}
                 </a>
             </div>
@@ -22,40 +22,30 @@
                 <tr>
                     <th>#</th>
                     <th>{{ trans('global.blade.fields.title') }}</th>
-                    <th>{{ trans('global.blade.fields.handbooks') }}</th>
-                    <th>{{ trans('global.blade.fields.link') }}</th>
+                    <th>{{ trans('global.blade.fields.coin') }}</th>
+                    <th>{{ trans('global.blade.fields.text') }}</th>
                     <th>{{ trans('global.blade.fields.date') }}</th>
-                    <th>{{ trans('global.blade.fields.status') }}</th>
                     <th>&nbsp;</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                @foreach($news as $post)
+                @foreach($posts as $post)
                     <tr data-entry-id="{{ $post->id }}">
-                        <td>{{ ($news->perPage() * ($news->currentPage() - 1)) + $loop->iteration }}</td>
+                        <td>{{ ($posts->perPage() * ($posts->currentPage() - 1)) + $loop->iteration }}</td>
                         <td>{{ $post->title }}</td>
+                        <td>{{ $post->coin->name }}</td>
                         <td>
-                            {{ implode(', ', $post->handbooks->pluck('coin.name')->unique()->toArray()) }}
-                        </td>
-                        <td>
-                            <a href="{{ $post->site->link }}" target="_blank">
-                                {{ $post->site->name }}
-                            </a>
+                            {{ Str::limit($post->text, 30) }}
                         </td>
                         <td>
                             {{ \Carbon\Carbon::parse($post->created)->format('d.m.Y H:i') }}
                         </td>
-                        <td>
-                            <span class="badge {{ $post->status ? 'badge-success' : 'badge-danger' }}">
-                                {{ StatusDictionary::getValueByKey($post->status) }}
-                            </span>
-                        </td>
                         <td class="text-right">
-                            <a class="btn btn-sm btn-info" href="{{ route('admin.news.edit', $post->id) }}">
+                            <a class="btn btn-sm btn-info" href="{{ route('admin.twitter.edit', $post->id) }}">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <form action="{{ route('admin.news.destroy', $post->id) }}"
+                            <form action="{{ route('admin.twitter.destroy', $post->id) }}"
                                   method="POST"
                                   onsubmit="return confirm({{ trans('global.blade.sure_delete') }});"
                                   style="display: inline-block;">
@@ -73,7 +63,7 @@
             </table>
 
             <div class="pl-3 pt-3">
-                {{ $news->links() }}
+                {{ $posts->links() }}
             </div>
         </div>
     </div>

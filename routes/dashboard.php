@@ -64,6 +64,15 @@ Route::group([
                 Route::post('/', 'NewsController@store')->name('store');
                 Route::delete('/{id}', 'NewsController@destroy')->name('destroy');
             });
+
+            Route::group(['prefix' => 'twitter', 'as' => 'twitter.'], static function () {
+                Route::get('/', 'TwitterController@index')->name('index');
+                Route::get('/create', 'TwitterController@create')->name('create');
+                Route::get('/{id}/edit', 'TwitterController@edit')->name('edit');
+                Route::put('/{id}', 'TwitterController@update')->name('update');
+                Route::post('/', 'TwitterController@store')->name('store');
+                Route::delete('/{id}', 'TwitterController@destroy')->name('destroy');
+            });
         });
 
         Route::group(['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
