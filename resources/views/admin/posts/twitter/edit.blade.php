@@ -24,6 +24,9 @@
                     </a>
                 </div>
             </div>
+            <a href="{{ $post->link }}" class="btn btn-info btn-block" target="_blank">
+                {{ trans('global.blade.show_post') }}
+            </a>
         </div>
 
         <div class="col-7 col-sm-9">

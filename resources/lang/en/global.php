@@ -38,6 +38,7 @@ return [
         'list'         => [
             'select_one' => 'Select one ...',
         ],
+        'show_post'    => 'Show post',
         'count'        => [
             'coins' => 'Total coins',
             'sites' => 'Total sites',
