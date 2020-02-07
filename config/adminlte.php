@@ -202,7 +202,7 @@ return [
                 ], [
                     'text'  => 'facebook',
                     'icon'  => 'fa-fw fab fa-facebook ml-3',
-                    'route' => 'admin.home',
+                    'route' => 'admin.facebook.index',
                 ], [
                     'text'  => 'redit',
                     'icon'  => 'fa-fw fab fa-reddit ml-3',

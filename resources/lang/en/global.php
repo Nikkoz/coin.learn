@@ -48,16 +48,19 @@ return [
             'exchange'  => 'Exchange',
             'news'      => 'News',
             'twitter'   => 'Twitter',
+            'facebook'  => 'Facebook',
             'post'      => 'Post',
             'list'      => [
                 'exchanges' => 'List of exchanges',
                 'twitter'   => 'List of twitter posts',
+                'facebook'  => 'List of facebook posts',
                 'news'      => 'List of news',
             ],
         ],
         'tabs'         => [
             'user'       => 'User',
             'twit'       => 'Twit',
+            'post'       => 'Post',
             'activities' => 'Activities',
         ],
         'fields'       => [

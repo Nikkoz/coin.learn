@@ -87,7 +87,7 @@ Breadcrumbs::register('admin.news.edit', static function (Crumbs $crumbs, int $i
     $crumbs->push(trans('global.actions.objects.update', ['object' => 'News']), route('admin.news.edit', $id));
 });
 
-// Posts
+// Twitter
 
 Breadcrumbs::register('admin.twitter.index', static function (Crumbs $crumbs) {
     $crumbs->parent('admin.home');
@@ -102,6 +102,23 @@ Breadcrumbs::register('admin.twitter.create', static function (Crumbs $crumbs) {
 Breadcrumbs::register('admin.twitter.edit', static function (Crumbs $crumbs, int $id) {
     $crumbs->parent('admin.twitter.index');
     $crumbs->push(trans('global.actions.objects.update', ['object' => 'Twitter']), route('admin.twitter.edit', $id));
+});
+
+// Facebook
+
+Breadcrumbs::register('admin.facebook.index', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.home');
+    $crumbs->push(trans('global.blade.title.facebook'), route('admin.facebook.index'));
+});
+
+Breadcrumbs::register('admin.facebook.create', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.facebook.index');
+    $crumbs->push(trans('global.actions.objects.add', ['object' => 'post']), route('admin.facebook.create'));
+});
+
+Breadcrumbs::register('admin.facebook.edit', static function (Crumbs $crumbs, int $id) {
+    $crumbs->parent('admin.facebook.index');
+    $crumbs->push(trans('global.actions.objects.update', ['object' => 'Post']), route('admin.facebook.edit', $id));
 });
 
 // Algorithms
