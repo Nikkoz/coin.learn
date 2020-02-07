@@ -40,7 +40,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method Builder news()
  * @method Builder twitter()
  * @method Builder facebook()
- * @method Builder redit()
+ * @method Builder reddit()
  * @method Builder active()
  */
 class Post extends Model
@@ -66,7 +66,7 @@ class Post extends Model
 
     public function handbooks(): BelongsToMany
     {
-        return $this->belongsToMany(Handbook::class, 'post_handbook_assignments');
+        return $this->belongsToMany(Handbook::class, 'post_handbook_assignments')->with('coin');
     }
 
     public function scopeNews(Builder $query): Builder
@@ -84,9 +84,9 @@ class Post extends Model
         return $query->where('type', PostTypeDictionary::TYPE_FACEBOOK);
     }
 
-    public function scopeRedit(Builder $query): Builder
+    public function scopeReddit(Builder $query): Builder
     {
-        return $query->where('type', PostTypeDictionary::TYPE_REDIT);
+        return $query->where('type', PostTypeDictionary::TYPE_REDDIT);
     }
 
     public function scopeActive(Builder $query): Builder

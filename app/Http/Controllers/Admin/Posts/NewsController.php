@@ -40,9 +40,7 @@ class NewsController extends Controller
     public function index(): View
     {
         return view('admin.posts.news.index', [
-            'news' => $this->repository->getPagination([
-                'type' => PostTypeDictionary::TYPE_POST,
-            ]),
+            'news' => $this->repository->getPagination(['type' => PostTypeDictionary::TYPE_POST]),
         ]);
     }
 

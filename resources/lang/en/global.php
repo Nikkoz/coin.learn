@@ -46,11 +46,18 @@ return [
             'exchanges' => 'Exchanges',
             'exchange'  => 'Exchange',
             'news'      => 'News',
-            'news_list' => 'List of news',
+            'twitter'   => 'Twitter',
             'post'      => 'Post',
             'list'      => [
                 'exchanges' => 'List of exchanges',
+                'twitter'   => 'List of twitter posts',
+                'news'      => 'List of news',
             ],
+        ],
+        'tabs'         => [
+            'user'       => 'User',
+            'twit'       => 'Twit',
+            'activities' => 'Activities',
         ],
         'fields'       => [
             'name'         => 'Name',
@@ -72,6 +79,12 @@ return [
             'section'      => 'Section',
             'site'         => 'Site',
             'text'         => 'Text',
+            'post_id'      => 'Post id',
+            'user_id'      => 'User id',
+            'user_name'    => 'User login',
+            'shares'       => 'Shares',
+            'likes'        => 'Likes',
+            'comments'     => 'Comments',
         ],
     ],
 ];

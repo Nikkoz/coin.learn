@@ -9,7 +9,7 @@ use App\Entities\Settings\Site;
 use App\Dictionaries\PostTypeDictionary;
 use Illuminate\Database\Eloquent\Collection;
 
-class PostControllerTest extends DashboardTestCase
+class NewsControllerTest extends DashboardTestCase
 {
     public function testIndex(): void
     {
@@ -56,7 +56,7 @@ class PostControllerTest extends DashboardTestCase
     public function testEdit(): void
     {
         /** @var Post $post */
-        $post = factory(Post::class)->create();
+        $post = factory(Post::class)->create(['type' => PostTypeDictionary::TYPE_POST]);
 
         $response = $this->get(route('admin.news.edit', $post->id));
         $response->assertStatus(200);

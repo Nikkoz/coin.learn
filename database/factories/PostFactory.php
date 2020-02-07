@@ -12,18 +12,18 @@ use Illuminate\Database\Eloquent\Factory;
 $factory->define(Post::class, static function (Faker $faker) {
     $type = $faker->randomElement(PostTypeDictionary::getKeys());
 
-    $coins = Coin::all();
-    $coin_id = $coins->isEmpty() ? factory(Coin::class)->create()->id : $coins->random()->id;
-
     if ($type === PostTypeDictionary::TYPE_POST) {
         $sites = Site::all();
         $site = $sites->isEmpty() ? factory(Site::class)->create()->id : $sites->random()->id;
+    } else {
+        $coins = Coin::all();
+        $coin_id = $coins->isEmpty() ? factory(Coin::class)->create()->id : $coins->random()->id;
     }
 
     return [
         'type'      => $type,
         'post_id'   => $type !== PostTypeDictionary::TYPE_POST ? $faker->randomNumber() : null,
-        'coin_id'   => $coin_id,
+        'coin_id'   => $coin_id ?? 0,
         'title'     => $faker->title,
         'text'      => $faker->text(150),
         'link'      => $faker->url,
