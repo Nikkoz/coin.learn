@@ -56,7 +56,7 @@ class Post extends Model
 
     public function coin(): BelongsTo
     {
-        return $this->belongsTo(Coin::class);
+        return $this->belongsTo(Coin::class)->withDefault();
     }
 
     public function site(): BelongsTo

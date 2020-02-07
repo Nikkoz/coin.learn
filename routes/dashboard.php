@@ -73,6 +73,15 @@ Route::group([
                 Route::post('/', 'TwitterController@store')->name('store');
                 Route::delete('/{id}', 'TwitterController@destroy')->name('destroy');
             });
+
+            Route::group(['prefix' => 'facebook', 'as' => 'facebook.'], static function () {
+                Route::get('/', 'FacebookController@index')->name('index');
+                Route::get('/create', 'FacebookController@create')->name('create');
+                Route::get('/{id}/edit', 'FacebookController@edit')->name('edit');
+                Route::put('/{id}', 'FacebookController@update')->name('update');
+                Route::post('/', 'FacebookController@store')->name('store');
+                Route::delete('/{id}', 'FacebookController@destroy')->name('destroy');
+            });
         });
 
         Route::group(['prefix' => 'settings', 'as' => 'settings.', 'namespace' => 'Settings'], static function () {
