@@ -41,4 +41,9 @@ class SiteRepository extends BaseRepository
     {
         return $this->defaultPaginationCount;
     }
+
+    public function count(): int
+    {
+        return $this->queryBuilder()->active()->count() ?? 0;
+    }
 }

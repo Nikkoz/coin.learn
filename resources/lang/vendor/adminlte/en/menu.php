@@ -31,5 +31,5 @@ return [
     'news'            => 'News',
     'twitter'         => 'Twitter',
     'facebook'        => 'Facebook',
-    'redit'           => 'Redit',
+    'reddit'          => 'Reddit',
 ];

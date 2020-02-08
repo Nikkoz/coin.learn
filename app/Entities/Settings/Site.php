@@ -3,7 +3,9 @@
 namespace App\Entities\Settings;
 
 use App\Entities\Post;
+use App\Dictionaries\StatusDictionary;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -14,6 +16,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property boolean $status
  *
  * @property Post[]  $posts
+ *
+ * @method Builder active()
  */
 class Site extends Model
 {
@@ -26,5 +30,10 @@ class Site extends Model
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('status', StatusDictionary::ACTIVE);
     }
 }

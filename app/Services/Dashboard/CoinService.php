@@ -122,10 +122,9 @@ class CoinService
         /** @var Collection $collection */
         $collection = $this->repository->getAll(['status' => StatusDictionary::ACTIVE], 'name', 'asc');
 
-        return $collection->mapWithKeys(
-            static function ($item) {
-                return [$item['id'] => $item['name']];
-            })->all();
+        return $collection->mapWithKeys(static function ($item) {
+            return [$item['id'] => $item['name']];
+        })->all();
     }
 
     /**

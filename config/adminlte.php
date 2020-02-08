@@ -172,77 +172,7 @@ return [
     |
     */
 
-    'menu' => [
-        [
-            'text'   => 'search',
-            'search' => true,
-            'topnav' => true,
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'Users',
-        ],
-        ['header' => 'main_menu'],
-        [
-            'text'  => 'coins',
-            'icon'  => 'nav-icon fa-fw fab fa-bitcoin',
-            'route' => 'admin.coins.index',
-        ], [
-            'text'    => 'resources',
-            'icon'    => 'nav-icon fa-fw fa fa-rss-square',
-            'submenu' => [
-                [
-                    'text'  => 'news',
-                    'icon'  => 'fa-fw fa fa-newspaper ml-3',
-                    'route' => 'admin.news.index',
-                ], [
-                    'text'  => 'twitter',
-                    'icon'  => 'fa-fw fab fa-twitter ml-3',
-                    'route' => 'admin.twitter.index',
-                ], [
-                    'text'  => 'facebook',
-                    'icon'  => 'fa-fw fab fa-facebook ml-3',
-                    'route' => 'admin.facebook.index',
-                ], [
-                    'text'  => 'redit',
-                    'icon'  => 'fa-fw fab fa-reddit ml-3',
-                    'route' => 'admin.reddit.index',
-                ],
-            ],
-        ],
-        ['header' => 'settings'],
-        [
-            'text'  => 'handbooks',
-            'icon'  => 'fa-fw fa fa-book',
-            'route' => 'admin.settings.handbooks.index',
-        ], [
-            'text'  => 'social_networks',
-            'icon'  => 'fa-fw fab fa-vk',
-            'route' => 'admin.settings.social.networks.index',
-        ], [
-            'text'  => 'sites',
-            'icon'  => 'fa-fw fab fa-internet-explorer',
-            'route' => 'admin.settings.sites.index',
-        ], [
-            'text'  => 'exchanges',
-            'icon'  => 'fa-fw fa fa-exchange-alt',
-            'route' => 'admin.settings.exchanges.index',
-        ], [
-            'text'    => 'algorithms',
-            'icon'    => 'fa-fw fab fa-gg',
-            'submenu' => [
-                [
-                    'text'  => 'encryption',
-                    'icon'  => 'far fa-fw fa-circle ml-3',
-                    'route' => 'admin.settings.algorithms.encryption.index',
-                ], [
-                    'text'  => 'consensus',
-                    'icon'  => 'far fa-fw fa-circle ml-3',
-                    'route' => 'admin.settings.algorithms.consensus.index',
-                ],
-            ],
-        ],
-    ],
+    'menu' => [],
 
     /*
     |--------------------------------------------------------------------------

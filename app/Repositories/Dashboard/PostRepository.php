@@ -3,6 +3,7 @@
 namespace App\Repositories\Dashboard;
 
 use App\Entities\Post;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 
 class PostRepository extends BaseRepository
@@ -40,5 +41,19 @@ class PostRepository extends BaseRepository
     public function getPaginationCount(): int
     {
         return $this->defaultPaginationCount;
+    }
+
+    public function countInTypes(array $params = [], $cache = false): array
+    {
+        $query = $this->prepareQueryParams($params);
+
+        if ($cache) {
+            $query->cacheFor(3600);
+        }
+
+        return $query->select('type', DB::raw('COUNT(id) as count'))->active()->groupBy('type')->get()
+            ->mapWithKeys(static function (Post $post) {
+                return [$post['type'] => $post['count']];
+            })->all();
     }
 }

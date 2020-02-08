@@ -10,6 +10,7 @@ use App\Dictionaries\StatusDictionary;
 use Illuminate\Database\Eloquent\Model;
 use App\Dictionaries\PostTypeDictionary;
 use Illuminate\Database\Eloquent\Builder;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -45,6 +46,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Post extends Model
 {
+    use QueryCacheable;
+
+    protected $cacheTags  = [self::class];
+
     protected $guarded    = ['id'];
 
     protected $fillable   = [
@@ -61,7 +66,7 @@ class Post extends Model
 
     public function site(): BelongsTo
     {
-        return $this->belongsTo(Site::class);
+        return $this->belongsTo(Site::class)->withDefault();
     }
 
     public function handbooks(): BelongsToMany

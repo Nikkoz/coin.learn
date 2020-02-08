@@ -22,7 +22,7 @@
                 <tr>
                     <th>#</th>
                     <th>{{ trans('global.blade.fields.title') }}</th>
-                    <th>{{ trans('global.blade.fields.handbooks') }}</th>
+                    <th>{{ trans('global.blade.fields.coin') }}</th>
                     <th>{{ trans('global.blade.fields.link') }}</th>
                     <th>{{ trans('global.blade.fields.date') }}</th>
                     <th>{{ trans('global.blade.fields.status') }}</th>
