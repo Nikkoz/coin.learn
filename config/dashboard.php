@@ -88,6 +88,11 @@ return [
                     'active' => ['settings/algorithms/consensus', 'settings/algorithms/consensus/*'],
                 ],
             ],
+        ], [
+            'text'   => 'formula',
+            'icon'   => 'fa-fw fa fa-chart-area',
+            'route'  => 'admin.settings.formula.index',
+            'active' => ['settings/formula'],
         ],
     ],
 ];
