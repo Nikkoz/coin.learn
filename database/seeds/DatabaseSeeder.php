@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SiteTableSeeder::class);
         $this->call(ExchangeTableSeeder::class);
         $this->call(PostTableSeeder::class);
+        $this->call(FormulaTableSeeder::class);
     }
 }

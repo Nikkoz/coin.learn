@@ -105,8 +105,11 @@ Route::group([
                 Route::delete('/{id}', 'HandbookController@destroy')->name('destroy');
             });
 
-            Route::group(['prefix' => 'algorithms', 'as' => 'algorithms.', 'namespace' => 'Algorithms'], static function (
-            ) {
+            Route::group([
+                'prefix'    => 'algorithms',
+                'as'        => 'algorithms.',
+                'namespace' => 'Algorithms',
+            ], static function () {
                 Route::redirect('/', 'algorithms/encryption');
 
                 Route::group(['prefix' => 'encryption', 'as' => 'encryption.'], static function () {
@@ -128,7 +131,11 @@ Route::group([
                 });
             });
 
-            Route::group(['prefix' => 'social', 'as' => 'social.', 'namespace' => 'SocialNetworks'], static function () {
+            Route::group([
+                'prefix'    => 'social',
+                'as'        => 'social.',
+                'namespace' => 'SocialNetworks',
+            ], static function () {
                 Route::redirect('/', 'social/networks');
 
                 Route::group(['prefix' => 'networks', 'as' => 'networks.'], static function () {
@@ -159,6 +166,11 @@ Route::group([
                 Route::put('/{id}', 'ExchangeController@update')->name('update');
                 Route::post('/', 'ExchangeController@store')->name('store');
                 Route::delete('/{id}', 'ExchangeController@destroy')->name('destroy');
+            });
+
+            Route::group(['prefix' => 'formula', 'as' => 'formula.'], static function () {
+                Route::get('/', 'FormulaController@index')->name('index');
+                Route::put('/{id}', 'FormulaController@update')->name('update');
             });
         });
     });

@@ -51,6 +51,7 @@ return [
             'facebook'  => 'Facebook',
             'reddit'    => 'Reddit',
             'post'      => 'Post',
+            'formula'   => 'Formula',
             'list'      => [
                 'exchanges' => 'List of exchanges',
                 'twitter'   => 'List of twitter posts',
@@ -64,6 +65,10 @@ return [
             'twit'       => 'Twit',
             'post'       => 'Post',
             'activities' => 'Activities',
+            'news'       => 'News',
+            'community'  => 'Community',
+            'developers' => 'Developers',
+            'exchanges'  => 'Exchanges',
         ],
         'fields'       => [
             'name'         => 'Name',
@@ -91,6 +96,12 @@ return [
             'shares'       => 'Shares',
             'likes'        => 'Likes',
             'comments'     => 'Comments',
+
+            'formula_param'            => 'Макс. значение параметра',
+            'formula_news_count'       => 'Макс. кол-во упоминаний для сайта',
+            'formula_community_count'  => 'Макс. кол-во единиц',
+            'formula_developers_count' => 'Макс. кол-во активностей в группе',
+            'formula_exchanges_count'  => 'Макс. кол-во упоминаний в бирже',
         ],
     ],
 ];

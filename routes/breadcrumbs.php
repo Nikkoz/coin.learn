@@ -8,7 +8,6 @@ Breadcrumbs::register('admin.home', static function (Crumbs $crumbs) {
     $crumbs->push(trans('global.title_home'), route('admin.home'));
 });
 
-
 // Coins
 
 Breadcrumbs::register('admin.coins.index', static function (Crumbs $crumbs) {
@@ -25,7 +24,6 @@ Breadcrumbs::register('admin.coins.edit', static function (Crumbs $crumbs, int $
     $crumbs->parent('admin.coins.index');
     $crumbs->push(trans('global.actions.objects.update', ['object' => 'Coin']), route('admin.coins.edit', $id));
 });
-
 
 // Links
 
@@ -171,7 +169,6 @@ Breadcrumbs::register('admin.settings.algorithms.consensus.edit', static functio
     $crumbs->push(trans('settings.blade.algorithms.breadcrumbs.update'), route('admin.settings.algorithms.consensus.edit', $id));
 });
 
-
 // Social networks
 
 Breadcrumbs::register('admin.settings.social.networks.index', static function (Crumbs $crumbs) {
@@ -192,7 +189,6 @@ Breadcrumbs::register('admin.settings.social.networks.edit', static function (Cr
     );
 });
 
-
 // Handbooks
 
 Breadcrumbs::register('admin.settings.handbooks.index', static function (Crumbs $crumbs) {
@@ -209,7 +205,6 @@ Breadcrumbs::register('admin.settings.handbooks.edit', static function (Crumbs $
     $crumbs->parent('admin.settings.handbooks.index');
     $crumbs->push(trans('global.actions.objects.update', ['object' => 'Handbook']), route('admin.settings.handbooks.edit', $id));
 });
-
 
 // Sites
 
@@ -243,4 +238,11 @@ Breadcrumbs::register('admin.settings.exchanges.create', static function (Crumbs
 Breadcrumbs::register('admin.settings.exchanges.edit', static function (Crumbs $crumbs, int $id) {
     $crumbs->parent('admin.settings.exchanges.index');
     $crumbs->push(trans('global.actions.objects.update', ['object' => 'Exchange']), route('admin.settings.exchanges.edit', $id));
+});
+
+// Formula
+
+Breadcrumbs::register('admin.settings.formula.index', static function (Crumbs $crumbs) {
+    $crumbs->parent('admin.home');
+    $crumbs->push(trans('global.blade.title.formula'), route('admin.settings.formula.index'));
 });
