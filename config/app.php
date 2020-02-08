@@ -174,10 +174,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\MenuServiceProvider::class,
 
         App\Providers\DashboardFormServiceProvider::class,
         App\Providers\EntityServiceProvider::class,
+        App\Providers\MenuServiceProvider::class,
+        App\Providers\CacheServiceProvider::class,
     ],
 
     /*

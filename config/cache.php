@@ -74,6 +74,7 @@ return [
         'redis' => [
             'driver' => 'redis',
             'connection' => 'cache',
+            'prefix' => 'coin_database_coin_cache',
         ],
 
         'dynamodb' => [

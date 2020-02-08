@@ -46,6 +46,11 @@ RUN docker-php-ext-install -j$(nproc) gd
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer
 
+# install redis
+RUN pecl install -o -f redis \
+    &&  rm -rf /tmp/pear \
+    &&  echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
+
 RUN pear install PHP_CodeSniffer
 
 RUN /usr/local/bin/phpcs --config-set show_progress 1 && \
