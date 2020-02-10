@@ -60,16 +60,16 @@ class MenuServiceProvider extends ServiceProvider
 
         switch ($item['key']) {
             case 'news':
-                $label = $posts[PostTypeDictionary::TYPE_POST];
+                $label = $posts ? $posts[PostTypeDictionary::TYPE_POST] : 0;
                 break;
             case 'twitter':
-                $label = $posts[PostTypeDictionary::TYPE_TWITTER];
+                $label = $posts ? $posts[PostTypeDictionary::TYPE_TWITTER] : 0;
                 break;
             case 'facebook':
-                $label = $posts[PostTypeDictionary::TYPE_FACEBOOK];
+                $label = $posts ? $posts[PostTypeDictionary::TYPE_FACEBOOK] : 0;
                 break;
             case 'reddit':
-                $label = $posts[PostTypeDictionary::TYPE_REDDIT];
+                $label = $posts ? $posts[PostTypeDictionary::TYPE_REDDIT] : 0;
                 break;
         }
 

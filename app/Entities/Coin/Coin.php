@@ -6,8 +6,11 @@ use App\Entities\Post;
 use App\Entities\Image;
 use App\Entities\Settings\Consensus;
 use App\Entities\Settings\Encryption;
+use App\Dictionaries\StatusDictionary;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Contracts\Filters\DataFilterable;
+use App\Dictionaries\Coins\CoinTypeDictionary;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Entities\Settings\SocialNetworks\SocialLink;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -44,7 +47,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @method Builder active()
  */
-class Coin extends Model
+class Coin extends Model implements DataFilterable
 {
     /**
      * Путь для сохранения изображений фильмов.
@@ -92,5 +95,29 @@ class Coin extends Model
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('status', StatusDictionary::ACTIVE);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getDataFilterConfig(): array
+    {
+        return [
+            [
+                'condition' => function () {
+                    return (int)$this->type === CoinTypeDictionary::TYPE_COIN;
+                },
+                'filter'    => function () {
+                    $this->platform = null;
+                },
+            ], [
+                'condition' => function () {
+                    return (int)$this->type === CoinTypeDictionary::TYPE_TOKEN;
+                },
+                'filter'    => function () {
+                    $this->smart_contracts = false;
+                },
+            ],
+        ];
     }
 }

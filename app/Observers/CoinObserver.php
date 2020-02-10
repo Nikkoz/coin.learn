@@ -3,8 +3,9 @@
 namespace App\Observers;
 
 use App\Entities\Coin\Coin;
-use App\Services\Dashboard\ImageService;
 use Illuminate\Support\Str;
+use App\Services\Dashboard\ImageService;
+use App\Filters\EloquentDataFilterResolver;
 
 class CoinObserver
 {
@@ -16,6 +17,12 @@ class CoinObserver
     public function __construct(ImageService $imageService)
     {
         $this->imageService = $imageService;
+    }
+
+    public function saving(Coin $coin): void
+    {
+        $filterResolver = new EloquentDataFilterResolver($coin);
+        $filterResolver->resolve();
     }
 
     public function creating(Coin $coin): void
