@@ -26,6 +26,7 @@ $factory->define(Coin::class, static function (Faker $faker) {
     $consesusId = $consesus->isEmpty() ? factory(Consensus::class)->create()->id : $consesus->random()->id;
 
     return [
+        'market_id'       => $faker->unique()->randomNumber(),
         'name'            => $name,
         'code'            => $faker->unique()->regexify('[A-Z]{3}'),
         'alias'           => Str::slug($name),
@@ -41,5 +42,6 @@ $factory->define(Coin::class, static function (Faker $faker) {
         'key_features'    => $faker->randomHtml(3, 1),
         'use'             => $faker->randomHtml(2, 2),
         'status'          => $faker->randomKey(StatusDictionary::getValues()),
+        'uploaded'        => false,
     ];
 });

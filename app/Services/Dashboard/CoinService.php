@@ -54,7 +54,7 @@ class CoinService
      */
     public function create(array $data): Coin
     {
-        $coin = new Coin;
+        $coin = new Coin();
 
         if (!$this->save($coin, $data)) {
             throw new FailedSaveModelException(Coin::class);
@@ -94,7 +94,7 @@ class CoinService
      * @throws Throwable
      * @return bool
      */
-    protected function save(Coin $coin, array $data): bool
+    public function save(Coin $coin, array $data): bool
     {
         return DB::transaction(function () use ($coin, $data) {
             $coin->fill($data);
@@ -102,7 +102,7 @@ class CoinService
             if (!empty($data['image_id'])) {
                 $image = $this->imageService->create([
                     'file' => $data['image_id'],
-                    'path' => Coin::PATH
+                    'path' => Coin::PATH,
                 ]);
 
                 $coin->image_id = $image->id;
