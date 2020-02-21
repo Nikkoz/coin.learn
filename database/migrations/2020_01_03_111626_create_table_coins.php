@@ -42,15 +42,17 @@ class CreateTableCoins extends Migration
             $table->text('key_features')->nullable(true)->comment('Ключевые особенности');
             $table->text('use')->nullable(true)->comment('Использование');
             $table->tinyInteger('status')->nullable(false)->default(1)->comment('Статус');
-            $table->string('site', 50)->nullable(true)->comment('Официальный сайт монеты');
-            $table->string('chat', 50)->nullable(true)->comment('Ссылка на чат');
+            $table->string('site', 100)->nullable(true)->comment('Официальный сайт монеты');
+            $table->string('chat', 100)->nullable(true)->comment('Ссылка на чат');
             $table->json('links')->nullable(true)->comment('Дополнительные ссылки');
             $table->boolean('uploaded')->default(0)->comment('Монета загружена из маркета');
 
             $table->timestampsTz();
 
-            $table->foreign('encryption_id')->references('id')->on('algorithm_encryption')->onDelete('SET NULL')->onUpdate('CASCADE');
-            $table->foreign('consensus_id')->references('id')->on('algorithm_consensus')->onDelete('SET NULL')->onUpdate('CASCADE');
+            $table->foreign('encryption_id')->references('id')->on('algorithm_encryption')->onDelete('SET NULL')
+                ->onUpdate('CASCADE');
+            $table->foreign('consensus_id')->references('id')->on('algorithm_consensus')->onDelete('SET NULL')
+                ->onUpdate('CASCADE');
             $table->foreign('image_id')->references('id')->on('images')->onDelete('SET NULL')->onUpdate('RESTRICT');
         });
     }

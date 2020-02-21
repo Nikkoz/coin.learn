@@ -27,7 +27,7 @@ class CoinMarketManager
 
     public function import(bool $all = false): Collection
     {
-        $mapCoins = $this->market->map(['symbol' => 'BTC']);
+        $mapCoins = $this->market->map();
 
         if (!$all) {
             $mapCoins = $this->trimCoins($mapCoins);
@@ -35,11 +35,14 @@ class CoinMarketManager
 
         $result = [];
 
-        $mapCoins->chunk(self::CHUNK)->each(function (Collection $collection, int $key) use (&$result) {
+        $mapCoins->unique('code')->chunk(self::CHUNK)->each(function (Collection $collection, int $key) use (&$result) {
             $start = $key * self::CHUNK + 1;
 
-            $latestCoins = $this->market->latest(['start' => $start, 'limit' => self::CHUNK, 'aux' => 'max_supply'])
-                ->keyBy('id');
+            $latestCoins = $this->market->latest([
+                'start' => $start,
+                'limit' => self::CHUNK,
+                'aux'   => 'max_supply',
+            ])->keyBy('id');
             $metaCoins = $this->market->info(['id' => $latestCoins->implode('id', ',')]);
 
             $collection->each(function (array $item) use (&$result, $latestCoins, $metaCoins) {
@@ -54,19 +57,20 @@ class CoinMarketManager
                     'type'         => isset($meta['category']) && $meta['category'] === self::TYPE_TOKEN ?
                         CoinTypeDictionary::TYPE_TOKEN : CoinTypeDictionary::TYPE_COIN,
                     'date_start'   => isset($meta['date_added']) ? Carbon::parse($meta['date_added'])
-                        ->format('Y-m-d') : '',
-                    'max_supply'   => $latest['max_supply'] ?? '',
+                        ->format('Y-m-d') : null,
+                    'max_supply'   => $latest['max_supply'] ?? null,
                     'key_features' => $meta['description'] ?? '',
-                    'image_id'     => $meta['logo'] ? $this->uploadImage($meta['logo']) : '',
+                    'image_id'     => isset($meta['logo']) ? $this->uploadImage($meta['logo']) : null,
                 ];
 
                 if (isset($meta['urls'])) {
                     $coin += [
-                        'site'  => $meta['urls']['website'][0] ?? '',
-                        'links' => $meta['urls']['explorer'],
-                        'chat'  => $meta['urls']['chat'][0] ?? '',
-                        //'twitter' => $meta['urls']['twitter'][0] ?? '',
-                        //'reddit'  => $meta['urls']['reddit'][0] ?? '',
+                        'site'     => $meta['urls']['website'][0] ?? '',
+                        'links'    => $meta['urls']['explorer'],
+                        'chat'     => $meta['urls']['chat'][0] ?? '',
+                        'twitter'  => $meta['urls']['twitter'][0] ?? '',
+                        'reddit'   => $meta['urls']['reddit'][0] ?? '',
+                        'facebook' => $meta['urls']['facebook'][0] ?? '',
                     ];
                 }
 
@@ -88,7 +92,7 @@ class CoinMarketManager
     {
         $coins = $this->repository->getAll(['uploaded' => false])->pluck('market_id');
 
-        return $collection->filter(function ($coin) use ($coins) {
+        return $collection->filter(static function ($coin) use ($coins) {
             return !$coins->contains($coin['id']);
         });
     }
