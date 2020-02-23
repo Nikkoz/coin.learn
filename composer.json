@@ -21,6 +21,7 @@
     "laravel/ui": "^1.1",
     "laravelcollective/html": "^6.0",
     "rennokki/laravel-eloquent-query-cache": "^1.2",
+    "thujohn/twitter": "^2.2",
     "yajra/laravel-datatables-oracle": "~9.0"
   },
   "require-dev": {

@@ -10,7 +10,7 @@ return [
     'post_types' => [
         'post'     => 'Post',
         'twitter'  => 'Twitter',
-        'facebook' => 'facebook',
+        'facebook' => 'Facebook',
         'reddit'   => 'Redit',
     ],
     'actions'    => [
