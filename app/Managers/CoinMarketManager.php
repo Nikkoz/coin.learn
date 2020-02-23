@@ -35,7 +35,8 @@ class CoinMarketManager
 
         $result = [];
 
-        $mapCoins->unique('code')->chunk(self::CHUNK)->each(function (Collection $collection, int $key) use (&$result) {
+        $mapCoins->unique('symbol')->chunk(self::CHUNK)->each(function (Collection $collection, int $key) use (&$result
+        ) {
             $start = $key * self::CHUNK + 1;
 
             $latestCoins = $this->market->latest([
@@ -58,7 +59,7 @@ class CoinMarketManager
                         CoinTypeDictionary::TYPE_TOKEN : CoinTypeDictionary::TYPE_COIN,
                     'date_start'   => isset($meta['date_added']) ? Carbon::parse($meta['date_added'])
                         ->format('Y-m-d') : null,
-                    'max_supply'   => $latest['max_supply'] ?? null,
+                    'max_supply'   => isset($latest['max_supply']) ? (int)$latest['max_supply'] : null,
                     'key_features' => $meta['description'] ?? '',
                     'image_id'     => isset($meta['logo']) ? $this->uploadImage($meta['logo']) : null,
                 ];
