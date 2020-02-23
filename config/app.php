@@ -179,6 +179,7 @@ return [
         App\Providers\EntityServiceProvider::class,
         App\Providers\MenuServiceProvider::class,
         App\Providers\CacheServiceProvider::class,
+        App\Providers\CoinMarketProvider::class,
     ],
 
     /*

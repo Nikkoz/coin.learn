@@ -14,11 +14,6 @@ use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 
 class MenuServiceProvider extends ServiceProvider
 {
-    public function register(): void
-    {
-
-    }
-
     public function boot(Dispatcher $events): void
     {
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
