@@ -46,6 +46,13 @@ class ImportCommand extends BaseCommand
         $all = (bool)$this->option('all');
 
         $coins = $this->manager->import($all);
+
+        if (!$coins->count()) {
+            $this->info('No coins to import!');
+
+            return static::OK;
+        }
+
         $networks = $this->networkRepository->getAll([
             'status' => StatusDictionary::ACTIVE,
         ])->pluck('id', 'name');

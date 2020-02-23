@@ -27,7 +27,7 @@ class CoinMarketManager
 
     public function import(bool $all = false): Collection
     {
-        $mapCoins = $this->market->map();
+        $mapCoins = $this->market->map()->unique('symbol');
 
         if (!$all) {
             $mapCoins = $this->trimCoins($mapCoins);
@@ -35,7 +35,7 @@ class CoinMarketManager
 
         $result = [];
 
-        $mapCoins->unique('symbol')->chunk(self::CHUNK)->each(function (Collection $collection, int $key) use (&$result
+        $mapCoins->chunk(self::CHUNK)->each(function (Collection $collection, int $key) use (&$result
         ) {
             $start = $key * self::CHUNK + 1;
 
