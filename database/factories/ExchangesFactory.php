@@ -8,8 +8,8 @@ use App\Entities\Settings\SocialNetworks\SocialNetwork;
 /** @var Factory $factory */
 
 $factory->define(Exchange::class, static function (Faker $faker) {
-    $network = SocialNetwork::all();
-    $networkId = $network->isEmpty() ? factory(SocialNetwork::class)->create()->id : $network->random()->id;
+    $network = SocialNetwork::query()->inRandomOrder()->first();
+    $networkId = $network !== null ? factory(SocialNetwork::class)->create()->id : $network->id;
 
     return [
         'name'        => $faker->unique()->firstNameMale,

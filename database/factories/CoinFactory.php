@@ -12,21 +12,21 @@ use App\Dictionaries\Coins\CoinTypeDictionary;
 /** @var Factory $factory */
 
 $factory->define(Coin::class, static function (Faker $faker) {
-    $name = $faker->unique()->firstNameMale;
+    $name = $faker->unique()->firstNameFemale;
 
     $image = Image::where('name', '=', 'example.jpg')->first();
     $imageId = $image === null ? factory(Image::class)->create()->id : $image->id;
 
     $type = $faker->randomKey(CoinTypeDictionary::getValues());
 
-    $encryption = Encryption::all();
-    $encryptionId = $encryption->isEmpty() ? factory(Encryption::class)->create()->id : $encryption->random()->id;
+    $encryption = Encryption::query()->inRandomOrder()->first();
+    $encryptionId = $encryption !== null ? factory(Encryption::class)->create()->id : $encryption->id;
 
-    $consesus = Consensus::all();
-    $consesusId = $consesus->isEmpty() ? factory(Consensus::class)->create()->id : $consesus->random()->id;
+    $consesus = Consensus::query()->inRandomOrder()->first();
+    $consesusId = $consesus !== null ? factory(Consensus::class)->create()->id : $consesus->id;
 
     return [
-        'market_id'       => $faker->unique()->randomNumber(),
+        'market_id'       => $faker->unique()->randomNumber(8),
         'name'            => $name,
         'code'            => $faker->unique()->regexify('[A-Z]{3}'),
         'alias'           => Str::slug($name),

@@ -10,14 +10,14 @@ use Illuminate\Database\Eloquent\Factory;
 $factory->define(Handbook::class, static function (Faker $faker) {
     $title = $faker->unique()->lexify('???');
 
-    $coins = Coin::all();
-    $coinId = $coins->isEmpty() ? factory(Coin::class)->create()->id : $coins->random()->id;
+    $coin = Coin::query()->inRandomOrder()->first();
+    $coinId = $coin !== null ? factory(Coin::class)->create()->id : $coin->id;
 
     return [
         'title'      => $faker->toUpper($title),
         'alias'      => Str::slug($title),
         'coin_id'    => $coinId,
         'check_case' => $faker->boolean,
-        'status'     => $faker->boolean
+        'status'     => $faker->boolean,
     ];
 });

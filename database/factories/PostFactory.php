@@ -13,11 +13,11 @@ $factory->define(Post::class, static function (Faker $faker) {
     $type = $faker->randomElement(PostTypeDictionary::getKeys());
 
     if ($type === PostTypeDictionary::TYPE_POST) {
-        $sites = Site::all();
-        $site = $sites->isEmpty() ? factory(Site::class)->create()->id : $sites->random()->id;
+        $site = Site::query()->inRandomOrder()->first();
+        $site = $site !== null ? factory(Site::class)->create()->id : $site->id;
     } else {
-        $coins = Coin::all();
-        $coin_id = $coins->isEmpty() ? factory(Coin::class)->create()->id : $coins->random()->id;
+        $coin = Coin::query()->inRandomOrder()->first();
+        $coin_id = $coin !== null ? factory(Coin::class)->create()->id : $coin->id;
     }
 
     return [

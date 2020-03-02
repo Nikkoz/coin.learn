@@ -15,7 +15,7 @@ class CreateSocialLinksTable extends Migration
         Schema::create($this->socialNetworkTable, static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 100)->nullable(false)->unique()->comment('Название социальной сети');
-            $table->string('link', 100)->nullable(false)->unique()->comment('Ссылка на социальную сеть');
+            $table->string('link', 150)->nullable(false)->unique()->comment('Ссылка на социальную сеть');
             $table->tinyInteger('status')->nullable(false)->default(0)->comment('Статус');
         });
 
