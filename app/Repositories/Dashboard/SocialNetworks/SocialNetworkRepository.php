@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Dashboard\SocialNetworks;
 
-use App\Entities\Settings\SocialNetworks\SocialNetwork;
-use App\Repositories\Dashboard\BaseRepository;
 use Illuminate\Database\Eloquent\Builder;
+use App\Repositories\Dashboard\BaseRepository;
+use App\Entities\Settings\SocialNetworks\SocialNetwork;
 
 class SocialNetworkRepository extends BaseRepository
 {
@@ -25,6 +25,11 @@ class SocialNetworkRepository extends BaseRepository
     public function getOne(int $id): SocialNetwork
     {
         return $this->queryBuilder()->where('id', $id)->firstOrFail();
+    }
+
+    public function getOneBy(array $params): SocialNetwork
+    {
+        return $this->prepareQueryParams($params)->firstOrFail();
     }
 
     /**
